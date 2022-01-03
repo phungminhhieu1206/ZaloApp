@@ -1,4 +1,4 @@
-package com.zaloapp;
+package com.teamsix.zaloapp;
 
 import com.facebook.react.ReactActivity;
 

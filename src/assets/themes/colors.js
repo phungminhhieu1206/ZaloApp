@@ -3,7 +3,7 @@ export default {
     secondary: '#3f37c9',
     accent: '#4895ef',
     danger: '#f72585',
-    success: '#4cc9f0',
+    success: '#30C860',
     grey: '#adb5bd',
     white: '#ffffff',
     text: '#000000'
@@ -13,3 +13,4 @@ export default {
 // #30C860
 // #019ff8
 // primary: '#4361ee',
+// success: '#4cc9f0'

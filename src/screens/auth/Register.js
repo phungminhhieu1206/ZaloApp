@@ -3,7 +3,7 @@ import React, { useContext, useState, useCallback } from 'react'
 import { View, Text } from 'react-native'
 import RegisterComponent from '../../components/specifics/auth/RegisterComponent'
 import { GlobalContext } from '../../context/Provider';
-import registerAction from "../../context/actions/auth/registerAction"
+import register, { clearAuthState } from "../../context/actions/auth/register"
 import { LOGIN } from "../../constants/routeNames";
 
 const Register = () => {
@@ -19,6 +19,16 @@ const Register = () => {
         authDispatch,
         authState: { error, loading, data }
     } = useContext(GlobalContext);
+
+    useFocusEffect(
+        useCallback(() => {
+            return () => {
+                if (data || error) {
+                    clearAuthState()(authDispatch);
+                }
+            }
+        }, [data, error]),
+    );
 
 
     const onChange = ({ name, value }) => {
@@ -80,7 +90,9 @@ const Register = () => {
              * cta cần gửi dữ liệu là form
              * và cần 1 action để thay đổi state là: authDispatch
              */
-            registerAction(form)(authDispatch);
+            register(form)(authDispatch)((data) => {
+                navigate(LOGIN, { data });
+            });
         }
     };
 

@@ -11,6 +11,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import colors from '../../assets/themes/colors';
+import Icon from "../common/Icon";
 
 const Message = ({
     message,
@@ -52,6 +53,7 @@ const Message = ({
                         <Text
                             style={{
                                 color: colors.white,
+                                fontSize: 15
                             }}>
                             {message}
                         </Text>
@@ -73,12 +75,13 @@ const Message = ({
                                     setDismissed(true);
                                     onDismiss();
                                 }}>
-                                <Text
-                                    style={{
-                                        color: colors.white,
-                                    }}>
-                                    X
-                                </Text>
+                                <Icon
+                                    type="ant"
+                                    size={20}
+                                    name="close"
+                                    style={{}}
+                                    color={colors.white}
+                                />
                             </TouchableOpacity>
                         )}
                     </View>
@@ -91,15 +94,12 @@ const Message = ({
 const styles = StyleSheet.create({
     wrapper: {
         height: 42,
-
         paddingHorizontal: 5,
-
-        paddingVertical: 13,
-
+        paddingVertical: 10,
         marginVertical: 5,
         borderRadius: 4,
         // alignItems: 'center',
-        // justifyContent: 'space-evenly',
+        // justifyContent: 'space-between',
     },
 
     loaderSection: {

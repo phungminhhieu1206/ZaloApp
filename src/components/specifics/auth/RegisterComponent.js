@@ -29,6 +29,8 @@ const RegisterComponent = ({
     const { navigate } = useNavigation();
     const [isSecureEntry, setIsSecureEntry] = useState(true);
 
+    console.log('error --> ', error);
+
     return (
         <Container>
             <Image
@@ -40,6 +42,16 @@ const RegisterComponent = ({
 
             <View>
                 <View style={styles.form}>
+                    {error?.error && (
+                        <Message
+                            retry
+                            danger
+                            retryFn={() => {
+                                console.log('click retry button in register screen');
+                            }}
+                            message={error.error}
+                        />
+                    )}
                     <CustomInput
                         icon={
                             <CountryPicker
@@ -65,7 +77,7 @@ const RegisterComponent = ({
                         style={{ paddingLeft: 10 }}
                         label="Phone Number"
                         placeholder="Enter phone number"
-                        error={errors.phoneNumber}
+                        error={errors.phoneNumber || error?.message}
                         onChangeText={(value) => {
                             onChange({ name: 'phoneNumber', value });
                         }}
@@ -103,8 +115,8 @@ const RegisterComponent = ({
                     <CustomButton
                         loading={loading}
                         disabled={loading}
-                        primary
                         onPress={onSubmit}
+                        primary
                         title="REGISTER"
                     />
 

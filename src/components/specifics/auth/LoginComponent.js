@@ -15,6 +15,13 @@ import { REGISTER } from '../../../constants/routeNames';
 import Message from '../../common/Message';
 
 const LoginComponent = ({
+    error,
+    form,
+    onChange,
+    loading,
+    onSubmit,
+    justSignedUp,
+    errors
 }) => {
     const { navigate } = useNavigation();
     const [isSecureEntry, setIsSecureEntry] = useState(true);
@@ -31,10 +38,37 @@ const LoginComponent = ({
                 <Text style={styles.title}>Welcome to ZaloApp</Text>
 
                 <View style={styles.form}>
+                    {justSignedUp && (
+                        <Message
+                            onDismiss={() => { }}
+                            message='Account created successfully'
+                            success
+                        />
+                    )}
+
+                    {error && !error.error && <Message
+                        onDismiss={() => { }}
+                        message={error.message}
+                        danger
+                    />}
+
+                    {error?.error && (
+                        <Message
+                            danger
+                            onDismiss
+                            message={error.error}
+                        />
+                    )}
+
                     <CustomInput
-                        label="Username/ Phone number"
+                        label="Phone Number"
                         iconPosition="right"
-                        placeholder="Enter Username or Phone number"
+                        placeholder="Enter Phone Number"
+                        value={form.phoneNumber || null}
+                        onChangeText={(value) => {
+                            onChange({ name: 'phoneNumber', value })
+                        }}
+                        error={errors.phoneNumber}
                     />
 
                     <CustomInput
@@ -50,9 +84,15 @@ const LoginComponent = ({
                             </TouchableOpacity>
                         }
                         iconPosition="right"
+                        onChangeText={(value) => {
+                            onChange({ name: 'password', value })
+                        }}
                     />
 
                     <CustomButton
+                        disabled={loading}
+                        onPress={onSubmit}
+                        loading={loading}
                         primary
                         title="LOGIN"
                     />

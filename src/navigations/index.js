@@ -10,7 +10,7 @@ import { navigationRef } from './RootNavigator'
 
 
 const AppNavContainer = () => {
-    const [isAuthenticated, setIsAuthenticated] = React.useState(true);
+    const [isAuthenticated, setIsAuthenticated] = React.useState(false);
     const [authLoaded, setAuthLoaded] = React.useState(true);
 
     return (

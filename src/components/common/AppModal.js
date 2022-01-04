@@ -7,8 +7,8 @@ import {
     View,
     ScrollView
 } from 'react-native'
-import colors from '../../assets/theme/colors'
-import Icon from './Icon'
+import colors from '../../assets/themes/colors'
+import Icon from '../common/Icon'
 import PropTypes from 'prop-types'
 
 const AppModal = ({

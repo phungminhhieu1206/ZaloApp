@@ -1,11 +1,11 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useState } from 'react'
+import LoginComponent from '../../components/specifics/auth/LoginComponent'
 
 const Login = () => {
+
+    const [form, setForm] = useState({});
     return (
-        <View>
-            <Text>SCREEN LOGIN !</Text>
-        </View>
+        <LoginComponent />
     )
 }
 

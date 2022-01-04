@@ -1,5 +1,11 @@
 import React from 'react'
-import { View, Text, ScrollView, StyleSheet } from 'react-native'
+import {
+    View,
+    Text,
+    ScrollView,
+    StyleSheet
+} from 'react-native'
+import colors from '../../assets/themes/colors'
 
 /**
  * Vì không biết trước thành phần con của nó là gì, nên sử dụng thành phần children
@@ -7,7 +13,9 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native'
  */
 const Container = ({ children }) => {
     return (
-        <ScrollView>
+        <ScrollView style={{
+            backgroundColor: colors.white,
+        }}>
             <View style={styles.wrapper}>
                 {children}
             </View>
@@ -17,7 +25,7 @@ const Container = ({ children }) => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        padding: 20
+        padding: 20,
     }
 })
 

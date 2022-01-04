@@ -1,6 +1,12 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native'
-import colors from '../../assets/theme/colors';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    StyleSheet,
+    ActivityIndicator
+} from 'react-native'
+import colors from '../../assets/themes/colors';
 
 /**
  * Xác định button:

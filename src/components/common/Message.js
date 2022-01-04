@@ -10,7 +10,7 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
-import colors from '../../assets/theme/colors';
+import colors from '../../assets/themes/colors';
 
 const Message = ({
     message,

@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import RBSheet from 'react-native-raw-bottom-sheet';
 import Icon from '../common/Icon';
-import colors from '../../assets/theme/colors';
+import colors from '../../assets/themes/colors';
 import ImagePickerCropper from 'react-native-image-crop-picker';
 
 const ImagePicker = React.forwardRef(({ onFileSelected }, ref) => {

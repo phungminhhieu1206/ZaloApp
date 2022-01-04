@@ -1,6 +1,11 @@
-import React, {useState} from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
-import colors from '../../assets/theme/colors'
+import React, { useState } from 'react'
+import {
+    View,
+    Text,
+    TextInput,
+    StyleSheet
+} from 'react-native'
+import colors from '../../assets/themes/colors'
 
 const CustomInput = ({
     onChangeText,

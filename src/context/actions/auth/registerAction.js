@@ -13,38 +13,36 @@ import axiosInstance from '../../../helpers/axiosInstance';
 // };
 
 // action register
-const registerAction = ({
-    phoneNumber: phonenumber,
-    password,
-    userName: username,
-}) => (dispatch) => {
+const registerAction = (form) => (dispatch) => {
+
+    console.log('form --->', form);
+    const requestPayload = {
+        phonenumber: form.phoneNumber,
+        password: form.password,
+        username: form.userName,
+    };
+    console.log('requestPayload --->', requestPayload);
+
     dispatch({
         type: REGISTER_LOADING,
     });
-    axiosInstance // đã chứa url base, axios ~ http request
-        .post('users/register', {
-            phonenumber,
-            password,
-            username,
-        })
-        .then((res) => { // response trả về từ server sau lệnh post của axios
-            console.log("register success ----> ", res.data);
-            // dispatch({
-            //     type: REGISTER_SUCCESS,
-            //     payload: res.data,
-            // });
+    axiosInstance.post('users/register', requestPayload).then((res) => {
+        console.log("register success ----> ", res.data);
+        // dispatch({
+        //     type: REGISTER_SUCCESS,
+        //     payload: res.data,
+        // });
 
-            // onSuccess(res.data);
-        })
-        .catch((err) => { 
-            console.log("register error ----> ", err);
-            // dispatch({
-            //     type: REGISTER_FAIL,
-            //     payload: err.response
-            //         ? err.response.data // error của request post gửi từ server về
-            //         : { error: 'Something went wrong, try again !' }, // server xảy ra sự cố, thử tắt internet xem kqua
-            // });
-        });
+        // onSuccess(res.data);
+    }).catch((err) => {
+        console.log("register error ----> ", err);
+        // dispatch({
+        //     type: REGISTER_FAIL,
+        //     payload: err.response
+        //         ? err.response.data // error của request post gửi từ server về
+        //         : { error: 'Something went wrong, try again !' }, // server xảy ra sự cố, thử tắt internet xem kqua
+        // });
+    });
 };
 
 export default registerAction;

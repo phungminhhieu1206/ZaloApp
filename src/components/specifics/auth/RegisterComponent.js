@@ -22,7 +22,9 @@ const RegisterComponent = ({
     onChange,
     form,
     errors,
-    setForm
+    setForm,
+    loading,
+    error
 }) => {
     const { navigate } = useNavigation();
     const [isSecureEntry, setIsSecureEntry] = useState(true);
@@ -99,6 +101,8 @@ const RegisterComponent = ({
                     />
 
                     <CustomButton
+                        loading={loading}
+                        disabled={loading}
                         primary
                         onPress={onSubmit}
                         title="REGISTER"

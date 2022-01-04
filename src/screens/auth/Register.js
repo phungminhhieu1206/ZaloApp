@@ -1,9 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useState } from 'react'
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import React, { useContext, useState, useCallback } from 'react'
 import { View, Text } from 'react-native'
 import RegisterComponent from '../../components/specifics/auth/RegisterComponent'
 import { GlobalContext } from '../../context/Provider';
 import registerAction from "../../context/actions/auth/registerAction"
+import { LOGIN } from "../../constants/routeNames";
 
 const Register = () => {
 
@@ -18,6 +19,7 @@ const Register = () => {
         authDispatch,
         authState: { error, loading, data }
     } = useContext(GlobalContext);
+
 
     const onChange = ({ name, value }) => {
         setForm({ ...form, [name]: value });
@@ -64,11 +66,10 @@ const Register = () => {
         }
 
         if (
-            Object.values(form).length === 5 &&
+            Object.values(form).length === 3 &&
             Object.values(form).every((item) => item.trim().length > 0) &&
             Object.values(errors).every((item) => !item) // đảm bảo ko còn input nào rỗng
         ) {
-            console.log('11111 >>>', Object.values(form));
             /**
              * đến đây các lỗi ko còn, cần gửi dữ liệu lên server
              * Ngay tại đây, mình cần tạo actions để dispatch action register đó đến server -> vào context tạo
@@ -79,7 +80,7 @@ const Register = () => {
              * cta cần gửi dữ liệu là form
              * và cần 1 action để thay đổi state là: authDispatch
              */
-             registerAction(form)(authDispatch);
+            registerAction(form)(authDispatch);
         }
     };
 
@@ -90,6 +91,8 @@ const Register = () => {
             form={form}
             errors={errors}
             setForm={setForm}
+            error={error} // of global state
+            loading={loading} // of global state
         />
     )
 }

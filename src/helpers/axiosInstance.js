@@ -11,6 +11,8 @@ const axiosInstance = axios.create({ // create http request to server
   headers,
 });
 
+console.log('envs -->', envs.BACKEND_URL);
+
 axiosInstance.interceptors.request.use(
   async (request) => {
     const token = await AsyncStorage.getItem('token'); // getToken, xem token đã có trong asyncstorage hay chưa

@@ -6,7 +6,8 @@ export default {
     success: '#30C860',
     grey: '#adb5bd',
     white: '#ffffff',
-    text: '#000000'
+    text: '#000000',
+    theme: '#019ff8'
 };
 
 // #3C80F5

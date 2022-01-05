@@ -16,35 +16,35 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const getIconFont = (type) => {
   switch (type) {
-    case 'fontisto':
+    case 'Fontisto':
       return Fontisto;
-    case 'material':
+    case 'MaterialIcon':
       return MaterialIcon;
-    case 'evil':
+    case 'EvilIcon':
       return EvilIcon;
-    case 'feather':
+    case 'Feather':
       return Feather;
-    case 'ant':
+    case 'AntDesign':
       return AntDesign;
-    case 'simpleLine':
+    case 'SimpleLineIcon':
       return SimpleLineIcon;
-    case 'zocial':
+    case 'ZocialIcon':
       return ZocialIcon;
-    case 'simpleLine':
+    case 'SimpleLineIcon':
       return SimpleLineIcon;
-    case 'foundation':
+    case 'FoundationIcon':
       return FoundationIcon;
-    case 'fa5':
+    case 'FAIcon5':
       return FAIcon5;
-    case 'fa':
+    case 'FAIcon':
       return FAIcon;
-    case 'ionicon':
+    case 'Ionicon':
       return Ionicon;
-    case 'materialCommunity':
+    case 'MaterialCommunityIcon':
       return MaterialCommunityIcon;
-    case 'entypo':
+    case 'EntypoIcon':
       return EntypoIcon;
-    case 'octicon':
+    case 'OcticonIcon':
       return OcticonIcon;
     default:
       return FAIcon;

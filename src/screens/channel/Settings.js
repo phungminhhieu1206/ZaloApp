@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import MyChannelComponent from '../../components/specifics/channel/MyChannelComponent';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
-import colors from "../../assets/themes/colors"
-import { SETTINGS } from '../../constants/routeNames';
+import SettingsComponent from "../../components/specifics/channel/SettingsComponent"
 
-const MyChannel = () => {
-    const { navigate, setOptions } = useNavigation();
+const Settings = () => {
+    const { navigate, setOptions, goBack } = useNavigation();
 
     useEffect(() => {
         setOptions({
@@ -18,11 +17,13 @@ const MyChannel = () => {
             headerLeft: () => {
                 return (
                     <View style={styles.headerLeft}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            goBack();
+                        }}>
                             <Icon
-                                type="EvilIcon"
-                                name="search"
-                                size={34}
+                                type="Ionicon"
+                                name="chevron-back"
+                                size={30}
                                 color={colors.white}
                             />
                         </TouchableOpacity>
@@ -43,10 +44,10 @@ const MyChannel = () => {
             headerRight: () => {
                 return (
                     <View style={styles.headerRight}>
-                        <TouchableOpacity 
-                        onPress={() => {
-                            navigate(SETTINGS);
-                        }}
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SETTINGS);
+                            }}
                         >
                             <Icon
                                 type="AntDesign"
@@ -62,7 +63,7 @@ const MyChannel = () => {
     }, []);
 
     return (
-        <MyChannelComponent />
+        <SettingsComponent />
     )
 }
 
@@ -86,4 +87,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MyChannel;
+export default Settings

@@ -5,13 +5,15 @@ import {
     CHAT_ROOMS,
     CONTACTS_LIST,
     HOME_POSTS,
-    MY_CHANNEL
+    MY_CHANNEL,
+    SETTINGS
 } from "../constants/routeNames"
 import BottomNavigator from "./BottomNavigator";
 import ChatDetail from "../screens/messages/ChatDetail"
 import Contacts from "../screens/contacts/Contacts";
 import HomePosts from "../screens/posts/HomePosts";
 import MyChannel from "../screens/channel/MyChannel";
+import Settings from "../screens/channel/Settings";
 
 const HomeStack = createStackNavigator();
 
@@ -22,7 +24,7 @@ const HomeNavigator = () => {
                 name={CHAT_ROOMS}
                 component={BottomNavigator}
                 options={{
-                    headerLeft: null,
+                    // headerLeft: null,
                     headerShown: false
                 }}
             />
@@ -31,7 +33,7 @@ const HomeNavigator = () => {
                 component={ChatDetail}
                 options={{
                     // headerTitle: ChatRoomHeader,
-                    headerLeft: null,
+                    // headerLeft: null,
                 }}
             />
             <HomeStack.Screen
@@ -39,7 +41,7 @@ const HomeNavigator = () => {
                 component={Contacts}
                 options={{
                     // headerTitle: ContactHeader,
-                    headerLeft: null
+                    // headerLeft: null
                 }}
             />
             <HomeStack.Screen
@@ -47,7 +49,7 @@ const HomeNavigator = () => {
                 component={HomePosts}
                 options={{
                     // headerTitle: HomeHeader,
-                    headerLeft: null
+                    // headerLeft: null
                 }}
             />
             <HomeStack.Screen
@@ -55,7 +57,15 @@ const HomeNavigator = () => {
                 component={MyChannel}
                 options={{
                     // headerTitle: MyChannelHeader,
-                    headerLeft: null
+                    // headerLeft: null
+                }}
+            />
+            <HomeStack.Screen
+                name={SETTINGS}
+                component={Settings}
+                options={{
+                    // headerTitle: MyChannelHeader,
+                    // headerLeft: null
                 }}
             />
         </HomeStack.Navigator>

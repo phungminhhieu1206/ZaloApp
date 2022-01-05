@@ -22,11 +22,10 @@ const TabOneStack = createStackNavigator();
 
 function TabOneNavigator() {
     return (
-        <TabOneStack.Navigator screenOptions={{ headerShown: true }}>
+        <TabOneStack.Navigator>
             <TabOneStack.Screen
                 name={TAB_ONE}
                 component={ChatRooms}
-            // options={{ headerTitle: ChatHomeHeader }}
             />
         </TabOneStack.Navigator>
     );
@@ -36,11 +35,10 @@ const TabTwoStack = createStackNavigator();
 
 function TabTwoNavigator() {
     return (
-        <TabTwoStack.Navigator screenOptions={{ headerShown: true }}>
+        <TabTwoStack.Navigator>
             <TabTwoStack.Screen
                 name={TAB_TWO}
                 component={Contacts}
-            // options={{ headerTitle: ContactHeader }}
             />
         </TabTwoStack.Navigator>
     );
@@ -50,11 +48,10 @@ const TabThreeStack = createStackNavigator();
 
 function TabThreeNavigator() {
     return (
-        <TabThreeStack.Navigator screenOptions={{ headerShown: true }}>
+        <TabThreeStack.Navigator>
             <TabThreeStack.Screen
                 name={TAB_THREE}
                 component={HomePosts}
-            // options={{ headerTitle: HomeHeader }}
             />
         </TabThreeStack.Navigator>
     );
@@ -64,23 +61,24 @@ const TabFourStack = createStackNavigator();
 
 function TabFourNavigator() {
     return (
-        <TabFourStack.Navigator screenOptions={{ headerShown: true }}>
+        <TabFourStack.Navigator>
             <TabFourStack.Screen
                 name={TAB_FOUR}
                 component={MyChannel}
-            // options={{ headerTitle: MeHeader }}
             />
         </TabFourStack.Navigator>
     );
 }
 
+/**
+ * BOTTOM TABS NAVIGATOR
+ */
 const BottomTabNavigator = createBottomTabNavigator();
 
 const BottomNavigator = () => {
 
     return (
         <BottomTabNavigator.Navigator
-            // initialRouteName="ChatHome"
             screenOptions={{
                 headerShown: false
             }}
@@ -91,7 +89,7 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            type="materialCommunity"
+                            type="MaterialCommunityIcon"
                             size={30}
                             name="chat-processing"
                             style={{ marginBottom: -3 }}
@@ -106,7 +104,7 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            type="material"
+                            type="MaterialIcon"
                             size={30}
                             name="contact-page"
                             style={{ marginBottom: -3 }}
@@ -121,7 +119,7 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            type="materialCommunity"
+                            type="MaterialCommunityIcon"
                             size={30}
                             name="clock-time-eight"
                             style={{ marginBottom: -3 }}
@@ -136,7 +134,7 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            type="ionicon"
+                            type="Ionicon"
                             size={30}
                             name="person"
                             style={{ marginBottom: -3 }}

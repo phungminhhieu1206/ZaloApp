@@ -44,3 +44,4 @@ export const HOME_POSTS = 'Home posts';
  * Channel screens
  */
 export const MY_CHANNEL = 'My channel';
+export const SETTINGS = 'Settings';

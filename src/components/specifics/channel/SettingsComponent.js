@@ -9,6 +9,7 @@ import {
 import Icon from "../../common/Icon"
 import { GlobalContext } from "../../../context/Provider"
 import logout from "../../../context/actions/auth/logout"
+import colors from '../../../assets/themes/colors'
 
 const SettingsComponent = () => {
 
@@ -33,7 +34,7 @@ const SettingsComponent = () => {
     return (
         <View >
             <View style={{
-                backgroundColor: 'white',
+                backgroundColor: colors.white,
             }}>
                 <TouchableOpacity style={styles.touch}>
                     <Icon
@@ -91,7 +92,7 @@ const SettingsComponent = () => {
 
             <View style={{
                 marginTop: 10,
-                backgroundColor: 'white',
+                backgroundColor: colors.white,
             }}>
                 <TouchableOpacity style={styles.touch}>
                     <Icon

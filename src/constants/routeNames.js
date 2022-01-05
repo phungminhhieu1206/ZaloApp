@@ -34,6 +34,7 @@ export const CHAT_DETAIL = 'Chat Detail';
  * Contact screens
  */
 export const CONTACTS_LIST = 'List Contacts';
+export const FRIEND_REQUESTS = 'Friend Requests';
 
 /**
  * Post screens

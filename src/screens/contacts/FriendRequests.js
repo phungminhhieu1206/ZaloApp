@@ -3,24 +3,26 @@ import React, { useContext, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
-import ContactsComponent from "../../components/specifics/contacts/ContactsComponent"
+import FriendRequestsComponent from '../../components/specifics/contacts/FriendRequestsComponent';
 import { GlobalContext } from '../../context/Provider';
-import getListContacts from "../../context/actions/contacts/getListContacts"
+import getFriendRequests from "../../context/actions/contacts/getFriendRequests"
+import { CONTACTS } from '../../constants/routeNames';
 
-const Contacts = () => {
-
-    const { navigate, setOptions } = useNavigation();
+const FriendRequests = () => {
+    const { navigate, setOptions, goBack } = useNavigation();
 
     const {
         contactDispatch,
         contactState: {
-            getListContacts: { data, loading }
-        }
+            getFriendRequests: { data, loading }
+        },
+
     } = useContext(GlobalContext);
 
     useEffect(() => {
-        getListContacts()(contactDispatch);
+        getFriendRequests()(contactDispatch);
     }, []);
+
 
     useEffect(() => {
         setOptions({
@@ -31,11 +33,13 @@ const Contacts = () => {
             headerLeft: () => {
                 return (
                     <View style={styles.headerLeft}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => {
+                            goBack();
+                        }}>
                             <Icon
-                                type="EvilIcon"
-                                name="search"
-                                size={34}
+                                type="Ionicon"
+                                name="chevron-back"
+                                size={30}
                                 color={colors.white}
                             />
                         </TouchableOpacity>
@@ -45,24 +49,20 @@ const Contacts = () => {
             headerTitle: () => {
                 return (
                     <View style={styles.headerTitle}>
-                        <TouchableOpacity>
-                            <Text
-                                style={styles.title}
-                            >Search friends, messages...</Text>
-                        </TouchableOpacity>
+                        <Text
+                            style={styles.title}
+                        >Friend Requests</Text>
                     </View>
                 )
             },
             headerRight: () => {
                 return (
                     <View style={styles.headerRight}>
-                        <TouchableOpacity
-                            onPress={() => { console.warn('add new contact'); }}
-                        >
+                        <TouchableOpacity>
                             <Icon
-                                type="MaterialIcon"
-                                name="person-add-alt"
-                                size={26}
+                                type="AntDesign"
+                                name="setting"
+                                size={24}
                                 color={colors.white}
                             />
                         </TouchableOpacity>
@@ -73,9 +73,10 @@ const Contacts = () => {
     }, []);
 
     return (
-        <ContactsComponent
+        <FriendRequestsComponent
             data={data}
             loading={loading}
+            contactDispatch={contactDispatch}
         />
     )
 }
@@ -86,18 +87,19 @@ const styles = StyleSheet.create({
         paddingLeft: 8
     },
     headerTitle: {
-        width: '140%',
+        width: '210%',
     },
     headerRight: {
         flexDirection: 'row',
         paddingRight: 14,
     },
     title: {
-        height: '100%',
-        color: colors.white,
+        textAlign: 'center',
         textAlignVertical: 'center',
-        fontSize: 16,
+        fontSize: 18,
+        color: colors.white,
+        height: '100%'
     }
 })
 
-export default Contacts
+export default FriendRequests

@@ -4,6 +4,7 @@ import {
     CHAT_DETAIL,
     CHAT_ROOMS,
     CONTACTS_LIST,
+    FRIEND_REQUESTS,
     HOME_POSTS,
     MY_CHANNEL,
     SETTINGS
@@ -14,6 +15,7 @@ import Contacts from "../screens/contacts/Contacts";
 import HomePosts from "../screens/posts/HomePosts";
 import MyChannel from "../screens/channel/MyChannel";
 import Settings from "../screens/channel/Settings";
+import FriendRequests from "../screens/contacts/FriendRequests";
 
 const HomeStack = createStackNavigator();
 
@@ -63,6 +65,14 @@ const HomeNavigator = () => {
             <HomeStack.Screen
                 name={SETTINGS}
                 component={Settings}
+                options={{
+                    // headerTitle: MyChannelHeader,
+                    // headerLeft: null
+                }}
+            />
+            <HomeStack.Screen
+                name={FRIEND_REQUESTS}
+                component={FriendRequests}
                 options={{
                     // headerTitle: MyChannelHeader,
                     // headerLeft: null

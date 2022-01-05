@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import {
     View,
@@ -5,15 +6,20 @@ import {
     TouchableOpacity,
     StyleSheet,
     FlatList,
-    Image
+    Image,
+    ActivityIndicator
 } from 'react-native'
 import colors from '../../../assets/themes/colors'
+import { FRIEND_REQUESTS } from '../../../constants/routeNames'
 import Icon from '../../common/Icon'
 import Message from "../../common/Message"
 
 const ContactsComponent = ({
-    data
+    data,
+    loading
 }) => {
+
+    const { navigate } = useNavigation();
 
     const ListEmptyComponent = () => {
         return (
@@ -46,40 +52,52 @@ const ContactsComponent = ({
                 <View style={styles.item}>
                     {avatar ?
                         <Image
-                            style={{
-                                width: 40,
-                                height: 40,
-                                borderRadius: 25
-                            }}
+                            style={styles.imageAvt}
                             source={{ uri: avatar }}
                         /> :
                         <View
-                            style={{
-                                width: 40,
-                                height: 40,
-                                backgroundColor: colors.grey,
-                                borderRadius: 25,
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                flexDirection: 'row'
-                            }}
+                            style={styles.imageNotAvt}
                         >
                             <Text numberOfLines={1} style={[styles.nameImage, { color: colors.white }]}>{username}</Text>
                         </View>
                     }
-
-
+                    
                     <View style={{ paddingLeft: 20 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={[styles.name, { color: colors.text }]}>{username}</Text>
                         </View>
                         <Text
                             style={styles.phoneNumber}
-                        >{phonenumber}</Text>
+                        >{"Phone: " + phonenumber}</Text>
                     </View>
                 </View>
 
-                <Icon name="right" type="AntDesign" size={18} color={colors.text} />
+                <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <TouchableOpacity>
+                        <Icon
+                            type="SimpleLineIcon"
+                            name="phone"
+                            size={16}
+                            color={colors.text}
+                            style={{
+                                marginRight: 25
+                            }}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Icon
+                            type="Feather"
+                            name="video"
+                            size={18}
+                            color={colors.text}
+                            style={{
+                            }}
+                        />
+                    </TouchableOpacity>
+                </View>
+
             </TouchableOpacity>
         )
     }
@@ -90,7 +108,9 @@ const ContactsComponent = ({
          */
         <View style={{ flex: 1 }}>
             <View style={{ backgroundColor: colors.white }}>
-                <TouchableOpacity style={styles.touch}>
+                <TouchableOpacity style={styles.touch} onPress={() => {
+                    navigate(FRIEND_REQUESTS);
+                }}>
                     <View style={[styles.itemChoose, { backgroundColor: colors.theme }]}>
                         <Icon
                             type="Ionicon"
@@ -117,19 +137,27 @@ const ContactsComponent = ({
             <View style={{
                 marginTop: 10,
                 backgroundColor: colors.white,
+                minHeight: 600
             }}>
                 <Text style={styles.textListFriend}>List friends</Text>
 
+                {loading &&
+                    <View style={{ padding: 100 }}>
+                        <ActivityIndicator color={colors.theme} size="large" />
+                    </View>
+                }
 
-                <View style={{ paddingVertical: 10 }}>
-                    <FlatList
-                        data={data}
-                        ListEmptyComponent={ListEmptyComponent}
-                        ListFooterComponent={<View style={{ height: 100 }}></View>}
-                        renderItem={renderItem}
-                        keyExtractor={(item) => String(item._id)}
-                    />
-                </View>
+                {!loading &&
+                    <View style={{ paddingTop: 10, paddingBottom: 65 }}>
+                        <FlatList
+                            data={data}
+                            ListEmptyComponent={ListEmptyComponent}
+                            ListFooterComponent={<View style={{ height: 100 }}></View>}
+                            renderItem={renderItem}
+                            keyExtractor={(item) => String(item._id)}
+                        />
+                    </View>
+                }
             </View>
         </View>
     )
@@ -206,6 +234,20 @@ const styles = StyleSheet.create({
         fontSize: 16,
         paddingTop: 5,
         marginLeft: 20
+    },
+    imageAvt: {
+        width: 40,
+        height: 40,
+        borderRadius: 25
+    },
+    imageNotAvt: {
+        width: 40,
+        height: 40,
+        backgroundColor: colors.grey,
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row'
     }
 })
 

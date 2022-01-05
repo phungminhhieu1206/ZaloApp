@@ -69,6 +69,7 @@ const LoginComponent = ({
                             onChange({ name: 'phoneNumber', value })
                         }}
                         error={errors.phoneNumber}
+                        keyboardType="numeric"
                     />
 
                     <CustomInput

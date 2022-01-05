@@ -81,6 +81,7 @@ const RegisterComponent = ({
                         onChangeText={(value) => {
                             onChange({ name: 'phoneNumber', value });
                         }}
+                        keyboardType="numeric"
                     />
 
                     <CustomInput

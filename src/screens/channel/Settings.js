@@ -33,29 +33,9 @@ const Settings = () => {
             headerTitle: () => {
                 return (
                     <View style={styles.headerTitle}>
-                        <TouchableOpacity>
-                            <Text
-                                style={styles.title}
-                            >Search friends, messages...</Text>
-                        </TouchableOpacity>
-                    </View>
-                )
-            },
-            headerRight: () => {
-                return (
-                    <View style={styles.headerRight}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                navigate(SETTINGS);
-                            }}
-                        >
-                            <Icon
-                                type="AntDesign"
-                                name="setting"
-                                size={24}
-                                color={colors.white}
-                            />
-                        </TouchableOpacity>
+                        <Text
+                            style={styles.title}
+                        >Settings</Text>
                     </View>
                 )
             }
@@ -69,21 +49,22 @@ const Settings = () => {
 
 const styles = StyleSheet.create({
     headerLeft: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
         paddingLeft: 8
     },
     headerTitle: {
-        width: '140%'
+        width: '420%',
     },
     headerRight: {
         flexDirection: 'row',
-         paddingRight: 14,
+        paddingRight: 14,
     },
     title: {
-        height: '100%',
-        color: colors.white,
+        textAlign: 'center',
         textAlignVertical: 'center',
-        fontSize: 16,
+        fontSize: 18,
+        color: colors.white,
+        height: '100%'
     }
 })
 

@@ -1,0 +1,257 @@
+import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import {
+    View,
+    Text,
+    Image,
+    StyleSheet,
+    TouchableOpacity
+} from 'react-native';
+import Icon from '../../../common/Icon';
+
+const PostItem = ({ post }) => {
+    return (
+        <View style={styles.container}>
+            <PostHeader post={post} />
+            {post.caption ? <Caption post={post} /> : null}
+            <PostImage post={post} />
+            <PostFooter post={post} />
+        </View>
+    )
+}
+
+const PostHeader = ({ post }) => (
+    <View
+        style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: 10
+        }}
+    >
+        <View style={{
+            flexDirection: 'row',
+            alignItems: 'center'
+        }}>
+            <Image
+                source={{ uri: post.profile_picture }}
+                style={styles.profile_picture}
+            />
+            <View style={{
+                marginLeft: 12,
+            }}>
+                <Text
+                    numberOfLines={1}
+                    style={{
+                        color: 'black',
+                        fontWeight: 'bold',
+                        fontSize: 16
+                    }}
+                >
+                    {post.user}
+                </Text>
+                <Text
+                    numberOfLines={1}
+                    style={{
+                        color: 'grey',
+                        fontSize: 12
+                    }}
+                >Today at 11:22</Text>
+            </View>
+
+        </View>
+
+        <TouchableOpacity>
+            <Icon
+                type="Feather"
+                name="more-horizontal"
+                size={24}
+                color="black"
+            />
+        </TouchableOpacity>
+    </View>
+)
+
+const PostImage = ({ post }) => (
+    <View style={{
+        width: '100%',
+        height: 450,
+    }}>
+        <Image
+            source={{ uri: post.imageUrl }}
+            style={{
+                height: '100%',
+                resizeMode: 'cover',
+            }}
+        />
+    </View>
+
+)
+
+const PostFooter = ({ post }) => {
+    const { navigate } = useNavigation();
+
+    const [liked, setLiked] = useState(false);
+
+    const onPressWhiteLike = () => {
+        setLiked(true);
+        post.likes += 1;
+    }
+
+    const onPressRedLike = () => {
+        setLiked(false);
+        post.likes -= 1;
+    }
+
+    const onPressComment = () => {
+        // navigation.navigate("Comment", { post: post })
+    }
+
+    return (
+        <View>
+            <View style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                borderBottomWidth: 1,
+                borderColor: '#F2F2F2'
+            }}>
+                {liked ?
+                    <TouchableOpacity onPress={onPressRedLike}>
+                        <Icon
+                            type="AntDesign"
+                            name="heart"
+                            size={30}
+                            color="red"
+                        />
+                    </TouchableOpacity>
+                    :
+                    <TouchableOpacity onPress={onPressWhiteLike}>
+                        <Icon
+                            type="AntDesign"
+                            name="hearto"
+                            size={30}
+                            color="black"
+                        />
+                    </TouchableOpacity>
+                }
+                <Text
+                    numberOfLines={1}
+                    style={{
+                        fontSize: 18,
+                        marginLeft: 8,
+                        width: 60,
+                    }}>{post.likes}</Text>
+                <TouchableOpacity onPress={onPressComment}>
+                    <Icon
+                        type="MaterialCommunityIcons"
+                        name="comment-processing-outline"
+                        size={33}
+                        color="black"
+                    />
+                </TouchableOpacity>
+                <Text
+                    numberOfLines={1}
+                    style={{
+                        fontSize: 18,
+                        marginLeft: 8,
+                        width: 60,
+                    }}>{post.comments.length}</Text>
+            </View>
+            <TouchableOpacity
+                onPress={onPressComment}
+                style={{
+                    flexDirection: 'row',
+                    paddingHorizontal: 20,
+                    paddingVertical: 10,
+                    alignItems: 'center'
+                }}
+            >
+                <Image
+                    source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
+                    style={{
+                        width: 30,
+                        height: 30,
+                        borderRadius: 15,
+                        marginRight: 10
+                    }}
+                />
+                <View style={{
+                    backgroundColor: '#f8f8f8',
+                    flex: 1,
+                    borderRadius: 25,
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    padding: 5
+                }}>
+                    <Icon
+                        type="SimpleLineIcons"
+                        name="emotsmile"
+                        size={24}
+                        style={{
+                            marginHorizontal: 5,
+                            color: '#595959'
+                        }}
+                    />
+                    <Text
+                        style={{
+                            flex: 1,
+                            marginHorizontal: 5,
+                            color: 'lightgrey'
+                        }}
+                    >Write a comment</Text>
+                    <Icon
+                        type="Feather"
+                        name="camera"
+                        size={24}
+                        style={{
+                            marginHorizontal: 5,
+                            color: '#595959'
+                        }}
+                    />
+
+                </View>
+            </TouchableOpacity>
+        </View>
+    )
+}
+
+const Caption = ({ post }) => (
+    <View style={{}}>
+        <Text style={{
+            color: 'blue',
+            fontSize: 18,
+            paddingHorizontal: 10,
+            paddingBottom: 10,
+            fontWeight: '400',
+            fontStyle: 'italic'
+        }}>{post.caption}</Text>
+    </View>
+)
+
+const CommentSection = ({ post }) => (
+    <View style={{ marginTop: 5 }}>
+        {post.comments.length ? (
+            <Text style={{ color: 'gray' }}>
+                View{post.comments.length > 1 ? ' all' : ''} {post.comments.length}{' '}
+                {post.comments.length > 1 ? 'comments' : 'comment'}
+            </Text>
+        ) : null}
+    </View>
+)
+
+const styles = StyleSheet.create({
+    container: {
+        borderTopColor: '#f8f8f8',
+        borderTopWidth: 7,
+        backgroundColor: 'white'
+    },
+    profile_picture: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+    },
+})
+
+export default PostItem;

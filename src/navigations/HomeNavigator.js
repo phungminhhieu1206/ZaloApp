@@ -21,7 +21,7 @@ const HomeStack = createStackNavigator();
 
 const HomeNavigator = () => {
     return (
-        <HomeStack.Navigator>
+        <HomeStack.Navigator initialRouteName={CHAT_ROOMS}>
             <HomeStack.Screen
                 name={CHAT_ROOMS}
                 component={BottomNavigator}

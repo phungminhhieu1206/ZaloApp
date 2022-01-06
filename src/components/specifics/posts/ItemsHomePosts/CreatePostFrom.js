@@ -1,5 +1,4 @@
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/core'
+import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import {
     View,
@@ -9,10 +8,11 @@ import {
     TouchableOpacity
 } from 'react-native'
 import Icon from '../../../common/Icon';
+import { MY_CHANNEL } from '../../../../constants/routeNames';
 
 const CreatePostFrom = () => {
 
-    const navigation = useNavigation();
+    const {navigate} = useNavigation();
 
     return (
         <View style={{
@@ -26,7 +26,7 @@ const CreatePostFrom = () => {
                 paddingLeft: 12,
                 paddingVertical: 15
             }}>
-                <TouchableOpacity onPress={() => navigation.navigate("MyChannel")}>
+                <TouchableOpacity onPress={() => navigate(MY_CHANNEL)}>
                     <Image
                         source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
                         style={{
@@ -41,7 +41,6 @@ const CreatePostFrom = () => {
                     style={{
                         flex: 1
                     }}
-                    onPress={() => navigation.navigate("NewPost")}
                 >
                     <Text style={{
                         height: 40,
@@ -65,22 +64,14 @@ const CreatePostFrom = () => {
                     paddingVertical: 8,
                     alignItems: 'center'
                 }}>
-                    <FontAwesome
+                    <Icon
+                        type="FontAwesome"
                         name="photo"
                         size={20}
                         color="#2CB427"
                         style={{
                             paddingRight: 8
                         }}
-                    />
-                    <Icon
-                    type=""
-                    name="photo"
-                    size={20}
-                    color="#2CB427"
-                    style={{
-                        paddingRight: 8
-                    }}
                     />
                     <Text style={{
                         color: 'black',
@@ -95,7 +86,8 @@ const CreatePostFrom = () => {
                     paddingVertical: 8,
                     alignItems: 'center'
                 }}>
-                    <FontAwesome
+                    <Icon
+                        type="FontAwesome"
                         name="video-camera"
                         size={20}
                         color="#FB4D4D"
@@ -118,7 +110,8 @@ const CreatePostFrom = () => {
                     paddingVertical: 8,
                     alignItems: 'center'
                 }}>
-                    <Ionicons
+                    <Icon
+                        type="Ionicons"
                         name="images"
                         size={20}
                         color="#3F9EFD"
@@ -140,4 +133,4 @@ const CreatePostFrom = () => {
 const styles = StyleSheet.create({
 })
 
-export default CreatePostFrom
+export default CreatePostFrom;

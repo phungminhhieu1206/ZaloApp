@@ -3,7 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack'
 import {
     CHAT_DETAIL,
     CHAT_ROOMS,
+    COMMENT,
     CONTACTS_LIST,
+    CREATE_POST,
     FRIEND_REQUESTS,
     HOME_POSTS,
     MY_CHANNEL,
@@ -16,6 +18,8 @@ import HomePosts from "../screens/posts/HomePosts";
 import MyChannel from "../screens/channel/MyChannel";
 import Settings from "../screens/channel/Settings";
 import FriendRequests from "../screens/contacts/FriendRequests";
+import CreatePost from "../screens/posts/CreatePost";
+import Comment from "../screens/posts/Comment";
 
 const HomeStack = createStackNavigator();
 
@@ -53,6 +57,15 @@ const HomeNavigator = () => {
                 name={FRIEND_REQUESTS}
                 component={FriendRequests}
             />
+            <HomeStack.Screen
+                name={CREATE_POST}
+                component={CreatePost}
+            />
+            <HomeStack.Screen
+                name={COMMENT}
+                component={Comment}
+            />
+
         </HomeStack.Navigator>
     )
 }

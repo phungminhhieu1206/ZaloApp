@@ -1,28 +1,27 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import colors from '../../assets/themes/colors'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
-import HomePostsComponent from '../../components/specifics/posts/HomePostsComponent';
-import { CREATE_POST } from '../../constants/routeNames';
+import CreatePostComponent from '../../components/specifics/posts/CreatePostComponent';
 
-const HomePosts = () => {
-    const { navigate, setOptions } = useNavigation();
+const CreatePost = () => {
+    const { navigate, setOptions, goBack } = useNavigation();
 
     useEffect(() => {
         setOptions({
             // title: item.first_name + ' ' + item.last_name,
             headerStyle: {
-                backgroundColor: colors.theme
+                backgroundColor: colors.grey
             },
             headerLeft: () => {
                 return (
                     <View style={styles.headerLeft}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => { goBack() }}>
                             <Icon
                                 type="EvilIcons"
-                                name="search"
-                                size={34}
+                                name="close"
+                                size={30}
                                 color={colors.white}
                             />
                         </TouchableOpacity>
@@ -35,7 +34,7 @@ const HomePosts = () => {
                         <TouchableOpacity>
                             <Text
                                 style={styles.title}
-                            >Search friends, messages...</Text>
+                            >Create new post</Text>
                         </TouchableOpacity>
                     </View>
                 )
@@ -43,25 +42,10 @@ const HomePosts = () => {
             headerRight: () => {
                 return (
                     <View style={styles.headerRight}>
-                        <TouchableOpacity 
-                        onPress={() => {
-                            navigate(CREATE_POST);
-                        }}
-                        >
+                        <TouchableOpacity onPress={() => console.warn('sent')}>
                             <Icon
                                 type="FontAwesome"
-                                name="pencil-square-o"
-                                size={25}
-                                color={colors.white}
-                                style={{
-                                    marginRight: 20
-                                }}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => console.warn('view notify')}>
-                            <Icon
-                                type="Ionicons"
-                                name="notifications-outline"
+                                name="send"
                                 size={22}
                                 color={colors.white}
                                 style={{
@@ -75,7 +59,7 @@ const HomePosts = () => {
     }, []);
 
     return (
-        <HomePostsComponent />
+        <CreatePostComponent />
     )
 }
 
@@ -85,11 +69,11 @@ const styles = StyleSheet.create({
         paddingLeft: 8
     },
     headerTitle: {
-        width: '120%',
+        width: '230%',
     },
     headerRight: {
         flexDirection: 'row',
-        paddingRight: 14,
+        paddingRight: 20,
     },
     title: {
         height: '100%',
@@ -99,4 +83,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default HomePosts
+export default CreatePost

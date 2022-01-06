@@ -15,6 +15,7 @@ const CustomInput = ({
     icon,
     iconPosition,
     error,
+    styleBoxInput,
     ...props
 }) => {
 
@@ -46,7 +47,8 @@ const CustomInput = ({
             <View style={[
                 styles.wrapper,
                 { alignItems: icon ? 'center' : 'baseline' },
-                { borderColor: getBorderColor(), flexDirection: getFlexDirection() }
+                { borderColor: getBorderColor(), flexDirection: getFlexDirection() },
+                styleBoxInput
             ]}>
                 {icon && <View>{icon}</View>}
                 <TextInput
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         flex: 1,
-        width: '100%'
+        width: '100%',
     },
     inputContainer: {
         paddingVertical: 12

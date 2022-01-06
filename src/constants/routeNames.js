@@ -40,6 +40,8 @@ export const FRIEND_REQUESTS = 'Friend Requests';
  * Post screens
  */
 export const HOME_POSTS = 'Home posts';
+export const COMMENT = 'Comment';
+export const CREATE_POST = 'Create post';
 
 /**
  * Channel screens

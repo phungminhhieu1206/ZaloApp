@@ -12,7 +12,7 @@ const CreatePost = () => {
         setOptions({
             // title: item.first_name + ' ' + item.last_name,
             headerStyle: {
-                backgroundColor: colors.grey
+                backgroundColor: colors.theme
             },
             headerLeft: () => {
                 return (

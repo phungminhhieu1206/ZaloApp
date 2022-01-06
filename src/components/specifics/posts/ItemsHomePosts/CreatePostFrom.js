@@ -8,11 +8,11 @@ import {
     TouchableOpacity
 } from 'react-native'
 import Icon from '../../../common/Icon';
-import { MY_CHANNEL } from '../../../../constants/routeNames';
+import { CREATE_POST, MY_CHANNEL } from '../../../../constants/routeNames';
 
 const CreatePostFrom = () => {
 
-    const {navigate} = useNavigation();
+    const { navigate } = useNavigation();
 
     return (
         <View style={{
@@ -41,13 +41,16 @@ const CreatePostFrom = () => {
                     style={{
                         flex: 1
                     }}
+                    onPress={() => {
+                        navigate(CREATE_POST);
+                    }}
                 >
                     <Text style={{
                         height: 40,
                         textAlignVertical: 'center',
                         paddingLeft: 20,
                         color: 'grey'
-                    }}>How are you today?</Text>
+                    }}>How are you today ?</Text>
                 </TouchableOpacity>
             </View>
             <View style={{
@@ -55,15 +58,20 @@ const CreatePostFrom = () => {
                 borderTopColor: '#C7C7C7',
                 borderTopWidth: 0.5,
             }}>
-                <TouchableOpacity style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    borderRightColor: '#C7C7C7',
-                    borderRightWidth: 1,
-                    justifyContent: 'center',
-                    paddingVertical: 8,
-                    alignItems: 'center'
-                }}>
+                <TouchableOpacity
+                    style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        borderRightColor: '#C7C7C7',
+                        borderRightWidth: 1,
+                        justifyContent: 'center',
+                        paddingVertical: 8,
+                        alignItems: 'center'
+                    }}
+                    onPress={() => {
+                        navigate(CREATE_POST);
+                    }}
+                >
                     <Icon
                         type="FontAwesome"
                         name="photo"
@@ -79,13 +87,15 @@ const CreatePostFrom = () => {
                         fontWeight: 'bold'
                     }}>Photo</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    paddingVertical: 8,
-                    alignItems: 'center'
-                }}>
+                <TouchableOpacity
+                    style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        paddingVertical: 8,
+                        alignItems: 'center'
+                    }}
+                >
                     <Icon
                         type="FontAwesome"
                         name="video-camera"
@@ -101,15 +111,17 @@ const CreatePostFrom = () => {
                         fontWeight: 'bold'
                     }}>Video</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{
-                    flex: 1,
-                    flexDirection: 'row',
-                    borderLeftColor: '#C7C7C7',
-                    borderLeftWidth: 1,
-                    justifyContent: 'center',
-                    paddingVertical: 8,
-                    alignItems: 'center'
-                }}>
+                <TouchableOpacity
+                    style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        borderLeftColor: '#C7C7C7',
+                        borderLeftWidth: 1,
+                        justifyContent: 'center',
+                        paddingVertical: 8,
+                        alignItems: 'center'
+                    }}
+                >
                     <Icon
                         type="Ionicons"
                         name="images"

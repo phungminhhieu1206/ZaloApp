@@ -24,7 +24,8 @@ const ImagePicker = React.forwardRef(({ onFileSelected }, ref) => {
                     cropping: true,
                     freeStyleCropEnabled: true,
                 })
-                    .then((images) => { // image được chọn trong library
+                    .then((images) => {
+                        console.log('image by camera: >>>', images);
                         onFileSelected(images);
                     })
                     .catch((error) => {
@@ -43,7 +44,8 @@ const ImagePicker = React.forwardRef(({ onFileSelected }, ref) => {
                     cropping: true,
                     freeStyleCropEnabled: true,
                 })
-                    .then((images) => {
+                    .then((images) => { // image được chọn trong library
+                        console.log('image by choose image: >>>', images);
                         onFileSelected(images);
                     })
                     .catch((error) => {

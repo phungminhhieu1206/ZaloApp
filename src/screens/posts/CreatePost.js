@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
@@ -7,6 +7,30 @@ import CreatePostComponent from '../../components/specifics/posts/CreatePostComp
 
 const CreatePost = () => {
     const { navigate, setOptions, goBack } = useNavigation();
+
+    const sheetRef = useRef(null);
+
+    // save image local
+    const [localFile, setLocalFile] = useState(null);
+    const [uploading, setIsUploading] = useState(false);
+
+    const closeSheet = () => {
+        if (sheetRef.current) {
+            sheetRef.current.close();
+        }
+    };
+
+    const openSheet = () => {
+        if (sheetRef.current) {
+            sheetRef.current.open();
+        }
+    };
+
+    const onFileSelected = (image) => {
+        closeSheet();
+        setLocalFile(image);
+        // console.log('images -->', image);
+    };
 
     useEffect(() => {
         setOptions({
@@ -59,7 +83,13 @@ const CreatePost = () => {
     }, []);
 
     return (
-        <CreatePostComponent />
+        <CreatePostComponent
+            sheetRef={sheetRef}
+            openSheet={openSheet}
+            closeSheet={closeSheet}
+            onFileSelected={onFileSelected}
+            localFile={localFile}
+        />
     )
 }
 

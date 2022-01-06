@@ -16,7 +16,7 @@ const login = (form) => (dispatch) => {
         type: LOGIN_LOADING,
     });
     axiosInstance.post('/users/login', requestPayload).then((res) => {
-        console.log('res login from server ----->', res.data);
+        // console.log('res login from server ----->', res.data);
         AsyncStorage.setItem('token', res.data.token);
         AsyncStorage.setItem('user', JSON.stringify(res.data.data));
         dispatch({
@@ -24,7 +24,7 @@ const login = (form) => (dispatch) => {
             payload: res.data,
         });
     }).catch((err) => {
-        console.log('err login --> ', err.response.data);
+        // console.log('err login --> ', err.response.data);
         dispatch({
             type: LOGIN_FAIL,
             payload: (err.response && err.response.data.message === 'Username or password incorrect')

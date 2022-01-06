@@ -113,7 +113,7 @@ const ContactsComponent = ({
                 }}>
                     <View style={[styles.itemChoose, { backgroundColor: colors.theme }]}>
                         <Icon
-                            type="Ionicon"
+                            type="Ionicons"
                             name="md-people"
                             size={20}
                             color={colors.white}
@@ -124,7 +124,7 @@ const ContactsComponent = ({
                 <TouchableOpacity style={styles.touch}>
                     <View style={[styles.itemChoose, { backgroundColor: colors.success }]}>
                         <Icon
-                            type="FAIcon"
+                            type="FontAwesome"
                             name="phone-square"
                             size={20}
                             color={colors.white}

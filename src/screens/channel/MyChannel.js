@@ -20,7 +20,7 @@ const MyChannel = () => {
                     <View style={styles.headerLeft}>
                         <TouchableOpacity>
                             <Icon
-                                type="EvilIcon"
+                                type="EvilIcons"
                                 name="search"
                                 size={34}
                                 color={colors.white}

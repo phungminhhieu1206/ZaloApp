@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import colors from '../../assets/themes/colors'
 import Icon from '../../components/common/Icon';
+import HomePostsComponent from '../../components/specifics/posts/HomePostsComponent';
 
 const HomePosts = () => {
     const { navigate, setOptions } = useNavigation();
@@ -18,7 +19,7 @@ const HomePosts = () => {
                     <View style={styles.headerLeft}>
                         <TouchableOpacity>
                             <Icon
-                                type="EvilIcon"
+                                type="EvilIcons"
                                 name="search"
                                 size={34}
                                 color={colors.white}
@@ -43,7 +44,7 @@ const HomePosts = () => {
                     <View style={styles.headerRight}>
                         <TouchableOpacity onPress={() => console.warn('add new post')}>
                             <Icon
-                                type="FAIcon"
+                                type="FontAwesome"
                                 name="pencil-square-o"
                                 size={25}
                                 color={colors.white}
@@ -54,7 +55,7 @@ const HomePosts = () => {
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => console.warn('view notify')}>
                             <Icon
-                                type="Ionicon"
+                                type="Ionicons"
                                 name="notifications-outline"
                                 size={22}
                                 color={colors.white}
@@ -69,9 +70,7 @@ const HomePosts = () => {
     }, []);
 
     return (
-        <View>
-            <Text>SCREEN HOME POST !</Text>
-        </View>
+        <HomePostsComponent />
     )
 }
 

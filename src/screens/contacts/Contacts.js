@@ -33,7 +33,7 @@ const Contacts = () => {
                     <View style={styles.headerLeft}>
                         <TouchableOpacity>
                             <Icon
-                                type="EvilIcon"
+                                type="EvilIcons"
                                 name="search"
                                 size={34}
                                 color={colors.white}
@@ -60,7 +60,7 @@ const Contacts = () => {
                             onPress={() => { console.warn('add new contact'); }}
                         >
                             <Icon
-                                type="MaterialIcon"
+                                type="MaterialIcons"
                                 name="person-add-alt"
                                 size={26}
                                 color={colors.white}

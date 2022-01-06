@@ -19,7 +19,7 @@ const ChatRooms = () => {
                     <View style={styles.headerLeft}>
                         <TouchableOpacity>
                             <Icon
-                                type="EvilIcon"
+                                type="EvilIcons"
                                 name="search"
                                 size={34}
                                 color={colors.white}
@@ -44,7 +44,7 @@ const ChatRooms = () => {
                     <View style={styles.headerRight}>
                         <TouchableOpacity onPress={() => console.warn('clicked qrcode of chat room')}>
                             <Icon
-                                type="MaterialCommunityIcon"
+                                type="MaterialCommunityIcons"
                                 name="qrcode-scan"
                                 size={22}
                                 color={colors.white}

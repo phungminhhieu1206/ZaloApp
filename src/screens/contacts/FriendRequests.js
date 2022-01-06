@@ -37,7 +37,7 @@ const FriendRequests = () => {
                             goBack();
                         }}>
                             <Icon
-                                type="Ionicon"
+                                type="Ionicons"
                                 name="chevron-back"
                                 size={30}
                                 color={colors.white}

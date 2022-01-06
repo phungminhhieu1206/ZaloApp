@@ -18,33 +18,33 @@ const getIconFont = (type) => {
   switch (type) {
     case 'Fontisto':
       return Fontisto;
-    case 'MaterialIcon':
+    case 'MaterialIcons':
       return MaterialIcon;
-    case 'EvilIcon':
+    case 'EvilIcons':
       return EvilIcon;
     case 'Feather':
       return Feather;
     case 'AntDesign':
       return AntDesign;
-    case 'SimpleLineIcon':
+    case 'SimpleLineIcons':
       return SimpleLineIcon;
     case 'ZocialIcon':
       return ZocialIcon;
     case 'SimpleLineIcon':
       return SimpleLineIcon;
-    case 'FoundationIcon':
+    case 'Foundation':
       return FoundationIcon;
-    case 'FAIcon5':
+    case 'FontAwesome5':
       return FAIcon5;
-    case 'FAIcon':
+    case 'FontAwesome':
       return FAIcon;
-    case 'Ionicon':
+    case 'Ionicons':
       return Ionicon;
-    case 'MaterialCommunityIcon':
+    case 'MaterialCommunityIcons':
       return MaterialCommunityIcon;
-    case 'EntypoIcon':
+    case 'Entypo':
       return EntypoIcon;
-    case 'OcticonIcon':
+    case 'Octicons':
       return OcticonIcon;
     default:
       return FAIcon;

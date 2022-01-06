@@ -89,7 +89,7 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            type="MaterialCommunityIcon"
+                            type="MaterialCommunityIcons"
                             size={30}
                             name="chat-processing"
                             style={{ marginBottom: -3 }}
@@ -104,7 +104,7 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            type="MaterialIcon"
+                            type="MaterialIcons"
                             size={30}
                             name="contact-page"
                             style={{ marginBottom: -3 }}
@@ -119,7 +119,7 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            type="MaterialCommunityIcon"
+                            type="MaterialCommunityIcons"
                             size={30}
                             name="clock-time-eight"
                             style={{ marginBottom: -3 }}
@@ -134,7 +134,7 @@ const BottomNavigator = () => {
                 options={{
                     tabBarIcon: ({ color }) => (
                         <Icon
-                            type="Ionicon"
+                            type="Ionicons"
                             size={30}
                             name="person"
                             style={{ marginBottom: -3 }}

@@ -22,7 +22,7 @@ const MyChannelComponent = () => {
                 </View>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Icon type="MaterialCommunityIcon" name="account-convert-outline" size={24} color="black"/>
+                <Icon type="MaterialCommunityIcons" name="account-convert-outline" size={24} color="black"/>
             </TouchableOpacity>
         </View>
     )

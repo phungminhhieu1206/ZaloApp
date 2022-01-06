@@ -38,7 +38,7 @@ const SettingsComponent = () => {
             }}>
                 <TouchableOpacity style={styles.touch}>
                     <Icon
-                        type="EvilIcon"
+                        type="EvilIcons"
                         name="lock"
                         size={33}
                         color="#3C80F5"
@@ -46,7 +46,7 @@ const SettingsComponent = () => {
                     />
                     <Text style={styles.text}>Privacy</Text>
                     <Icon
-                        type="MaterialIcon"
+                        type="MaterialIcons"
                         name="navigate-next"
                         size={28}
                         color="black"
@@ -55,7 +55,7 @@ const SettingsComponent = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.touch}>
                     <Icon
-                        type="MaterialIcon"
+                        type="MaterialIcons"
                         name="security"
                         size={24}
                         color="#30C860"
@@ -63,7 +63,7 @@ const SettingsComponent = () => {
                     />
                     <Text style={styles.text}>Account and security</Text>
                     <Icon
-                        type="MaterialIcon"
+                        type="MaterialIcons"
                         name="navigate-next"
                         size={28}
                         color="black"
@@ -80,7 +80,7 @@ const SettingsComponent = () => {
                     />
                     <Text style={styles.text}>Backup and restore</Text>
                     <Icon
-                        type="MaterialIcon"
+                        type="MaterialIcons"
                         name="navigate-next"
                         size={28}
                         color="black"
@@ -96,7 +96,7 @@ const SettingsComponent = () => {
             }}>
                 <TouchableOpacity style={styles.touch}>
                     <Icon
-                        type="Ionicon"
+                        type="Ionicons"
                         name="notifications-outline"
                         size={22}
                         color="#F01414"
@@ -104,7 +104,7 @@ const SettingsComponent = () => {
                     />
                     <Text style={styles.text}>Notifications</Text>
                     <Icon
-                        type="MaterialIcon"
+                        type="MaterialIcons"
                         name="navigate-next"
                         size={28}
                         color="black"
@@ -113,7 +113,7 @@ const SettingsComponent = () => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.touch}>
                     <Icon
-                        type="Ionicon"
+                        type="Ionicons"
                         name="ios-chatbubble-ellipses-outline"
                         size={22}
                         color="#14AAF0"
@@ -121,7 +121,7 @@ const SettingsComponent = () => {
                     />
                     <Text style={styles.text}>Messages</Text>
                     <Icon
-                        type="MaterialIcon"
+                        type="MaterialIcons"
                         name="navigate-next"
                         size={28}
                         color="black"
@@ -137,7 +137,7 @@ const SettingsComponent = () => {
             }}>
                 <TouchableOpacity style={styles.touch}>
                     <Icon
-                        type="MaterialCommunityIcon"
+                        type="MaterialCommunityIcons"
                         name="account-convert-outline"
                         size={22}
                         color="#F0B914"
@@ -148,7 +148,7 @@ const SettingsComponent = () => {
                     />
                     <Text style={styles.text}>Switch account</Text>
                     <Icon
-                        type="MaterialIcon"
+                        type="MaterialIcons"
                         name="navigate-next"
                         size={28}
                         color="black"
@@ -162,7 +162,7 @@ const SettingsComponent = () => {
                     onPress={handleLogout}
                 >
                     <Icon
-                        type="MaterialCommunityIcon"
+                        type="MaterialCommunityIcons"
                         name="logout"
                         size={24}
                         color="black"

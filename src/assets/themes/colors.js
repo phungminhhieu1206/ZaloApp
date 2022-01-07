@@ -8,7 +8,7 @@ export default {
     white: '#ffffff',
     text: '#000000',
     theme: '#019ff8',
-    background: '#f8f8f8'
+    background: '#E6E6E6'
 };
 
 // #3C80F5

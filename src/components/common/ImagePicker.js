@@ -39,10 +39,14 @@ const ImagePicker = React.forwardRef(({ onFileSelected }, ref) => {
             onPress: () => {
                 // Đây mới là lúc dùng image picker cropper
                 ImagePickerCropper.openPicker({
-                    width: 300,
-                    height: 300,
-                    cropping: true,
-                    freeStyleCropEnabled: true,
+                    multiple: true,
+                    waitAnimationEnd: false,
+                    includeExif: true,
+                    forceJpg: true, 
+                    compressImageQuality: 0.8,
+                    maxFiles: 10,
+                    mediaType: 'any',
+                    includeBase64: true
                 })
                     .then((images) => { // image được chọn trong library
                         console.log('image by choose image: >>>', images);

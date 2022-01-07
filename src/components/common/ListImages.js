@@ -17,7 +17,6 @@ const ListImages = ({
     width,
     height
 }) => {
-    console.log('data lenght" >>', data.length);
     const styleSize = {
         width: width,
         height: height

@@ -1,14 +1,21 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import colors from '../../assets/themes/colors'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
-import ChatRoomsComponent from '../../components/specifics/messages/ChatRoomsComponent';
-import { SEARCH_FRIEND } from '../../constants/routeNames';
+import SearchFriendComponent from '../../components/specifics/contacts/SearchFriendComponent'
 
-const ChatRooms = () => {
+const SearchFriend = () => {
 
-    const { navigate, setOptions } = useNavigation();
+    const { navigate, setOptions, goBack } = useNavigation();
+
+    const searchRecent = [
+        "0981932985",
+        "0989996666",
+        "0981932985",
+        "0989995555",
+        "0989998888",
+    ]
 
     useEffect(() => {
         setOptions({
@@ -19,15 +26,13 @@ const ChatRooms = () => {
             headerLeft: () => {
                 return (
                     <View style={styles.headerLeft}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                navigate(SEARCH_FRIEND);
-                            }}
-                        >
+                        <TouchableOpacity onPress={() => {
+                            goBack();
+                        }}>
                             <Icon
-                                type="EvilIcons"
-                                name="search"
-                                size={34}
+                                type="Ionicons"
+                                name="chevron-back"
+                                size={30}
                                 color={colors.white}
                             />
                         </TouchableOpacity>
@@ -37,15 +42,14 @@ const ChatRooms = () => {
             headerTitle: () => {
                 return (
                     <View style={styles.headerTitle}>
-                        <TouchableOpacity
-                            onPress={() => {
-                                navigate(SEARCH_FRIEND);
-                            }}
-                        >
-                            <Text
-                                style={styles.title}
-                            >Search friends, messages...</Text>
-                        </TouchableOpacity>
+                        <TextInput
+                            placeholder="Search friends by phone ..."
+                            placeholderTextColor="grey"
+                            autoFocus={true}
+                            onChangeText={(newMessage) => console.warn("enter: ", newMessage)}
+                            style={styles.textSearch}
+                            keyboardType='numeric'
+                        />
                     </View>
                 )
             },
@@ -58,19 +62,7 @@ const ChatRooms = () => {
                                 name="qrcode-scan"
                                 size={22}
                                 color={colors.white}
-                                style={{
-                                    marginRight: 20
-                                }}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => console.warn('add new message')}>
-                            <Icon
-                                type="AntDesign"
-                                name="plus"
-                                size={25}
-                                color={colors.white}
-                                style={{
-                                }}
+                                style={{ marginRight: 5 }}
                             />
                         </TouchableOpacity>
                     </View>
@@ -79,8 +71,9 @@ const ChatRooms = () => {
         });
     }, []);
 
+
     return (
-        <ChatRoomsComponent />
+        <SearchFriendComponent searchRecent={searchRecent}/>
     )
 }
 
@@ -90,7 +83,7 @@ const styles = StyleSheet.create({
         paddingLeft: 8,
     },
     headerTitle: {
-        width: '120%',
+        width: '140%',
     },
     headerRight: {
         flexDirection: 'row',
@@ -101,7 +94,17 @@ const styles = StyleSheet.create({
         color: colors.white,
         textAlignVertical: 'center',
         fontSize: 16,
+    },
+    textSearch: {
+        marginRight: 10,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        fontSize: 14,
+        paddingHorizontal: 10,
+        paddingVertical: 0,
+        height: 30,
+        width: 275
     }
 })
 
-export default ChatRooms
+export default SearchFriend

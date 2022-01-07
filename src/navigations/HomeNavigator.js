@@ -10,6 +10,7 @@ import {
     HOME_POSTS,
     LOGOUT,
     MY_CHANNEL,
+    SEARCH_FRIEND,
     SETTINGS
 } from "../constants/routeNames"
 import BottomNavigator from "./BottomNavigator";
@@ -22,6 +23,7 @@ import FriendRequests from "../screens/contacts/FriendRequests";
 import CreatePost from "../screens/posts/CreatePost";
 import Comment from "../screens/posts/Comment";
 import Logout from "../screens/auth/Logout";
+import SearchFriend from "../screens/contacts/SearchFriend";
 
 const HomeStack = createStackNavigator();
 
@@ -70,6 +72,10 @@ const HomeNavigator = () => {
             <HomeStack.Screen
                 name={LOGOUT}
                 component={Logout}
+            />
+            <HomeStack.Screen
+                name={SEARCH_FRIEND}
+                component={SearchFriend}
             />
 
         </HomeStack.Navigator>

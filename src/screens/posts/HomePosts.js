@@ -1,16 +1,16 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react'
-import { 
-    View, 
-    Text, 
-    StyleSheet, 
-    TouchableOpacity, 
-    Dimensions 
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Dimensions
 } from 'react-native'
 import colors from '../../assets/themes/colors'
 import Icon from '../../components/common/Icon';
 import HomePostsComponent from '../../components/specifics/posts/HomePostsComponent';
-import { CREATE_POST } from '../../constants/routeNames';
+import { CREATE_POST, SEARCH_FRIEND } from '../../constants/routeNames';
 import { USERS } from "../../assets/sample_data/Users"
 
 const WIDTH = Dimensions.get('window').width;
@@ -28,7 +28,11 @@ const HomePosts = () => {
             headerLeft: () => {
                 return (
                     <View style={styles.headerLeft}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SEARCH_FRIEND);
+                            }}
+                        >
                             <Icon
                                 type="EvilIcons"
                                 name="search"
@@ -42,7 +46,11 @@ const HomePosts = () => {
             headerTitle: () => {
                 return (
                     <View style={styles.headerTitle}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SEARCH_FRIEND);
+                            }}
+                        >
                             <Text
                                 style={styles.title}
                             >Search friends, messages...</Text>
@@ -53,10 +61,10 @@ const HomePosts = () => {
             headerRight: () => {
                 return (
                     <View style={styles.headerRight}>
-                        <TouchableOpacity 
-                        onPress={() => {
-                            navigate(CREATE_POST);
-                        }}
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(CREATE_POST);
+                            }}
                         >
                             <Icon
                                 type="FontAwesome"
@@ -85,7 +93,7 @@ const HomePosts = () => {
     }, []);
 
     return (
-        <HomePostsComponent 
+        <HomePostsComponent
             widthScreen={WIDTH}
             friends={USERS}
         />

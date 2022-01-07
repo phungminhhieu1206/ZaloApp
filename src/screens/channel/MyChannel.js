@@ -4,7 +4,7 @@ import MyChannelComponent from '../../components/specifics/channel/MyChannelComp
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from '../../components/common/Icon';
 import colors from "../../assets/themes/colors"
-import { SETTINGS } from '../../constants/routeNames';
+import { SEARCH_FRIEND, SETTINGS } from '../../constants/routeNames';
 
 const MyChannel = () => {
     const { navigate, setOptions } = useNavigation();
@@ -18,7 +18,11 @@ const MyChannel = () => {
             headerLeft: () => {
                 return (
                     <View style={styles.headerLeft}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SEARCH_FRIEND);
+                            }}
+                        >
                             <Icon
                                 type="EvilIcons"
                                 name="search"
@@ -32,7 +36,11 @@ const MyChannel = () => {
             headerTitle: () => {
                 return (
                     <View style={styles.headerTitle}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SEARCH_FRIEND);
+                            }}
+                        >
                             <Text
                                 style={styles.title}
                             >Search friends, messages...</Text>
@@ -43,10 +51,10 @@ const MyChannel = () => {
             headerRight: () => {
                 return (
                     <View style={styles.headerRight}>
-                        <TouchableOpacity 
-                        onPress={() => {
-                            navigate(SETTINGS);
-                        }}
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SETTINGS);
+                            }}
                         >
                             <Icon
                                 type="AntDesign"
@@ -68,7 +76,7 @@ const MyChannel = () => {
 
 const styles = StyleSheet.create({
     headerLeft: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
         paddingLeft: 8
     },
     headerTitle: {
@@ -76,7 +84,7 @@ const styles = StyleSheet.create({
     },
     headerRight: {
         flexDirection: 'row',
-         paddingRight: 14,
+        paddingRight: 14,
     },
     title: {
         height: '100%',

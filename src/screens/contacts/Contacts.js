@@ -6,6 +6,7 @@ import Icon from '../../components/common/Icon';
 import ContactsComponent from "../../components/specifics/contacts/ContactsComponent"
 import { GlobalContext } from '../../context/Provider';
 import getListContacts from "../../context/actions/contacts/getListContacts"
+import { SEARCH_FRIEND } from '../../constants/routeNames';
 
 const Contacts = () => {
 
@@ -31,7 +32,11 @@ const Contacts = () => {
             headerLeft: () => {
                 return (
                     <View style={styles.headerLeft}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SEARCH_FRIEND);
+                            }}
+                        >
                             <Icon
                                 type="EvilIcons"
                                 name="search"
@@ -45,7 +50,11 @@ const Contacts = () => {
             headerTitle: () => {
                 return (
                     <View style={styles.headerTitle}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SEARCH_FRIEND);
+                            }}
+                        >
                             <Text
                                 style={styles.title}
                             >Search friends, messages...</Text>
@@ -57,7 +66,9 @@ const Contacts = () => {
                 return (
                     <View style={styles.headerRight}>
                         <TouchableOpacity
-                            onPress={() => { console.warn('add new contact'); }}
+                            onPress={() => {
+                                navigate(SEARCH_FRIEND);
+                            }}
                         >
                             <Icon
                                 type="MaterialIcons"

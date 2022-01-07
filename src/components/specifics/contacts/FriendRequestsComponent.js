@@ -44,8 +44,6 @@ const FriendRequestsComponent = ({
             updatedAt
         } = item;
 
-
-
         return (
             <View style={styles.wrapper}>
                 <TouchableOpacity style={styles.itemContainer}>

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import colors from '../../assets/themes/colors'
 import Icon from '../../components/common/Icon';
+import ChatRoomsComponent from '../../components/specifics/messages/ChatRoomsComponent';
 
 const ChatRooms = () => {
 
@@ -70,9 +71,7 @@ const ChatRooms = () => {
     }, []);
 
     return (
-        <View>
-            <Text>SCREEN CHAT ROOM !</Text>
-        </View>
+        <ChatRoomsComponent />
     )
 }
 

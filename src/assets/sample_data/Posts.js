@@ -2,7 +2,33 @@ import { USERS } from './Users'
 
 export const POSTS = [
     {
-        imageUrl: 'https://genk.mediacdn.vn/thumb_w/690/2019/12/12/11-1575883882-width650height762-1576168363318789958220.jpg',
+        imageUrl: [
+            'https://i.pinimg.com/736x/49/6d/e1/496de1373207afca43de414a4b48e9fb.jpg',
+            'https://genk.mediacdn.vn/thumb_w/690/2019/12/12/11-1575883882-width650height762-1576168363318789958220.jpg'
+        ],
+        user: USERS[4].user,
+        likes: 16,
+        caption: 'Ai nào cho mượn avatar để em đỡ cô đơn đi',
+        profile_picture: USERS[4].image,
+        comments: [
+            {
+                user: 'theqazman',
+                comment: 'Such a beautiful smile❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️'
+            },
+            {
+                user: 'mazabicket',
+                comment: 'ghé nhà mình xem đồ xinh và phụ kiện chỉ từ 6k nhé các cậu 🍓🍑🍒🍊🍎🥭🍉🍍🍇🍋🍅 FOLLOW NHÀ ĐÓM NHA!'
+            },
+            {
+                user: 'growup',
+                comment: 'Wow! This build looks fire. This is beautiful girl.'
+            },
+        ],
+    },
+    {
+        imageUrl: [
+            'https://genk.mediacdn.vn/thumb_w/690/2019/12/12/11-1575883882-width650height762-1576168363318789958220.jpg'
+        ],
         user: USERS[3].user,
         likes: 11,
         caption: 'Bầu trời xanh, làn mây trắng. Anh yêu nắng hay yêu em?',
@@ -15,7 +41,9 @@ export const POSTS = [
         ],
     },
     {
-        imageUrl: 'https://photo-cms-kienthuc.zadn.vn/zoom/800/uploaded/nguyenanhson/2020_05_01/2/vua-moi-noi-dan-hot-girl-viet-da-co-tai-khoan-instagram-trieu-follow.jpg',
+        imageUrl: [
+            'https://photo-cms-kienthuc.zadn.vn/zoom/800/uploaded/nguyenanhson/2020_05_01/2/vua-moi-noi-dan-hot-girl-viet-da-co-tai-khoan-instagram-trieu-follow.jpg'
+        ],
         user: USERS[1].user,
         likes: 2,
         caption: '',
@@ -44,7 +72,9 @@ export const POSTS = [
         ],
     },
     {
-        imageUrl: 'https://thuthuatnhanh.com/wp-content/uploads/2019/05/gai-xinh-toc-ngan-facebook.jpg',
+        imageUrl: [
+            'https://thuthuatnhanh.com/wp-content/uploads/2019/05/gai-xinh-toc-ngan-facebook.jpg'
+        ],
         user: USERS[2].user,
         likes: 7,
         caption: 'Anh yêu ơi ới ời. Anh đang ở đâu?',
@@ -65,7 +95,9 @@ export const POSTS = [
         ],
     },
     {
-        imageUrl: 'https://hosonhanvat.net/wp-content/uploads/2021/07/Pasted-into-Hot-girl-Tiktok-noi-tieng-Le-Thi-Khanh-Huyen-la-ai.png',
+        imageUrl: [
+            'https://hosonhanvat.net/wp-content/uploads/2021/07/Pasted-into-Hot-girl-Tiktok-noi-tieng-Le-Thi-Khanh-Huyen-la-ai.png'
+        ],
         user: USERS[0].user,
         likes: 12,
         caption: 'Soái ca là của ngôn tình. Còn anh thì chỉ của mình em thôi.',
@@ -75,7 +107,9 @@ export const POSTS = [
         ],
     },
     {
-        imageUrl: 'https://i.pinimg.com/736x/49/6d/e1/496de1373207afca43de414a4b48e9fb.jpg',
+        imageUrl: [
+            'https://i.pinimg.com/736x/49/6d/e1/496de1373207afca43de414a4b48e9fb.jpg'
+        ],
         user: USERS[4].user,
         likes: 16,
         caption: 'Ai nào cho mượn avatar để em đỡ cô đơn đi',
@@ -94,5 +128,5 @@ export const POSTS = [
                 comment: 'Wow! This build looks fire. This is beautiful girl.'
             },
         ],
-    },
+    }
 ]

@@ -1,10 +1,20 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { 
+    View, 
+    Text, 
+    StyleSheet, 
+    TouchableOpacity, 
+    Dimensions 
+} from 'react-native'
 import colors from '../../assets/themes/colors'
 import Icon from '../../components/common/Icon';
 import HomePostsComponent from '../../components/specifics/posts/HomePostsComponent';
 import { CREATE_POST } from '../../constants/routeNames';
+import { USERS } from "../../assets/sample_data/Users"
+
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
 const HomePosts = () => {
     const { navigate, setOptions } = useNavigation();
@@ -75,7 +85,10 @@ const HomePosts = () => {
     }, []);
 
     return (
-        <HomePostsComponent />
+        <HomePostsComponent 
+            widthScreen={WIDTH}
+            friends={USERS}
+        />
     )
 }
 

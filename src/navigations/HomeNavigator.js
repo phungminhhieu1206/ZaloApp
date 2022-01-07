@@ -8,6 +8,7 @@ import {
     CREATE_POST,
     FRIEND_REQUESTS,
     HOME_POSTS,
+    LOGOUT,
     MY_CHANNEL,
     SETTINGS
 } from "../constants/routeNames"
@@ -20,6 +21,7 @@ import Settings from "../screens/channel/Settings";
 import FriendRequests from "../screens/contacts/FriendRequests";
 import CreatePost from "../screens/posts/CreatePost";
 import Comment from "../screens/posts/Comment";
+import Logout from "../screens/auth/Logout";
 
 const HomeStack = createStackNavigator();
 
@@ -64,6 +66,10 @@ const HomeNavigator = () => {
             <HomeStack.Screen
                 name={COMMENT}
                 component={Comment}
+            />
+            <HomeStack.Screen
+                name={LOGOUT}
+                component={Logout}
             />
 
         </HomeStack.Navigator>

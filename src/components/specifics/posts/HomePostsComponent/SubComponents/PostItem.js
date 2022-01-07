@@ -5,16 +5,19 @@ import {
     Text,
     Image,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView,
+    SafeAreaView
 } from 'react-native';
-import Icon from '../../../common/Icon';
+import Icon from '../../../../common/Icon';
+import ListImages from '../../../../common/ListImages';
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, widthScreen }) => {
     return (
         <View style={styles.container}>
             <PostHeader post={post} />
             {post.caption ? <Caption post={post} /> : null}
-            <PostImage post={post} />
+            <PostImage post={post} width={widthScreen}/>
             <PostFooter post={post} />
         </View>
     )
@@ -72,21 +75,31 @@ const PostHeader = ({ post }) => (
     </View>
 )
 
-const PostImage = ({ post }) => (
-    <View style={{
-        width: '100%',
-        height: 450,
-    }}>
-        <Image
-            source={{ uri: post.imageUrl }}
-            style={{
-                height: '100%',
-                resizeMode: 'cover',
-            }}
-        />
-    </View>
+const PostImage = ({ post, width }) => {
+    const [imageActive, setImageActive] = useState(0);
 
-)
+    const onChange = (nativeEvent) => {
+        if (nativeEvent) {
+            const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
+            if (slide != imageActive) {
+                setImageActive(slide);
+            }
+        }
+    }
+
+    return (
+        <ListImages
+            data={post.imageUrl}
+            imageActive={imageActive}
+            onChange={onChange}
+            width={width}
+            height={450}
+        />
+
+    )
+}
+
+
 
 const PostFooter = ({ post }) => {
     const { navigate } = useNavigation();
@@ -252,6 +265,24 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 20,
     },
+    wrapper: {
+        width: 450,
+        height: 450
+    },
+    wrapDot: {
+        position: 'absolute',
+        bottom: 0,
+        flexDirection: 'row',
+        alignSelf: 'center'
+    },
+    dotActive: {
+        margin: 3,
+        color: 'black'
+    },
+    dot: {
+        margin: 3,
+        color: 'blue'
+    }
 })
 
 export default PostItem;

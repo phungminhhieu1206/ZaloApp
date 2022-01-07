@@ -1,12 +1,16 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useContext, useEffect } from 'react'
+import { ActivityIndicator } from 'react-native'
+import logout from '../../context/actions/auth/logout';
+import GlobalContext from "../../context/Provider"
 
 const Logout = () => {
-    return (
-        <View>
-            <Text>SCREEN LOGOUT !</Text>
-        </View>
-    )
+    const { authDispatch } = useContext(GlobalContext);
+
+    useEffect(() => {
+        logout()(authDispatch);
+    }, []);
+
+    return <ActivityIndicator />;
 }
 
 export default Logout

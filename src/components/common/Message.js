@@ -27,7 +27,7 @@ const Message = ({
 
     const getBgColor = () => {
         if (primary) {
-            return colors.primary;
+            return colors.theme;
         }
         if (danger) {
             return colors.danger;

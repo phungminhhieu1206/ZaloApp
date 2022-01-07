@@ -39,7 +39,7 @@ const ChatRoomsComponent = () => {
             imageActive={imageActive}
             onChange={onChange}
             width={WIDTH}
-            height={450}
+            height={WIDTH}
         />
     )
 }

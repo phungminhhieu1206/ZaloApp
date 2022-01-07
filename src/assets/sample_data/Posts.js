@@ -4,7 +4,8 @@ export const POSTS = [
     {
         imageUrl: [
             'https://i.pinimg.com/736x/49/6d/e1/496de1373207afca43de414a4b48e9fb.jpg',
-            'https://genk.mediacdn.vn/thumb_w/690/2019/12/12/11-1575883882-width650height762-1576168363318789958220.jpg'
+            'https://genk.mediacdn.vn/thumb_w/690/2019/12/12/11-1575883882-width650height762-1576168363318789958220.jpg',
+            'https://anh.24h.com.vn/upload/4-2020/images/2020-12-04/anh-4-1607072674-201-width650height812.jpg'
         ],
         user: USERS[4].user,
         likes: 16,
@@ -27,7 +28,8 @@ export const POSTS = [
     },
     {
         imageUrl: [
-            'https://genk.mediacdn.vn/thumb_w/690/2019/12/12/11-1575883882-width650height762-1576168363318789958220.jpg'
+            'https://genk.mediacdn.vn/thumb_w/690/2019/12/12/11-1575883882-width650height762-1576168363318789958220.jpg',
+            'https://i-ione.vnecdn.net/2021/03/06/1-1543-1615005095.jpg'
         ],
         user: USERS[3].user,
         likes: 11,
@@ -73,7 +75,8 @@ export const POSTS = [
     },
     {
         imageUrl: [
-            'https://thuthuatnhanh.com/wp-content/uploads/2019/05/gai-xinh-toc-ngan-facebook.jpg'
+            'https://thuthuatnhanh.com/wp-content/uploads/2019/05/gai-xinh-toc-ngan-facebook.jpg',
+            'https://anh.24h.com.vn/upload/4-2020/images/2020-12-04/anh-4-1607072674-201-width650height812.jpg'
         ],
         user: USERS[2].user,
         likes: 7,
@@ -96,7 +99,9 @@ export const POSTS = [
     },
     {
         imageUrl: [
-            'https://hosonhanvat.net/wp-content/uploads/2021/07/Pasted-into-Hot-girl-Tiktok-noi-tieng-Le-Thi-Khanh-Huyen-la-ai.png'
+            'https://hosonhanvat.net/wp-content/uploads/2021/07/Pasted-into-Hot-girl-Tiktok-noi-tieng-Le-Thi-Khanh-Huyen-la-ai.png',
+            'https://p16-tiktokcdn-com.akamaized.net/aweme/720x720/tiktok-obj/1665312513547265.jpeg',
+            'https://static2.yan.vn/YanNews/202105/202105170329163774-0f5aef49-3c30-420b-8ccd-b983d0d3553a.jpeg'
         ],
         user: USERS[0].user,
         likes: 12,

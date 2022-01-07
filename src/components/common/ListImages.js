@@ -8,6 +8,7 @@ import {
     ScrollView,
     Image
 } from 'react-native'
+import colors from '../../assets/themes/colors';
 
 const ListImages = ({
     data,
@@ -22,7 +23,7 @@ const ListImages = ({
         height: height
     }
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={styleSize}>
                 <ScrollView
                     onScroll={({ nativeEvent }) => onChange(nativeEvent)}
@@ -35,7 +36,7 @@ const ListImages = ({
                         data.map((image, index) => (
                             <Image
                                 key={index}
-                                resizeMode='stretch'
+                                resizeMode='contain'
                                 style={styleSize}
                                 source={{ uri: image }}
                             />

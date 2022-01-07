@@ -93,7 +93,7 @@ const PostImage = ({ post, width }) => {
             imageActive={imageActive}
             onChange={onChange}
             width={width}
-            height={450}
+            height={width}
         />
 
     )

@@ -1,13 +1,31 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native'
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useCallback, useContext, useEffect, useState } from 'react'
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    TextInput
+} from 'react-native'
 import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
 import SearchFriendComponent from '../../components/specifics/contacts/SearchFriendComponent'
+import getContactByPhone, { clearGetContactByPhoneState } from '../../context/actions/contacts/getContactByPhone';
+import { GlobalContext } from '../../context/Provider';
 
 const SearchFriend = () => {
 
     const { navigate, setOptions, goBack } = useNavigation();
+    const [phoneSearch, setPhoneSearch] = useState('');
+
+    const {
+        contactDispatch,
+        contactState: {
+            getContactByPhone: { data, loading, error }
+        }
+    } = useContext(GlobalContext);
+
+    console.log('data :>>>', data);
 
     const searchRecent = [
         "0981932985",
@@ -16,6 +34,14 @@ const SearchFriend = () => {
         "0989995555",
         "0989998888",
     ]
+
+    const search = () => {
+        if (phoneSearch !== '') {
+            getContactByPhone(phoneSearch)(contactDispatch);
+        } else {
+            console.warn('Please enter phone before !');
+        }
+    }
 
     useEffect(() => {
         setOptions({
@@ -46,7 +72,7 @@ const SearchFriend = () => {
                             placeholder="Search friends by phone ..."
                             placeholderTextColor="grey"
                             autoFocus={true}
-                            onChangeText={(newMessage) => console.warn("enter: ", newMessage)}
+                            onChangeText={(value) => setPhoneSearch(value)}
                             style={styles.textSearch}
                             keyboardType='numeric'
                         />
@@ -56,24 +82,39 @@ const SearchFriend = () => {
             headerRight: () => {
                 return (
                     <View style={styles.headerRight}>
-                        <TouchableOpacity onPress={() => console.warn('clicked qrcode of chat room')}>
+                        <TouchableOpacity
+                            onPress={search}
+                        >
                             <Icon
-                                type="MaterialCommunityIcons"
-                                name="qrcode-scan"
-                                size={22}
+                                type="EvilIcons"
+                                name="search"
+                                size={34}
                                 color={colors.white}
-                                style={{ marginRight: 5 }}
                             />
                         </TouchableOpacity>
                     </View>
                 )
             }
         });
-    }, []);
+    }, [phoneSearch]);
 
+    useFocusEffect(
+        useCallback(() => {
+            return () => {
+                if ( loading || data || error ) {
+                    clearGetContactByPhoneState()(contactDispatch);
+                }
+            }
+        }, [data, error]),
+    );
 
     return (
-        <SearchFriendComponent searchRecent={searchRecent}/>
+        <SearchFriendComponent
+            searchRecent={searchRecent}
+            data={data}
+            loading={loading}
+            error={error}
+        />
     )
 }
 

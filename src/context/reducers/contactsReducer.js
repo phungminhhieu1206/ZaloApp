@@ -1,4 +1,8 @@
 import {
+    CLEAR_GET_CONTACT_BY_PHONE_STATE,
+    GET_CONTACT_BY_PHONE_FAIL,
+    GET_CONTACT_BY_PHONE_LOADING,
+    GET_CONTACT_BY_PHONE_SUCCESS,
     GET_FRIEND_REQUESTS_FAIL,
     GET_FRIEND_REQUESTS_LOADING,
     GET_FRIEND_REQUESTS_SUCCESS,
@@ -12,6 +16,10 @@ import {
 
 const contactsReducer = (state, { type, payload }) => {
     switch (type) {
+
+        /**
+         * GET_LIST_CONTACTS
+         */
         case GET_LIST_CONTACTS_LOADING:
             return {
                 ...state,
@@ -43,6 +51,9 @@ const contactsReducer = (state, { type, payload }) => {
                 },
             };
 
+        /**
+         * GET_FRIEND_REQUESTS
+         */
         case GET_FRIEND_REQUESTS_LOADING:
             return {
                 ...state,
@@ -74,6 +85,9 @@ const contactsReducer = (state, { type, payload }) => {
                 },
             };
 
+        /**
+         * SET_ACCEPT_REQUEST
+         */
         case SET_ACCEPT_REQUEST_LOADING:
             return {
                 ...state,
@@ -103,6 +117,52 @@ const contactsReducer = (state, { type, payload }) => {
                     ...state.setAcceptRequest,
                     loading: false,
                     error: payload,
+                },
+            };
+
+        /**
+         * GET_CONTACT_BY_PHONE
+         */
+        case GET_CONTACT_BY_PHONE_LOADING:
+            return {
+                ...state,
+                getContactByPhone: {
+                    ...state.getContactByPhone,
+                    loading: true,
+                    error: null,
+                },
+            };
+
+        case GET_CONTACT_BY_PHONE_SUCCESS:
+            return {
+                ...state,
+                getContactByPhone: {
+                    ...state.getContactByPhone,
+                    loading: false,
+                    data: payload,
+                    error: null,
+                },
+            };
+
+        case GET_CONTACT_BY_PHONE_FAIL:
+            return {
+                ...state,
+                getContactByPhone: {
+                    ...state.getContactByPhone,
+                    loading: false,
+                    error: payload,
+                    data: {}
+                },
+            };
+
+        case CLEAR_GET_CONTACT_BY_PHONE_STATE:
+            return {
+                ...state,
+                getContactByPhone: {
+                    ...state.getContactByPhone,
+                    loading: false,
+                    error: null,
+                    data: null
                 },
             };
 

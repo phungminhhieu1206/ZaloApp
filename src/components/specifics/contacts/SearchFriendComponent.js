@@ -5,7 +5,9 @@ import {
     ScrollView,
     StyleSheet,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert,
+    ActivityIndicator
 } from 'react-native'
 import colors from '../../../assets/themes/colors'
 import { USERS } from '../../../assets/sample_data/Users'
@@ -14,7 +16,10 @@ import { CHAT_DETAIL } from '../../../constants/routeNames'
 import Icon from '../../common/Icon'
 
 const SearchFriendComponent = ({
-    searchRecent
+    searchRecent,
+    data,
+    loading,
+    error
 }) => {
 
     const { navigate } = useNavigation();
@@ -58,7 +63,24 @@ const SearchFriendComponent = ({
                 </ScrollView>
             </View>
 
-            {true ?
+            {error &&
+                Alert.alert('SEARCH BY PHONE FAIL!', error.message, [
+                    {
+                        text: 'OK',
+                        onPress: () => {
+                            
+                        },
+                    },
+                ])
+            }
+
+            {loading &&
+                <View style={{ padding: 100 }}>
+                    <ActivityIndicator color={colors.theme} size="large" />
+                </View>
+            }
+
+            {!loading && data?._id ?
                 <View style={styles.wrapper}>
                     <TouchableOpacity style={styles.itemContainer}>
                         <View style={styles.item}>
@@ -73,7 +95,7 @@ const SearchFriendComponent = ({
                                     <Text numberOfLines={1} style={[styles.nameImage, { color: colors.white }]}>phunghieu12</Text>
                                 </View>
                             }
-                            
+
                             <View style={{ paddingLeft: 20 }}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Text style={[styles.name, { color: colors.text }]}>phunghieu12</Text>

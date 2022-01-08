@@ -14,6 +14,11 @@ export default {
         error: null,
         loading: false,
     },
+    getContactByPhone: {
+        data: {},
+        error: null,
+        loading: false,
+    },
     setAcceptRequest: {
         isSuccess: false,
         data: {},

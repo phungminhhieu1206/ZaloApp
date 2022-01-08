@@ -2,6 +2,7 @@ import {
     ADD_FRIEND_BY_ID_FAIL,
     ADD_FRIEND_BY_ID_LOADING,
     ADD_FRIEND_BY_ID_SUCCESS,
+    CLEAR_ADD_FRIEND_BY_ID_STATE,
     CLEAR_GET_CONTACT_BY_PHONE_STATE,
     GET_CONTACT_BY_PHONE_FAIL,
     GET_CONTACT_BY_PHONE_LOADING,
@@ -142,7 +143,7 @@ const contactsReducer = (state, { type, payload }) => {
                 addFriendById: {
                     ...state.addFriendById,
                     loading: false,
-                    data: payload,
+                    dataAdd: payload,
                     error: null,
                     isSuccess: true
                 },
@@ -155,9 +156,19 @@ const contactsReducer = (state, { type, payload }) => {
                     ...state.addFriendById,
                     loading: false,
                     error: payload,
-                    data: null
                 },
             };
+
+            case CLEAR_ADD_FRIEND_BY_ID_STATE:
+                return {
+                    ...state,
+                    addFriendById: {
+                        ...state.addFriendById,
+                        loading: false,
+                        error: null,
+                        dataAdd: null
+                    },
+                };
 
         /**
          * GET_CONTACT_BY_PHONE
@@ -190,7 +201,6 @@ const contactsReducer = (state, { type, payload }) => {
                     ...state.getContactByPhone,
                     loading: false,
                     error: payload,
-                    data: {}
                 },
             };
 

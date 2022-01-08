@@ -27,7 +27,7 @@ export default {
     },
     addFriendById: {
         isSuccess: false,
-        data: {},
+        dataAdd: {},
         error: null,
         loading: false
     }

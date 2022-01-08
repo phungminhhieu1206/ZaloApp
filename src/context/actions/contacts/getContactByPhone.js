@@ -22,7 +22,7 @@ const getContactByPhone = (phone) => (dispatch) => {
         type: GET_CONTACT_BY_PHONE_LOADING,
     });
     axiosInstance.post('/users/get-by-phoneNumber', requestPayload).then((res) => {
-        console.log('getContactByPhone --->', res);
+        // console.log('getContactByPhone --->', res);
 
         dispatch({
             type: GET_CONTACT_BY_PHONE_SUCCESS,

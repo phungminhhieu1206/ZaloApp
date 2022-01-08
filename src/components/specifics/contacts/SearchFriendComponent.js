@@ -20,10 +20,14 @@ const SearchFriendComponent = ({
     data,
     loading,
     error,
-    handleAddFriendById
+    handleAddFriendById,
+    setPhoneSearch,
+    dataAdd
 }) => {
 
     const { navigate } = useNavigation();
+    // console.log("data: ", data, " - loading: ", loading);
+    // console.log("dataAdd :>>>", dataAdd);
 
     const onPressHandle = (index) => {
         // console.warn('pressed on: ', index);
@@ -81,7 +85,7 @@ const SearchFriendComponent = ({
                 </View>
             }
 
-            {!loading && data?._id ?
+            {(!loading && data?._id) ?
                 <View style={styles.wrapper}>
                     <TouchableOpacity style={styles.itemContainer}>
                         <View style={styles.item}>
@@ -111,23 +115,45 @@ const SearchFriendComponent = ({
                         flexDirection: 'row',
                         marginLeft: 80,
                     }}>
-                        <TouchableOpacity
-                            style={[
-                                styles.buttonAction,
-                                { backgroundColor: colors.theme }
-                            ]}
-                            onPress={() => handleAddFriendById(data._id)}
-                        >
-                            <Text style={{
-                                color: 'white'
-                            }}>Add friend</Text>
-                        </TouchableOpacity>
+                        {Object.keys(dataAdd).length === 0 || dataAdd?.message === "Đối phương đã gửi lời mời kết bạn hoặc đã là bạn" ?
+                            <TouchableOpacity
+                                style={[
+                                    styles.buttonAction,
+                                    { backgroundColor: colors.theme }
+                                ]}
+                                onPress={() => handleAddFriendById(data._id)}
+                            >
+                                <Text style={{
+                                    color: 'white'
+                                }}>Add friend</Text>
+                            </TouchableOpacity>
+                            :
+                            <TouchableOpacity
+                                style={[
+                                    styles.buttonAction,
+                                    { backgroundColor: colors.danger }
+                                ]}
+                                onPress={() => console.warn("Click cancel request button !")}
+                            >
+                                <Text style={{
+                                    color: 'white'
+                                }}>Cancel request</Text>
+                            </TouchableOpacity>
+                        }
+
+
+
+
                     </View>
                 </View>
                 :
                 <ScrollView>
                     {searchRecent.map((phone, index) => (
-                        <TouchableOpacity key={index} style={styles.touchPhoneRecent}>
+                        <TouchableOpacity
+                            key={index}
+                            style={styles.touchPhoneRecent}
+                            onPress={() => setPhoneSearch(phone)}
+                        >
                             <Icon
                                 type="EvilIcons"
                                 name="search"
@@ -140,6 +166,7 @@ const SearchFriendComponent = ({
                     ))}
                 </ScrollView>
             }
+
         </ScrollView>
     )
 }

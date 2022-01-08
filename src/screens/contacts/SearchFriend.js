@@ -11,7 +11,7 @@ import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
 import SearchFriendComponent from '../../components/specifics/contacts/SearchFriendComponent'
 import getContactByPhone, { clearGetContactByPhoneState } from '../../context/actions/contacts/getContactByPhone';
-import addFriendById from '../../context/actions/contacts/addFriendById'
+import addFriendById, { clearAddFriendByIdState } from '../../context/actions/contacts/addFriendById'
 import { GlobalContext } from '../../context/Provider';
 
 const SearchFriend = () => {
@@ -22,7 +22,8 @@ const SearchFriend = () => {
     const {
         contactDispatch,
         contactState: {
-            getContactByPhone: { data, loading, error }
+            getContactByPhone: { data, loading, error },
+            addFriendById: {dataAdd}
         }
     } = useContext(GlobalContext);
 
@@ -78,6 +79,7 @@ const SearchFriend = () => {
                             placeholder="Search friends by phone ..."
                             placeholderTextColor="grey"
                             autoFocus={true}
+                            value={phoneSearch}
                             onChangeText={(value) => setPhoneSearch(value)}
                             style={styles.textSearch}
                             keyboardType='numeric'
@@ -114,6 +116,16 @@ const SearchFriend = () => {
         }, [data, error]),
     );
 
+    // useFocusEffect(
+    //     useCallback(() => {
+    //         return () => {
+    //             if (dataAdd) {
+    //                 clearAddFriendByIdState()(contactDispatch);
+    //             }
+    //         }
+    //     }, [dataAdd]),
+    // );
+
     return (
         <SearchFriendComponent
             searchRecent={searchRecent}
@@ -121,6 +133,8 @@ const SearchFriend = () => {
             loading={loading}
             error={error}
             handleAddFriendById={handleAddFriendById}
+            setPhoneSearch={setPhoneSearch}
+            dataAdd={dataAdd}
         />
     )
 }

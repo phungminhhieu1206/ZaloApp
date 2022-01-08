@@ -1,9 +1,16 @@
 import {
     ADD_FRIEND_BY_ID_FAIL,
     ADD_FRIEND_BY_ID_LOADING,
-    ADD_FRIEND_BY_ID_SUCCESS
+    ADD_FRIEND_BY_ID_SUCCESS,
+    CLEAR_ADD_FRIEND_BY_ID_STATE
 } from "../../../constants/actionTypes"
 import axiosInstance from "../../../helpers/axiosInstance";
+
+export const clearAddFriendByIdState = () => (dispatch) => {
+    dispatch({
+        type: CLEAR_ADD_FRIEND_BY_ID_STATE,
+    });
+};
 
 const addFriendById = (_id) => (dispatch) => {
 

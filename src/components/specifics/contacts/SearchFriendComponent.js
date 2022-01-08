@@ -19,7 +19,8 @@ const SearchFriendComponent = ({
     searchRecent,
     data,
     loading,
-    error
+    error,
+    handleAddFriendById
 }) => {
 
     const { navigate } = useNavigation();
@@ -68,7 +69,7 @@ const SearchFriendComponent = ({
                     {
                         text: 'OK',
                         onPress: () => {
-                            
+
                         },
                     },
                 ])
@@ -92,17 +93,17 @@ const SearchFriendComponent = ({
                                 <View
                                     style={styles.imageNotAvt}
                                 >
-                                    <Text numberOfLines={1} style={[styles.nameImage, { color: colors.white }]}>phunghieu12</Text>
+                                    <Text numberOfLines={1} style={[styles.nameImage, { color: colors.white }]}>{data.username}</Text>
                                 </View>
                             }
 
                             <View style={{ paddingLeft: 20 }}>
                                 <View style={{ flexDirection: 'row' }}>
-                                    <Text style={[styles.name, { color: colors.text }]}>phunghieu12</Text>
+                                    <Text style={[styles.name, { color: colors.text }]}>{data.username}</Text>
                                 </View>
                                 <Text
                                     style={styles.phoneNumber}
-                                >Phone number: 0981932984</Text>
+                                >{"Phone number: " + data.phonenumber}</Text>
                             </View>
                         </View>
                     </TouchableOpacity>
@@ -115,9 +116,7 @@ const SearchFriendComponent = ({
                                 styles.buttonAction,
                                 { backgroundColor: colors.theme }
                             ]}
-                            onPress={() => {
-                                console.warn('click add friend button');
-                            }}
+                            onPress={() => handleAddFriendById(data._id)}
                         >
                             <Text style={{
                                 color: 'white'

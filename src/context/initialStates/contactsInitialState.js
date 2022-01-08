@@ -24,5 +24,11 @@ export default {
         data: {},
         error: null,
         loading: false
+    },
+    addFriendById: {
+        isSuccess: false,
+        data: {},
+        error: null,
+        loading: false
     }
 }

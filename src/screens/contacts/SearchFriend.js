@@ -11,6 +11,7 @@ import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
 import SearchFriendComponent from '../../components/specifics/contacts/SearchFriendComponent'
 import getContactByPhone, { clearGetContactByPhoneState } from '../../context/actions/contacts/getContactByPhone';
+import addFriendById from '../../context/actions/contacts/addFriendById'
 import { GlobalContext } from '../../context/Provider';
 
 const SearchFriend = () => {
@@ -25,7 +26,7 @@ const SearchFriend = () => {
         }
     } = useContext(GlobalContext);
 
-    console.log('data :>>>', data);
+    // console.log('data :>>>', data);
 
     const searchRecent = [
         "0981932985",
@@ -41,6 +42,11 @@ const SearchFriend = () => {
         } else {
             console.warn('Please enter phone before !');
         }
+    }
+
+    const handleAddFriendById = (value) => {
+        console.log('id before go action :>>>>', value);
+        addFriendById(value)(contactDispatch);
     }
 
     useEffect(() => {
@@ -114,6 +120,7 @@ const SearchFriend = () => {
             data={data}
             loading={loading}
             error={error}
+            handleAddFriendById={handleAddFriendById}
         />
     )
 }

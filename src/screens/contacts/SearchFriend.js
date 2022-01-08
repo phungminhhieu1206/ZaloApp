@@ -101,7 +101,7 @@ const SearchFriend = () => {
     useFocusEffect(
         useCallback(() => {
             return () => {
-                if ( loading || data || error ) {
+                if (data || error) {
                     clearGetContactByPhoneState()(contactDispatch);
                 }
             }

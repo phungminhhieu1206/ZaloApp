@@ -1,4 +1,8 @@
 import {
+    ADD_FRIEND_BY_ID_FAIL,
+    ADD_FRIEND_BY_ID_LOADING,
+    ADD_FRIEND_BY_ID_SUCCESS,
+    CLEAR_ADD_FRIEND_BY_ID_STATE,
     CLEAR_GET_CONTACT_BY_PHONE_STATE,
     GET_CONTACT_BY_PHONE_FAIL,
     GET_CONTACT_BY_PHONE_LOADING,
@@ -121,6 +125,52 @@ const contactsReducer = (state, { type, payload }) => {
             };
 
         /**
+         * ADD_FRIEND_BY_ID
+         */
+        case ADD_FRIEND_BY_ID_LOADING:
+            return {
+                ...state,
+                addFriendById: {
+                    ...state.addFriendById,
+                    loading: true,
+                    error: null,
+                },
+            };
+
+        case ADD_FRIEND_BY_ID_SUCCESS:
+            return {
+                ...state,
+                addFriendById: {
+                    ...state.addFriendById,
+                    loading: false,
+                    dataAdd: payload,
+                    error: null,
+                    isSuccess: true
+                },
+            };
+
+        case ADD_FRIEND_BY_ID_FAIL:
+            return {
+                ...state,
+                addFriendById: {
+                    ...state.addFriendById,
+                    loading: false,
+                    error: payload,
+                },
+            };
+
+            case CLEAR_ADD_FRIEND_BY_ID_STATE:
+                return {
+                    ...state,
+                    addFriendById: {
+                        ...state.addFriendById,
+                        loading: false,
+                        error: null,
+                        dataAdd: null
+                    },
+                };
+
+        /**
          * GET_CONTACT_BY_PHONE
          */
         case GET_CONTACT_BY_PHONE_LOADING:
@@ -151,7 +201,6 @@ const contactsReducer = (state, { type, payload }) => {
                     ...state.getContactByPhone,
                     loading: false,
                     error: payload,
-                    data: {}
                 },
             };
 

@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useState } from 'react'
 import {
     View,
     Text,
@@ -7,7 +7,8 @@ import {
     StyleSheet,
     FlatList,
     Image,
-    ActivityIndicator
+    ActivityIndicator,
+    RefreshControl
 } from 'react-native'
 import colors from '../../../assets/themes/colors'
 import { FRIEND_REQUESTS } from '../../../constants/routeNames'
@@ -16,7 +17,9 @@ import Message from "../../common/Message"
 
 const ContactsComponent = ({
     data,
-    loading
+    loading,
+    refreshList,
+    onRefresh
 }) => {
 
     const { navigate } = useNavigation();
@@ -61,7 +64,7 @@ const ContactsComponent = ({
                             <Text numberOfLines={1} style={[styles.nameImage, { color: colors.white }]}>{username}</Text>
                         </View>
                     }
-                    
+
                     <View style={{ paddingLeft: 20 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={[styles.name, { color: colors.text }]}>{username}</Text>
@@ -155,6 +158,13 @@ const ContactsComponent = ({
                             ListFooterComponent={<View style={{ height: 100 }}></View>}
                             renderItem={renderItem}
                             keyExtractor={(item) => String(item._id)}
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={refreshList}
+                                    onRefresh={onRefresh}
+                                    colors={['red']}
+                                />
+                             }
                         />
                     </View>
                 }

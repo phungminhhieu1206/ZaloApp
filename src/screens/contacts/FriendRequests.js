@@ -77,6 +77,7 @@ const FriendRequests = () => {
             data={data}
             loading={loading}
             contactDispatch={contactDispatch}
+            navigate={navigate}
         />
     )
 }

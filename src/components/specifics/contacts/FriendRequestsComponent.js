@@ -10,6 +10,7 @@ import {
     ActivityIndicator
 } from 'react-native'
 import colors from '../../../assets/themes/colors'
+import { CONTACTS } from '../../../constants/routeNames'
 import setAcceptRequest from '../../../context/actions/contacts/setAcceptRequest'
 import Icon from '../../common/Icon'
 import Message from "../../common/Message"
@@ -17,7 +18,8 @@ import Message from "../../common/Message"
 const FriendRequestsComponent = ({
     data,
     loading,
-    contactDispatch
+    contactDispatch,
+    navigate
 }) => {
 
     const ListEmptyComponent = () => {
@@ -82,7 +84,9 @@ const FriendRequestsComponent = ({
                         ]}
                         onPress={() => {
                             if (_id) {
-                                setAcceptRequest(_id)(contactDispatch);
+                                setAcceptRequest(_id)(contactDispatch)(() => {
+                                    navigate(CONTACTS);
+                                });
                             }
 
                         }}

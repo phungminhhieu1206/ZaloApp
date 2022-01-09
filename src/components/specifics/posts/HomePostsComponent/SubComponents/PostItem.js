@@ -106,7 +106,6 @@ const PostImage = ({ post, width }) => {
             width={width}
             height={width}
         />
-
     )
 }
 

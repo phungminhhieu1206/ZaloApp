@@ -3,5 +3,10 @@ export default {
         data: [],
         error: null,
         loading: false,
+    },
+    createNewPost: {
+        data: {},
+        error: null,
+        loading: false,
     }
 }

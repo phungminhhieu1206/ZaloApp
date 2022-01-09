@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Image } from 'react-native'
 import CustomInput from "../../common/CustomInput"
 import Container from "../../common/Container"
@@ -6,33 +6,50 @@ import Icon from '../../common/Icon'
 import colors from '../../../assets/themes/colors'
 import { DEFAULT_IMAGE_URI } from '../../../constants/general'
 import ImagePicker from '../../common/ImagePicker'
+import ListImages from '../../../components/common/ListImages';
 
 const CreatePostComponent = ({
     sheetRef,
     openSheet,
     closeSheet,
     onFileSelected,
-    localFile
+    localFiles,
+    widthScreen,
+    described,
+    onChangeText,
 }) => {
+
+    // console.log('aaaaaaaaaaaaa: ????', described);
+    const [imageActive, setImageActive] = useState(0);
+    // console.log('aaaaaaaaaaaaaaa: >>>>', localFiles);
+
+    let listLocalImages = [];
+    localFiles.map((item) => {
+        listLocalImages.push(item.path);
+    })
+
+    const onChange = (nativeEvent) => {
+        if (nativeEvent) {
+            const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
+            if (slide != imageActive) {
+                setImageActive(slide);
+            }
+        }
+    }
+
     return (
         <Container>
             <CustomInput
                 label="Described"
                 placeholder="Write your thoughts ..."
                 styleBoxInput={{
-                    height: 200
+                    height: 150
                 }}
                 multiline={true}
+                onChangeText={(value) => onChangeText(value)}
             />
             <TouchableOpacity
-                style={{
-                    flexDirection: 'row',
-                    paddingVertical: 8,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 100,
-                    backgroundColor: colors.grey
-                }}
+                style={styles.touchButton}
                 onPress={openSheet}
             >
                 <Icon
@@ -49,11 +66,19 @@ const CreatePostComponent = ({
                     fontSize: 14,
                 }}>Upload Photo</Text>
             </TouchableOpacity>
-            {localFile ?
-                <Image
-                    source={{ uri: localFile?.path }}
-                    style={styles.imageView}
-                /> :
+            {localFiles.length !== 0 ?
+                <View style={{ marginTop: 15 }}>
+                    <View style={styles.imageNotify}>
+                        <Text>{'You choosed ' + localFiles.length + ' images'}</Text>
+                    </View>
+                    <ListImages
+                        data={listLocalImages}
+                        imageActive={imageActive}
+                        onChange={onChange}
+                        width={widthScreen}
+                        height={250}
+                    />
+                </View> :
                 <Image
                     source={require('../../../assets/images/image_empty.jpg')}
                     style={styles.imageView}
@@ -70,6 +95,19 @@ const styles = StyleSheet.create({
         height: 250,
         marginTop: 15
     },
+    imageNotify: {
+        color: colors.text,
+        marginBottom: 5,
+        fontSize: 16
+    },
+    touchButton: {
+        flexDirection: 'row',
+        paddingVertical: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 100,
+        backgroundColor: colors.grey
+    }
 })
 
 export default CreatePostComponent

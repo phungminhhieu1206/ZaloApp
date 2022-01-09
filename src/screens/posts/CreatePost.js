@@ -1,18 +1,38 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useRef, useState } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
 import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
 import CreatePostComponent from '../../components/specifics/posts/CreatePostComponent';
+import { HOME_POSTS } from '../../constants/routeNames';
+import createNewPost from '../../context/actions/posts/createNewPost';
+import { GlobalContext } from "../../context/Provider";
+
+
+const WIDTH = Dimensions.get('window').width - 40;
 
 const CreatePost = () => {
     const { navigate, setOptions, goBack } = useNavigation();
 
+    const {
+        postsDispatch,
+        postsState: {
+            createNewPost: { loading, error }
+        },
+    } = useContext(GlobalContext);
+
     const sheetRef = useRef(null);
 
     // save image local
-    const [localFile, setLocalFile] = useState(null);
+    const [described, setDescribed] = useState('');
+    const [localFiles, setLocalFiles] = useState([]);
     const [uploading, setIsUploading] = useState(false);
+
+    // console.log('aaaaaaaaaa :>>>>', described);
+
+    const onChangeText = (value) => {
+        setDescribed(value);
+    };
 
     const closeSheet = () => {
         if (sheetRef.current) {
@@ -26,11 +46,26 @@ const CreatePost = () => {
         }
     };
 
-    const onFileSelected = (image) => {
+    const onFileSelected = (images) => {
         closeSheet();
-        setLocalFile(image);
-        // console.log('images -->', image);
+        setLocalFiles(images);
     };
+
+    const onCreatePost = () => {
+        // console.log('described :>>>', described);
+
+        let listImagesUpload = [];
+        localFiles.map((item) => {
+            listImagesUpload.push("data:" + item.mime + ";base64," + item.data);
+        })
+
+        // console.log("listImagesUpload: >>>>", listImagesUpload);
+
+        createNewPost({described, listImagesUpload})(postsDispatch)(() => {
+            navigate(HOME_POSTS);
+        });
+
+    }
 
     useEffect(() => {
         setOptions({
@@ -66,7 +101,9 @@ const CreatePost = () => {
             headerRight: () => {
                 return (
                     <View style={styles.headerRight}>
-                        <TouchableOpacity onPress={() => console.warn('sent')}>
+                        <TouchableOpacity
+                            onPress={onCreatePost}
+                        >
                             <Icon
                                 type="FontAwesome"
                                 name="send"
@@ -80,7 +117,9 @@ const CreatePost = () => {
                 )
             }
         });
-    }, []);
+    }, [described]);
+
+
 
     return (
         <CreatePostComponent
@@ -88,7 +127,10 @@ const CreatePost = () => {
             openSheet={openSheet}
             closeSheet={closeSheet}
             onFileSelected={onFileSelected}
-            localFile={localFile}
+            localFiles={localFiles}
+            widthScreen={WIDTH}
+            described={described}
+            onChangeText={onChangeText}
         />
     )
 }

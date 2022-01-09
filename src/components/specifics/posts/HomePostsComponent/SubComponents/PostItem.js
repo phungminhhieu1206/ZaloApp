@@ -16,13 +16,13 @@ const PostItem = ({ post, widthScreen }) => {
     return (
         <View style={styles.container}>
             <PostHeader post={post} />
-            {post.caption ? <Caption post={post} /> : null}
-            <PostImage post={post} width={widthScreen}/>
+            {post.described ? <Caption post={post} /> : null}
+            {post.images ? <PostImage post={post.images} width={widthScreen}/> : null}
             <PostFooter post={post} />
         </View>
     )
 }
-
+const avata = 'https://reactnative.dev/img/tiny_logo.png';
 const PostHeader = ({ post }) => (
     <View
         style={{
@@ -37,7 +37,7 @@ const PostHeader = ({ post }) => (
             alignItems: 'center'
         }}>
             <Image
-                source={{ uri: post.profile_picture }}
+                source={{ uri: avata }}
                 style={styles.profile_picture}
             />
             <View style={{
@@ -51,7 +51,7 @@ const PostHeader = ({ post }) => (
                         fontSize: 16
                     }}
                 >
-                    {post.user}
+                    {post.author.username}
                 </Text>
                 <Text
                     numberOfLines={1}
@@ -59,7 +59,7 @@ const PostHeader = ({ post }) => (
                         color: 'grey',
                         fontSize: 12
                     }}
-                >Today at 11:22</Text>
+                >{post.createdAt}</Text>
             </View>
 
         </View>
@@ -77,6 +77,10 @@ const PostHeader = ({ post }) => (
 
 const PostImage = ({ post, width }) => {
     const [imageActive, setImageActive] = useState(0);
+    let arrayImages = [];
+    post.map((item) => {
+        arrayImages.push(item.fileName);
+    })
 
     const onChange = (nativeEvent) => {
         if (nativeEvent) {
@@ -89,7 +93,7 @@ const PostImage = ({ post, width }) => {
 
     return (
         <ListImages
-            data={post.imageUrl}
+            data={arrayImages}
             imageActive={imageActive}
             onChange={onChange}
             width={width}
@@ -104,7 +108,8 @@ const PostImage = ({ post, width }) => {
 const PostFooter = ({ post }) => {
     const { navigate } = useNavigation();
 
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(post.isLike);
+    const [countCMT, setCountCMT] = useState(post.countComments);
 
     const onPressWhiteLike = () => {
         setLiked(true);
@@ -170,7 +175,7 @@ const PostFooter = ({ post }) => {
                         fontSize: 18,
                         marginLeft: 8,
                         width: 60,
-                    }}>{post.comments.length}</Text>
+                    }}>{countCMT}</Text>
             </View>
             <TouchableOpacity
                 onPress={onPressComment}
@@ -239,7 +244,7 @@ const Caption = ({ post }) => (
             paddingBottom: 10,
             fontWeight: '400',
             fontStyle: 'italic'
-        }}>{post.caption}</Text>
+        }}>{post.described}</Text>
     </View>
 )
 

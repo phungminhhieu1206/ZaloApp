@@ -15,6 +15,8 @@ import ListPosts from './SubComponents/ListPosts'
 
 const HomePostsComponent = ({
     friends,
+    data,
+    loading,
     widthScreen
 }) => {
     return (
@@ -22,7 +24,7 @@ const HomePostsComponent = ({
             <ScrollView>
                 <Stories friends={friends}/>
                 <FormCrePost />
-                <ListPosts data={POSTS} widthScreen={widthScreen}/>
+                <ListPosts data={data} widthScreen={widthScreen}/>
             </ScrollView>
         </SafeAreaView>
     )

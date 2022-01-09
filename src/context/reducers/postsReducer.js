@@ -1,12 +1,12 @@
 import {
-    GET_LIST_POST_FAIL,
-    GET_LIST_POST_LOADING,
-    GET_LIST_POST_SUCCESS
+    GET_LIST_POSTS_FAIL,
+    GET_LIST_POSTS_LOADING,
+    GET_LIST_POSTS_SUCCESS
 } from '../../constants/actionTypes';
 
 const postsReducer = (state, { type, payload }) => {
     switch (type) {
-        case GET_LIST_POST_LOADING:
+        case GET_LIST_POSTS_LOADING:
             return {
                 ...state,
                 getListPosts: {
@@ -16,7 +16,7 @@ const postsReducer = (state, { type, payload }) => {
                 },
             };
 
-        case GET_LIST_POST_SUCCESS:
+        case GET_LIST_POSTS_SUCCESS:
             return {
                 ...state,
                 getListPosts: {
@@ -27,7 +27,7 @@ const postsReducer = (state, { type, payload }) => {
                 },
             };
 
-        case GET_LIST_POST_FAIL:
+        case GET_LIST_POSTS_FAIL:
             return {
                 ...state,
                 getListPosts: {

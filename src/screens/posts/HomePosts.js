@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, {useContext, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
     View,
     Text,
@@ -22,14 +22,14 @@ const HomePosts = () => {
     const { navigate, setOptions } = useNavigation();
 
     const {
-        PostsDispatch,
-        PostsState: {
+        postsDispatch,
+        postsState: {
             getListPosts: { data, loading }
         }
     } = useContext(GlobalContext);
 
     useEffect(() => {
-        getListPosts()(PostsDispatch);
+        getListPosts()(postsDispatch);
     }, []);
 
     useEffect(() => {
@@ -104,14 +104,27 @@ const HomePosts = () => {
             }
         });
     }, []);
-    console.log('aaaaaaaaaaaaaaa ---> ', data);
+
+
+    // console.log('aaaaaaaaaaaaaaa ---> ', data);
+
+
     return (
-        
-        // data.map((post, index) => (
-        //     <Text key={index}>{post.described}</Text>
-        // ))
-           
-            
+
+        // <View>
+        //     {
+        //         data.map((post, index) => (
+        //             <View key={index}>
+        //                 {post.images.length !== 0 &&
+        //                     <Text>{post.images.length}</Text>
+        //                 }
+        //             </View>
+        //         ))
+        //     }
+        // </View>
+
+
+
         <HomePostsComponent
             widthScreen={WIDTH}
             friends={USERS}

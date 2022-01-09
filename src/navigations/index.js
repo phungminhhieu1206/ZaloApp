@@ -33,7 +33,7 @@ const AppNavContainer = () => {
 
     useEffect(() => {
         getUser();
-    }, [isLoggedIn]);
+    }, [isLoggedIn, authLoaded]);
 
     return (
         <>

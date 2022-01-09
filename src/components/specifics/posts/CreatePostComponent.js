@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Image } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Image, ActivityIndicator } from 'react-native'
 import CustomInput from "../../common/CustomInput"
 import Container from "../../common/Container"
 import Icon from '../../common/Icon'
@@ -17,6 +17,7 @@ const CreatePostComponent = ({
     widthScreen,
     described,
     onChangeText,
+    loading
 }) => {
 
     // console.log('aaaaaaaaaaaaa: ????', described);
@@ -39,52 +40,60 @@ const CreatePostComponent = ({
 
     return (
         <Container>
-            <CustomInput
-                label="Described"
-                placeholder="Write your thoughts ..."
-                styleBoxInput={{
-                    height: 150
-                }}
-                multiline={true}
-                onChangeText={(value) => onChangeText(value)}
-            />
-            <TouchableOpacity
-                style={styles.touchButton}
-                onPress={openSheet}
-            >
-                <Icon
-                    type="FontAwesome"
-                    name="photo"
-                    size={24}
-                    color="#2CB427"
-                    style={{
-                        paddingRight: 10
-                    }}
-                />
-                <Text style={{
-                    color: colors.text,
-                    fontSize: 14,
-                }}>Upload Photo</Text>
-            </TouchableOpacity>
-            {localFiles.length !== 0 ?
-                <View style={{ marginTop: 15 }}>
-                    <View style={styles.imageNotify}>
-                        <Text>{'You choosed ' + localFiles.length + ' images'}</Text>
-                    </View>
-                    <ListImages
-                        data={listLocalImages}
-                        imageActive={imageActive}
-                        onChange={onChange}
-                        width={widthScreen}
-                        height={250}
+            {loading ?
+                <View style={{ padding: 100 }}>
+                    <ActivityIndicator color={colors.theme} size="large" />
+                </View>
+                :
+                <View>
+                    <CustomInput
+                        label="Described"
+                        placeholder="Write your thoughts ..."
+                        styleBoxInput={{
+                            height: 150
+                        }}
+                        multiline={true}
+                        onChangeText={(value) => onChangeText(value)}
                     />
-                </View> :
-                <Image
-                    source={require('../../../assets/images/image_empty.jpg')}
-                    style={styles.imageView}
-                />
+                    <TouchableOpacity
+                        style={styles.touchButton}
+                        onPress={openSheet}
+                    >
+                        <Icon
+                            type="FontAwesome"
+                            name="photo"
+                            size={24}
+                            color="#2CB427"
+                            style={{
+                                paddingRight: 10
+                            }}
+                        />
+                        <Text style={{
+                            color: colors.text,
+                            fontSize: 14,
+                        }}>Choose Photo</Text>
+                    </TouchableOpacity>
+                    {localFiles.length !== 0 ?
+                        <View style={{ marginTop: 15 }}>
+                            <View style={styles.imageNotify}>
+                                <Text>{'You choosed ' + localFiles.length + ' images'}</Text>
+                            </View>
+                            <ListImages
+                                data={listLocalImages}
+                                imageActive={imageActive}
+                                onChange={onChange}
+                                width={widthScreen}
+                                height={250}
+                            />
+                        </View> :
+                        <Image
+                            source={require('../../../assets/images/image_empty.jpg')}
+                            style={styles.imageView}
+                        />
+                    }
+                    <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />
+                </View>
             }
-            <ImagePicker onFileSelected={onFileSelected} ref={sheetRef} />
         </Container>
     )
 }

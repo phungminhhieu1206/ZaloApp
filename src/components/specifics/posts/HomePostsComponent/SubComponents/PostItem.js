@@ -14,13 +14,13 @@ import ListImages from '../../../../common/ListImages';
 import { url_images } from "../../../../../constants/general";
 
 const PostItem = ({ post, widthScreen }) => {
-    // console.log('data ---------', post.images);
+    console.log('data ---------', post.images);
 
     return (
         <View style={styles.container}>
             <PostHeader post={post} />
             {post.described ? <Caption post={post} /> : null}
-            {post.images ? <PostImage post={post.images} width={widthScreen} /> : null}
+            {post.images.length !== 0 ? <PostImage post={post.images} width={widthScreen} /> : null}
             <PostFooter post={post} />
         </View>
     )

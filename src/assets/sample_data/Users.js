@@ -1,10 +1,10 @@
 export const USERS = [
     {
-        user: 'Phung Minh Hieu (BKA 2018)',
+        user: 'phunghieu12',
         image: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-dai-dien-avt-anime-dep-cho-con-trai-397x390.jpg'
     },
     {
-        user: 'phuonganh',
+        user: 'dieulinh',
         image: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-avt-anime-chat-nhat-580x580.jpg'
     },
     {
@@ -20,11 +20,11 @@ export const USERS = [
         image: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-avatar-doremon-chat-ngau-nhat.jpg'
     },
     {
-        user: 'phunghieu1206',
+        user: 'phunghieu12',
         image: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-dai-dien-avt-anime-dep-cho-con-trai-397x390.jpg'
     },
     {
-        user: 'phuonganhtr',
+        user: 'vananhtr',
         image: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-avt-anime-chat-nhat-580x580.jpg'
     },
     {

@@ -62,7 +62,7 @@ const CreatePost = () => {
         // console.log("listImagesUpload: >>>>", listImagesUpload);
 
         createNewPost({described, listImagesUpload})(postsDispatch)(() => {
-            navigate(HOME_POSTS);
+            goBack();
         });
 
     }
@@ -117,8 +117,7 @@ const CreatePost = () => {
                 )
             }
         });
-    }, [described]);
-
+    }, [described, localFiles]);
 
 
     return (
@@ -131,6 +130,7 @@ const CreatePost = () => {
             widthScreen={WIDTH}
             described={described}
             onChangeText={onChangeText}
+            loading={loading}
         />
     )
 }

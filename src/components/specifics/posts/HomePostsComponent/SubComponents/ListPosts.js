@@ -7,7 +7,7 @@ const ListPosts = ({
 }) => {
 
     return (
-        data.map((post, index) => (
+        data.slice(0).reverse().map((post, index) => (
             <PostItem
                 widthScreen={widthScreen}
                 post={post} key={index}

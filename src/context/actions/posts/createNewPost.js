@@ -14,27 +14,27 @@ const createNewPost = ({ described: described, listImagesUpload: listImagesUploa
     };
     console.log("requestPayload action: >>>>", requestPayload);
 
-    // dispatch({
-    //     type: CREATE_NEW_POST_LOADING,
-    // });
-    // axiosInstance.post('/posts/create', requestPayload).then((res) => {
-    //     console.log('res create contact ---> ', res.data);
+    dispatch({
+        type: CREATE_NEW_POST_LOADING,
+    });
+    axiosInstance.post('/posts/create', requestPayload).then((res) => {
+        console.log('res create contact ---> ', res.data);
 
-    //     dispatch({
-    //         type: CREATE_NEW_POST_SUCCESS,
-    //         payload: res.data,
-    //     });
+        dispatch({
+            type: CREATE_NEW_POST_SUCCESS,
+            payload: res.data,
+        });
 
-    //     onSuccess();
-    // }).catch((err) => {
-    //     console.log('err hieu --> ', err.response.data);
-    //     dispatch({
-    //         type: CREATE_NEW_POST_FAIL,
-    //         payload: err.response
-    //             ? err.response.data
-    //             : { error: 'Something went wrong, try again' },
-    //     });
-    // });
+        onSuccess();
+    }).catch((err) => {
+        console.log('err hieu --> ', err.response.data);
+        dispatch({
+            type: CREATE_NEW_POST_FAIL,
+            payload: err.response
+                ? err.response.data
+                : { error: 'Something went wrong, try again' },
+        });
+    });
 };
 
 export default createNewPost;

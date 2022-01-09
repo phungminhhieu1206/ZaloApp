@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import Icon from '../../../../common/Icon';
 import { CREATE_POST, MY_CHANNEL } from '../../../../../constants/routeNames';
+import { DEFAULT_IMAGE_URI } from '../../../../../constants/general'
 
 const FormCrePost = () => {
     const { navigate } = useNavigation();
@@ -18,7 +19,7 @@ const FormCrePost = () => {
             <View style={styles.wrapper_text}>
                 <TouchableOpacity onPress={() => navigate(MY_CHANNEL)}>
                     <Image
-                        source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
+                        source={{ uri: DEFAULT_IMAGE_URI }}
                         style={styles.avtImage}
                     />
                 </TouchableOpacity>

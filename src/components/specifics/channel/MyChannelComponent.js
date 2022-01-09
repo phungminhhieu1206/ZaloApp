@@ -7,17 +7,20 @@ import {
     Image
 } from 'react-native'
 import Icon from "../../common/Icon"
+import { DEFAULT_IMAGE_URI } from '../../../constants/general'
 
-const MyChannelComponent = () => {
+const MyChannelComponent = ({
+    user
+}) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.myInfoButton}>
                 <Image
-                    source={{ uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg' }}
+                    source={{ uri: DEFAULT_IMAGE_URI }}
                     style={styles.avtInfo}
                 />
                 <View style={{ marginLeft: 20 }}>
-                    <Text style={styles.titleInfo}>Phung Minh Hieu</Text>
+                    <Text style={styles.titleInfo}>{user.username}</Text>
                     <Text style={styles.subTitleInfo}>View my profile</Text>
                 </View>
             </TouchableOpacity>

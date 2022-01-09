@@ -1,13 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import MyChannelComponent from '../../components/specifics/channel/MyChannelComponent';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from '../../components/common/Icon';
 import colors from "../../assets/themes/colors"
 import { SEARCH_FRIEND, SETTINGS } from '../../constants/routeNames';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MyChannel = () => {
     const { navigate, setOptions } = useNavigation();
+    const [user, setUser] = useState({});
+    
+
+    const getUser = async () => {
+        try {
+            const author = await AsyncStorage.getItem('user');
+            console.log('user ----> ', JSON.parse(author).username);
+            setUser(JSON.parse(author));
+        } catch (error) { }
+    };
+
+    console.log("user isssssssssssssss:>>", user.username);
+
+    useEffect(() => {
+        getUser();
+    }, []);
 
     useEffect(() => {
         setOptions({
@@ -70,7 +87,9 @@ const MyChannel = () => {
     }, []);
 
     return (
-        <MyChannelComponent />
+        <MyChannelComponent 
+            user={user}
+        />
     )
 }
 

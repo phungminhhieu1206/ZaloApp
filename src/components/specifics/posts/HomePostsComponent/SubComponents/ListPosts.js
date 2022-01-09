@@ -3,11 +3,14 @@ import PostItem from './PostItem'
 
 const ListPosts = ({
     data,
-    widthScreen
+    widthScreen,
 }) => {
     return (
         data.map((post, index) => (
-            <PostItem widthScreen={widthScreen} post={post} key={index} />
+            <PostItem
+                widthScreen={widthScreen}
+                post={post} key={index}
+            />
         ))
     )
 }

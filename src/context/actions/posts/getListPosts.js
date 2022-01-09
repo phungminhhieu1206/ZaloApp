@@ -10,6 +10,8 @@ const getListPosts = () => (dispatch) => {
         type: GET_LIST_POSTS_LOADING,
     });
     axiosInstance.get('/posts/list').then((res) => {
+
+        console.log('res aaaaaaaaaaaaaaaaaaa: >>>', res);
         let temp = JSON.parse(res.request._response).data;
         // console.log('res list aaaa: >>>', JSON.parse(res.request._response).data);
         

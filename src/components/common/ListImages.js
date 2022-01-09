@@ -38,8 +38,8 @@ const ListImages = ({
                                 key={index}
                                 resizeMode='contain'
                                 style={styleSize}
-                                source={{ uri: `${url_images}/fccf08c5-181e-473a-b601-f5e893203d15.jpeg` }}
-                                // source={{uri: image}}
+                                // source={{ uri: `${url_images}/${image}` }}
+                                source={{uri: image}}
                             />
                         ))
                     }

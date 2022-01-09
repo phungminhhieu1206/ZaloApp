@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
     View,
     Text,
@@ -20,6 +20,7 @@ const HEIGHT = Dimensions.get('window').height;
 
 const HomePosts = () => {
     const { navigate, setOptions } = useNavigation();
+    const [refreshList, setRefreshList] = useState(false);
 
     const {
         postsDispatch,
@@ -31,6 +32,12 @@ const HomePosts = () => {
     useEffect(() => {
         getListPosts()(postsDispatch);
     }, []);
+
+    const onRefresh = () => {
+        setRefreshList(true);
+        getListPosts()(postsDispatch);
+        setRefreshList(false)
+    }
 
     useEffect(() => {
         setOptions({
@@ -105,31 +112,15 @@ const HomePosts = () => {
         });
     }, []);
 
-
-    // console.log('aaaaaaaaaaaaaaa ---> ', data);
-
-
     return (
-
-        // <View>
-        //     {
-        //         data.map((post, index) => (
-        //             <View key={index}>
-        //                 {post.images.length !== 0 &&
-        //                     <Text>{post.images.length}</Text>
-        //                 }
-        //             </View>
-        //         ))
-        //     }
-        // </View>
-
-
-
         <HomePostsComponent
             widthScreen={WIDTH}
             friends={USERS}
             data={data}
             loading={loading}
+            refreshList={refreshList}
+            onRefresh={onRefresh}
+            navigate={navigate}
         />
     )
 }

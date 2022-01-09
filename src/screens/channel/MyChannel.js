@@ -1,16 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import MyChannelComponent from '../../components/specifics/channel/MyChannelComponent';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from '../../components/common/Icon';
 import colors from "../../assets/themes/colors"
 import { SEARCH_FRIEND, SETTINGS } from '../../constants/routeNames';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MyChannelComponent from '../../components/specifics/channel/MyChannelComponent';
+import { USERS } from "../../assets/sample_data/Users";
+import { GlobalContext } from '../../context/Provider';
+import getListPosts from '../../context/actions/posts/getListPosts';
+
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
 
 const MyChannel = () => {
     const { navigate, setOptions } = useNavigation();
+    const [refreshList, setRefreshList] = useState(false);
     const [user, setUser] = useState({});
-    
+
+    const {
+        postsDispatch,
+        postsState: {
+            getListPosts: { data, loading }
+        }
+    } = useContext(GlobalContext);
 
     const getUser = async () => {
         try {
@@ -22,9 +35,17 @@ const MyChannel = () => {
 
     console.log("user isssssssssssssss:>>", user.username);
 
+    const onRefresh = () => {
+        setRefreshList(true);
+        getListPosts()(postsDispatch);
+        setRefreshList(false)
+    }
+
     useEffect(() => {
         getUser();
+        getListPosts()(postsDispatch);
     }, []);
+
 
     useEffect(() => {
         setOptions({
@@ -87,7 +108,14 @@ const MyChannel = () => {
     }, []);
 
     return (
-        <MyChannelComponent 
+        <MyChannelComponent
+            widthScreen={WIDTH}
+            friends={USERS}
+            data={data}
+            loading={loading}
+            refreshList={refreshList}
+            onRefresh={onRefresh}
+            navigate={navigate}
             user={user}
         />
     )

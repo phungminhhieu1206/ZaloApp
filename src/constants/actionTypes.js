@@ -13,7 +13,9 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 /**
  * Message actions
  */
-
+ export const GET_CHAT_LIST_LOADING = 'GET_CHAT_LIST_LOADING';
+ export const GET_CHAT_LIST_SUCCESS = 'GET_CHAT_LIST_SUCCESS';
+ export const GET_CHAT_LIST_FAIL = 'GET_CHAT_LIST_FAIL';
 
 /**
  * Contact actions
@@ -43,7 +45,9 @@ export const CLEAR_GET_CONTACT_BY_PHONE_STATE = 'CLEAR_GET_CONTACT_BY_PHONE_STAT
 /**
  * Post actions
  */
-
+ export const GET_LIST_POST_LOADING = 'GET_LIST_POST_LOADING';
+ export const GET_LIST_POST_SUCCESS = 'GET_LIST_POST_SUCCESS';
+ export const GET_LIST_POST_FAIL = 'GET_LIST_POST_FAIL';
 
 /**
  * Channel actions

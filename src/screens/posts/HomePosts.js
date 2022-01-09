@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react'
+import React, {useContext, useEffect } from 'react'
 import {
     View,
     Text,
@@ -10,14 +10,27 @@ import {
 import colors from '../../assets/themes/colors'
 import Icon from '../../components/common/Icon';
 import HomePostsComponent from '../../components/specifics/posts/HomePostsComponent';
+import { GlobalContext } from '../../context/Provider';
 import { CREATE_POST, SEARCH_FRIEND } from '../../constants/routeNames';
-import { USERS } from "../../assets/sample_data/Users"
+import { USERS } from "../../assets/sample_data/Users";
+import getListPosts from '../../context/actions/posts/getListPosts';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const HomePosts = () => {
     const { navigate, setOptions } = useNavigation();
+
+    const {
+        PostsDispatch,
+        PostsState: {
+            getListPosts: { data, loading }
+        }
+    } = useContext(GlobalContext);
+
+    useEffect(() => {
+        getListPosts()(PostsDispatch);
+    }, []);
 
     useEffect(() => {
         setOptions({
@@ -91,11 +104,19 @@ const HomePosts = () => {
             }
         });
     }, []);
-
+    console.log('aaaaaaaaaaaaaaa ---> ', data);
     return (
+        
+        // data.map((post, index) => (
+        //     <Text key={index}>{post.described}</Text>
+        // ))
+           
+            
         <HomePostsComponent
             widthScreen={WIDTH}
             friends={USERS}
+            data={data}
+            loading={loading}
         />
     )
 }

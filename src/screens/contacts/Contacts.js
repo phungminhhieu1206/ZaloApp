@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
@@ -11,6 +11,7 @@ import { SEARCH_FRIEND } from '../../constants/routeNames';
 const Contacts = () => {
 
     const { navigate, setOptions } = useNavigation();
+    const [refreshList, setRefreshList] = useState(false);
 
     const {
         contactDispatch,
@@ -18,6 +19,12 @@ const Contacts = () => {
             getListContacts: { data, loading }
         }
     } = useContext(GlobalContext);
+
+    const onRefresh = () => {
+        setRefreshList(true);
+        getListContacts()(contactDispatch);
+        setRefreshList(false)
+    }
 
     useEffect(() => {
         getListContacts()(contactDispatch);
@@ -87,6 +94,8 @@ const Contacts = () => {
         <ContactsComponent
             data={data}
             loading={loading}
+            refreshList={refreshList}
+            onRefresh={onRefresh}
         />
     )
 }

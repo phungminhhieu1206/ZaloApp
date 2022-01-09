@@ -5,7 +5,7 @@ import {
 } from "../../../constants/actionTypes"
 import axiosInstance from "../../../helpers/axiosInstance";
 
-const setAcceptRequest = (_id) => (dispatch) => {
+const setAcceptRequest = (_id) => (dispatch) => (onSuccess) => {
 
     const requestPayload = {
         user_id: _id,
@@ -21,10 +21,9 @@ const setAcceptRequest = (_id) => (dispatch) => {
         dispatch({
             type: SET_ACCEPT_REQUEST_SUCCESS,
             payload: res.data
-            /**
-             * Để ý dữ liệu payload ở đây truyền vào reducer phải giống với định dạng của data initialState
-             */
         });
+
+        onSuccess();
     }).catch((err) => {
         console.log('list user error -->', err.response);
         dispatch({

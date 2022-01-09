@@ -4,6 +4,11 @@ export default {
         error: null,
         loading: false,
     },
+    getMyPosts: {
+        data: [],
+        error: null,
+        loading: false,
+    },
     createNewPost: {
         data: {},
         error: null,

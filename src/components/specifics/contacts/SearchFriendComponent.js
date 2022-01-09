@@ -26,7 +26,7 @@ const SearchFriendComponent = ({
 }) => {
 
     const { navigate } = useNavigation();
-    // console.log("data: ", data, " - loading: ", loading);
+    console.log("data: ", data, " - loading: ", loading);
     // console.log("dataAdd :>>>", dataAdd);
 
     const onPressHandle = (index) => {

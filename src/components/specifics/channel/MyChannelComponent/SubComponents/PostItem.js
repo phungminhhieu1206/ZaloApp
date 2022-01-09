@@ -12,9 +12,10 @@ import {
 import Icon from '../../../../common/Icon';
 import ListImages from '../../../../common/ListImages';
 import { url_images } from "../../../../../constants/general";
+import { DEFAULT_IMAGE_URI } from '../../../../../constants/general'
 
 const PostItem = ({ post, widthScreen }) => {
-    console.log('data ---------', post.images);
+    // console.log('data ---------', post.images);
 
     return (
         <View style={styles.container}>
@@ -25,7 +26,7 @@ const PostItem = ({ post, widthScreen }) => {
         </View>
     )
 }
-const avata = 'https://reactnative.dev/img/tiny_logo.png';
+
 const PostHeader = ({ post }) => (
     <View
         style={{
@@ -40,7 +41,7 @@ const PostHeader = ({ post }) => (
             alignItems: 'center'
         }}>
             <Image
-                source={{ uri: avata }}
+                source={{ uri: DEFAULT_IMAGE_URI }}
                 style={styles.profile_picture}
             />
             <View style={{

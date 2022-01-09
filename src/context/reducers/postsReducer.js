@@ -4,7 +4,10 @@ import {
     CREATE_NEW_POST_SUCCESS,
     GET_LIST_POSTS_FAIL,
     GET_LIST_POSTS_LOADING,
-    GET_LIST_POSTS_SUCCESS
+    GET_LIST_POSTS_SUCCESS,
+    GET_MY_POSTS_FAIL,
+    GET_MY_POSTS_LOADING,
+    GET_MY_POSTS_SUCCESS
 } from '../../constants/actionTypes';
 
 const postsReducer = (state, { type, payload }) => {
@@ -38,6 +41,41 @@ const postsReducer = (state, { type, payload }) => {
                 ...state,
                 getListPosts: {
                     ...state.getListPosts,
+                    loading: false,
+                    error: payload,
+                },
+            };
+
+
+        /**
+         * GET_MY_POSTS
+         */
+        case GET_MY_POSTS_LOADING:
+            return {
+                ...state,
+                getMyPosts: {
+                    ...state.getMyPosts,
+                    loading: true,
+                    error: null,
+                },
+            };
+
+        case GET_MY_POSTS_SUCCESS:
+            return {
+                ...state,
+                getMyPosts: {
+                    ...state.getMyPosts,
+                    loading: false,
+                    data: payload,
+                    error: null,
+                },
+            };
+
+        case GET_MY_POSTS_FAIL:
+            return {
+                ...state,
+                getMyPosts: {
+                    ...state.getMyPosts,
                     loading: false,
                     error: payload,
                 },

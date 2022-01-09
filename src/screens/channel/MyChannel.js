@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyChannelComponent from '../../components/specifics/channel/MyChannelComponent';
 import { USERS } from "../../assets/sample_data/Users";
 import { GlobalContext } from '../../context/Provider';
-import getListPosts from '../../context/actions/posts/getListPosts';
+import getMyPosts from '../../context/actions/posts/getMyPosts';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -21,29 +21,32 @@ const MyChannel = () => {
     const {
         postsDispatch,
         postsState: {
-            getListPosts: { data, loading }
+            getMyPosts: { data, loading }
         }
     } = useContext(GlobalContext);
 
     const getUser = async () => {
         try {
             const author = await AsyncStorage.getItem('user');
-            console.log('user ----> ', JSON.parse(author).username);
+            // console.log('IDDDDDDDDDDDDDDDDDDDD ----> ', JSON.parse(author).id);
             setUser(JSON.parse(author));
         } catch (error) { }
     };
 
-    console.log("user isssssssssssssss:>>", user.username);
+    // console.log("user isssssssssssssss:>>", user.username);
 
-    const onRefresh = () => {
+
+
+    const onRefresh = async () => {
         setRefreshList(true);
-        getListPosts()(postsDispatch);
-        setRefreshList(false)
+        getUser();
+        getMyPosts(user.id)(postsDispatch);
+        setRefreshList(false);
     }
 
     useEffect(() => {
         getUser();
-        getListPosts()(postsDispatch);
+        getMyPosts(user.id)(postsDispatch);
     }, []);
 
 

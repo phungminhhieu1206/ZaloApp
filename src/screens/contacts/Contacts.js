@@ -92,7 +92,7 @@ const Contacts = () => {
 
     return (
         <ContactsComponent
-            data={data}
+            data={data.slice(0).reverse()}
             loading={loading}
             refreshList={refreshList}
             onRefresh={onRefresh}

@@ -5,6 +5,7 @@ const ListPosts = ({
     data,
     widthScreen,
 }) => {
+
     return (
         data.map((post, index) => (
             <PostItem

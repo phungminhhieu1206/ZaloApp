@@ -11,13 +11,16 @@ import {
 } from 'react-native';
 import Icon from '../../../../common/Icon';
 import ListImages from '../../../../common/ListImages';
+import { url_images } from "../../../../../constants/general";
 
 const PostItem = ({ post, widthScreen }) => {
+    // console.log('data ---------', post.images);
+
     return (
         <View style={styles.container}>
             <PostHeader post={post} />
             {post.described ? <Caption post={post} /> : null}
-            {post.images ? <PostImage post={post.images} width={widthScreen}/> : null}
+            {post.images ? <PostImage post={post.images} width={widthScreen} /> : null}
             <PostFooter post={post} />
         </View>
     )
@@ -76,10 +79,14 @@ const PostHeader = ({ post }) => (
 )
 
 const PostImage = ({ post, width }) => {
+
+    // console.log("image array : >>>>>>", post);
+
     const [imageActive, setImageActive] = useState(0);
+
     let arrayImages = [];
     post.map((item) => {
-        arrayImages.push(item.fileName);
+        arrayImages.push(url_images + item.fileName);
     })
 
     const onChange = (nativeEvent) => {

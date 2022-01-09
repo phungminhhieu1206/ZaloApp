@@ -26,7 +26,7 @@ const HomePostsComponent = ({
     onRefresh,
     navigate
 }) => {
-    // console.log('data ---------', data);
+    // console.log('data ---------', data[0].images);
 
     const handOnClick = () => {
         navigate(CREATE_POST);

@@ -24,7 +24,7 @@ const getMyPosts = (_id) => (dispatch) => {
             payload: temp
         });
     }).catch((err) => {
-        console.log('list posts error -->', err.response);
+        console.log('list my posts error -->', err.response);
         dispatch({
             type: GET_MY_POSTS_FAIL,
             payload: err.response

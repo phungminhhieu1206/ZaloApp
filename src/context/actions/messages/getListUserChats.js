@@ -14,7 +14,7 @@ const getListUserChats = () => (dispatch) => {
         let temp = JSON.parse(res.request._response).userIdList
         // let resData = res.json();
         // let data = resData.data;
-        console.log( "list >>>>>>" + temp);
+        // console.log( "list >>>>>>" + temp);
         
         dispatch({
             type: GET_CHAT_LIST_SUCCESS,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     View,
     StyleSheet,
@@ -8,14 +8,27 @@ import {
     Platform,
     TouchableOpacity
 } from 'react-native'
+import { GlobalContext } from '../../../../context/Provider';
 import Icon from '../../../common/Icon';
+import sendMessageAPI from '../../../../context/actions/messages/sendMessageAPI';
 
-const MessageInput = () => {
+
+const MessageInput = ({
+    idChat,
+    idFriend
+}) => {
 
     const [message, setMessage] = useState('');
 
+    // console.log("Input>>>>>>>>>" + idChat);
+    // console.log("Input 1>>>>>>>>>" + idFriend);
+
+    const { ChatsDispatch } = useContext(GlobalContext);  
+
     const sendMessage = () => {
-        console.warn("sending: ", message);
+
+        console.warn("sending: ");
+        sendMessageAPI({receivedId: idFriend, content: message, chatId: idChat })(ChatsDispatch);
 
         setMessage('');
     }
@@ -46,7 +59,7 @@ const MessageInput = () => {
                         type="SimpleLineIcons"
                         name="emotsmile"
                         size={24}
-                        style={styles.icon}
+                        // style={styles.icon}
                     />
                 </TouchableOpacity>
                 <TextInput
@@ -61,7 +74,7 @@ const MessageInput = () => {
                         type="Feather"
                         name="camera"
                         size={24}
-                        style={styles.icon}
+                        // style={styles.icon}
                     />
                 </TouchableOpacity>
                 <TouchableOpacity>
@@ -69,17 +82,17 @@ const MessageInput = () => {
                         type="MaterialCommunityIcons"
                         name="microphone-outline"
                         size={24}
-                        style={styles.icon}
+                        // style={styles.icon}
                     />
                 </TouchableOpacity>
             </View>
             <Pressable onPress={onPressHandle} style={styles.buttonContainer}>
-                {message ? <Ionicons name="send" size={20} color='white' />
+                {message ? <Icon type="Ionicons" name="send" size={20} color='white' />
                     : <Icon
                         type="AntDesign"
                         name="plus"
                         size={24}
-                        style={styles.icon}
+                        // style={styles.icon}
                     />
                 }
             </Pressable>

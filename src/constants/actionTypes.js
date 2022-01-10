@@ -21,6 +21,8 @@ export const LOGOUT_USER = 'LOGOUT_USER';
  export const GET_CONTENT_MESS_SUCCESS = 'GET_CONTENT_MESS_SUCCESS';
  export const GET_CONTENT_MESS_FAIL = 'GET_CONTENT_MESS_FAIL';
 
+ export const SEND_MESS_SUCCESS = 'SEND_MESS_SUCCESS';
+
 /**
  * Contact actions
  */

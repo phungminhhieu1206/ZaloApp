@@ -8,9 +8,9 @@ import {
     FlatList,
     ScrollView,
     Image
-} from 'react-native'
+} from 'react-native';
 import ListImages from '../../common/ListImages';
-import ChatRoomItem from '../../specifics/messages/ListMessage/ChatRoomItem';
+import ChatRoomItem from './ListMessage/ChatRoomItem';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
@@ -23,9 +23,10 @@ const ChatRoomsComponent = ({
 
     return (
         <View style={styles.home_chat}>
+            {/* <Text>123</Text> */}
             <FlatList
                 data={data}
-                renderItem={({ item }) => <ChatRoomItem chatRoom={item} />}
+                renderItem={({ item, index }) => <ChatRoomItem chatRoom={item} key={index} />}
                 showsVerticalScrollIndicator={true}
             />
         </View >

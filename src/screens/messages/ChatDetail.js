@@ -12,8 +12,13 @@ const ChatDetail = () => {
     const { navigate } = useNavigation();
     const route = useRoute();
 
-    const idChat = route.params?.id;
+    const {id, idFriend } = route.params;
+    // const idChat = route.params?.id;
 
+    // const idFriend = route.params?.idFriend;
+
+    console.log("id " + id);
+    console.log("id Friend   " + idFriend);
     const [IdUser, setIdUser] = useState('');
 
     const {
@@ -30,13 +35,13 @@ const ChatDetail = () => {
     };
 
     useEffect(() => {
-        getContentMess(idChat)(ChatsDispatch);
+        getContentMess(id)(ChatsDispatch);
         getId();
     }, []);
     // console.log("IdUser >>>>>>>>>>>>>" + (data));
     return (
         <View style={styles.page} >
-
+            <Text>123</Text>
 
             <FlatList
                 data={data}
@@ -50,19 +55,8 @@ const ChatDetail = () => {
                 //  <Text style={styles.item}>{item.content}</Text>
                 }
             />
-{/* <Text style={styles.item}>123</Text> */}
 
-
-
-            {/* <Message a={
-                    [
-                        { content: "ahihi" },
-                        { content: "1234" }
-                    ]
-                } />
-               */}
-
-            <MessageInput />
+            <MessageInput idChat={id} idFriend={idFriend} />
         </View >
     );
 }

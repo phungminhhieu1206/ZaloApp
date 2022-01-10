@@ -33,8 +33,8 @@ const HomePostsComponent = ({
     closeSheet,
     currentPost,
     user,
-    postsDispatch
-    
+    postsDispatch,
+    postFirst
 }) => {
     // console.log('data ---------', data[0].images);
 
@@ -86,6 +86,7 @@ const HomePostsComponent = ({
                             data={data}
                             widthScreen={widthScreen}
                             openSheet={openSheet}
+                            postFirst={postFirst}
                         />
                         :
                         <View style={{

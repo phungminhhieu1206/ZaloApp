@@ -13,11 +13,13 @@ import Icon from '../../../../common/Icon';
 import ListImages from '../../../../common/ListImages';
 import { url_images } from "../../../../../constants/general";
 import { DEFAULT_IMAGE_URI } from '../../../../../constants/general'
+import { COMMENT } from '../../../../../constants/routeNames';
 
 const PostItem = ({
     post,
     widthScreen,
     openSheet,
+    postFirst
 }) => {
     // console.log('data ---------', post);
 
@@ -26,7 +28,7 @@ const PostItem = ({
             <PostHeader openSheet={openSheet} post={post} />
             {post.described ? <Caption post={post} /> : null}
             {post.images.length !== 0 ? <PostImage post={post.images} width={widthScreen} /> : null}
-            <PostFooter post={post} />
+            <PostFooter postFirst={postFirst} post={post} />
         </View>
     )
 }
@@ -118,7 +120,7 @@ const PostImage = ({ post, width }) => {
 
 
 
-const PostFooter = ({ post }) => {
+const PostFooter = ({ post, postFirst }) => {
     const { navigate } = useNavigation();
 
     const [liked, setLiked] = useState(post.isLike);
@@ -136,7 +138,7 @@ const PostFooter = ({ post }) => {
     }
 
     const onPressComment = () => {
-        // navigation.navigate("Comment", { post: post })
+        navigate(COMMENT, { post: postFirst })
     }
 
     return (

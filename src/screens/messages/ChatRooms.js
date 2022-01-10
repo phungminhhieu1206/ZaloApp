@@ -1,14 +1,27 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import colors from '../../assets/themes/colors'
 import Icon from '../../components/common/Icon';
 import ChatRoomsComponent from '../../components/specifics/messages/ChatRoomsComponent';
 import { SEARCH_FRIEND } from '../../constants/routeNames';
+import getListUserChats from '../../context/actions/messages/getListUserChats';
+import { GlobalContext } from '../../context/Provider';
 
 const ChatRooms = () => {
 
     const { navigate, setOptions } = useNavigation();
+
+    const {
+        ChatsDispatch,
+        chatsState: {
+            getListUserChats: { data, loading }
+        }
+    } = useContext(GlobalContext);
+
+    useEffect(() => {
+        getListUserChats()(ChatsDispatch);
+    }, []);
 
     useEffect(() => {
         setOptions({
@@ -78,9 +91,15 @@ const ChatRooms = () => {
             }
         });
     }, []);
-
+    // console.log()
     return (
-        <ChatRoomsComponent />
+        // <View>
+        //     <Text>test</Text>
+        // </View>
+        <ChatRoomsComponent
+        data={data}
+        loading={loading}
+        />
     )
 }
 

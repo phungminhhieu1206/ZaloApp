@@ -10,15 +10,15 @@ const getListUserChats = () => (dispatch) => {
     dispatch({
         type: GET_CHAT_LIST_LOADING,
     });
-    axiosInstance.get('/chats/listUser', {}).then((res) => {
-        // let temp = JSON.parse(res.request._response).data.friends
-        let resData = res.json();
-        let data = resData.data;
-        
+    axiosInstance.get('/chats/listUser').then((res) => {
+        let temp = JSON.parse(res.request._response).userIdList
+        // let resData = res.json();
+        // let data = resData.data;
+        console.log( "list >>>>>>" + temp);
         
         dispatch({
             type: GET_CHAT_LIST_SUCCESS,
-            payload: data 
+            payload: temp 
             /**
              * Để ý dữ liệu payload ở đây truyền vào reducer phải giống với định dạng của data initialState
              */

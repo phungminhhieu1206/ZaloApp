@@ -35,6 +35,12 @@ const AppNavContainer = () => {
         getUser();
     }, [isLoggedIn, authLoaded]);
 
+    useEffect(() => {
+        if (authLoaded) {
+            SplashScreen.hide();
+        }
+    }, [authLoaded]);
+
     return (
         <>
             {authLoaded ? (

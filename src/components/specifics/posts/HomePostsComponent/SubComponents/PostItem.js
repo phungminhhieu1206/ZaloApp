@@ -17,7 +17,7 @@ import { DEFAULT_IMAGE_URI } from '../../../../../constants/general'
 const PostItem = ({
     post,
     widthScreen,
-    openSheet
+    openSheet,
 }) => {
     // console.log('data ---------', post.images);
 

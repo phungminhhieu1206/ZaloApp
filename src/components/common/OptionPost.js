@@ -10,7 +10,7 @@ import Icon from '../common/Icon';
 import colors from '../../assets/themes/colors';
 import ImagePickerCropper from 'react-native-image-crop-picker';
 
-const OptionPost = React.forwardRef(({ closeSheet, currentPost, user }, ref) => {
+const OptionPost = React.forwardRef(({ handleDelete, closeSheet, currentPost, user }, ref) => {
     // console.log('userrrrrrrrrrrrrrr :>>>', user);
 
     const IDAuthorPost = currentPost.author?._id;
@@ -37,7 +37,7 @@ const OptionPost = React.forwardRef(({ closeSheet, currentPost, user }, ref) => 
 
                 //code here
                 console.log('click delete post id: ', currentPost._id);
-
+                handleDelete(currentPost._id);
                 // close sheet
                 closeSheet();
 
@@ -46,25 +46,26 @@ const OptionPost = React.forwardRef(({ closeSheet, currentPost, user }, ref) => 
     ];
 
     const optionIfNotMyPost = [
+        // {
+        //     name: 'Edit Post',
+        //     icon: <Icon type="AntDesign" color={colors.grey} size={21} name="edit" />,
+        //     onPress: () => {
+
+        //         //code here
+        //         console.log('click edit post id: ', currentPost._id);
+
+        //         // close sheet
+        //         closeSheet();
+        //     },
+        // },
         {
-            name: 'Edit Post',
-            icon: <Icon type="AntDesign" color={colors.grey} size={21} name="edit" />,
+            name: 'Hidden this post',
+            icon: <Icon type="MaterialCommunityIcons" name="file-hidden" color={colors.grey} size={21} />,
             onPress: () => {
 
                 //code here
-                console.log('click edit post id: ', currentPost._id);
-
-                // close sheet
-                closeSheet();
-            },
-        },
-        {
-            name: 'Delete this post',
-            icon: <Icon type="AntDesign" name="delete" color={colors.grey} size={21} />,
-            onPress: () => {
-
-                //code here
-                console.log('click delete post id: ', currentPost._id);
+                console.log('click hidden post id: ', currentPost._id);
+                // handleDelete(currentPost._id);
 
                 // close sheet
                 closeSheet();

@@ -6,7 +6,8 @@ import {
     View,
     Text,
     ActivityIndicator,
-    RefreshControl
+    RefreshControl,
+    Alert
 } from 'react-native'
 import colors from '../../../../assets/themes/colors'
 import { POSTS } from '../../../../assets/sample_data/Posts'
@@ -15,8 +16,9 @@ import FormCrePost from './SubComponents/FormCrePost'
 import PostItem from './SubComponents/PostItem'
 import ListPosts from './SubComponents/ListPosts'
 import Message from '../../../common/Message'
-import { CREATE_POST } from '../../../../constants/routeNames'
+import { CREATE_POST, HOME_POSTS } from '../../../../constants/routeNames'
 import OptionPost from '../../../common/OptionPost'
+import deletePost from '../../../../context/actions/posts/deletePost'
 
 const HomePostsComponent = ({
     friends,
@@ -30,12 +32,32 @@ const HomePostsComponent = ({
     openSheet,
     closeSheet,
     currentPost,
-    user
+    user,
+    postsDispatch
+    
 }) => {
     // console.log('data ---------', data[0].images);
 
     const handOnClick = () => {
         navigate(CREATE_POST);
+    }
+
+    const handleDelete = (idPost) => {
+        Alert.alert('DELETE POST !', 'Are you sure you want to delete this post ?', [
+            {
+                text: 'Cancel',
+                onPress: () => { },
+            },
+            {
+                text: 'OK',
+                onPress: () => {
+                    deletePost(idPost)(postsDispatch)(() => {
+                        onRefresh();
+                    });
+                    // console.log('LOGOUT SUCCESSFUL !');
+                },
+            },
+        ]);
     }
 
     return (
@@ -74,7 +96,7 @@ const HomePostsComponent = ({
                             <Message onClick={handOnClick} info message="Click to create new post !" />
                         </View>
                     }
-                    <OptionPost user={user} closeSheet={closeSheet} currentPost={currentPost} ref={sheetRef} />
+                    <OptionPost handleDelete={handleDelete} user={user} closeSheet={closeSheet} currentPost={currentPost} ref={sheetRef} />
                 </ScrollView>
             }
         </SafeAreaView>

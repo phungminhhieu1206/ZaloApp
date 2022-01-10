@@ -13,5 +13,10 @@ export default {
         data: {},
         error: null,
         loading: false,
+    },
+    deletePost: {
+        data: {},
+        error: null,
+        loading: false,
     }
 }

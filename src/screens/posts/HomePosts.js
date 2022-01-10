@@ -20,7 +20,7 @@ const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const HomePosts = () => {
-    const { navigate, setOptions } = useNavigation();
+    const { navigate, setOptions, goBack } = useNavigation();
     const [refreshList, setRefreshList] = useState(false);
     const [currentPost, setCurrentPost] = useState({});
     const [user, setUser] = useState({});
@@ -161,6 +161,7 @@ const HomePosts = () => {
             closeSheet={closeSheet}
             currentPost={currentPost}
             user={user}
+            postsDispatch={postsDispatch}
         />
     )
 }

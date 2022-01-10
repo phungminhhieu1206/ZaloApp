@@ -2,6 +2,9 @@ import {
     CREATE_NEW_POST_FAIL,
     CREATE_NEW_POST_LOADING,
     CREATE_NEW_POST_SUCCESS,
+    DELETE_POST_FAIL,
+    DELETE_POST_LOADING,
+    DELETE_POST_SUCCESS,
     GET_LIST_POSTS_FAIL,
     GET_LIST_POSTS_LOADING,
     GET_LIST_POSTS_SUCCESS,
@@ -122,6 +125,43 @@ const postsReducer = (state, { type, payload }) => {
                     error: payload,
                 },
             };
+
+        /**
+         * DELETE_POST
+         */
+        case DELETE_POST_LOADING: {
+            return {
+                ...state,
+                deletePost: {
+                    ...state.deletePost,
+                    loading: true,
+                    error: null,
+                },
+            };
+        }
+
+        case DELETE_POST_SUCCESS: {
+            return {
+                ...state,
+                deletePost: {
+                    ...state.deletePost,
+                    loading: false,
+                    error: null,
+                    data: payload
+                },
+            };
+        }
+
+        case DELETE_POST_FAIL: {
+            return {
+                ...state,
+                deletePost: {
+                    ...state.deletePost,
+                    loading: false,
+                    error: payload,
+                },
+            };
+        }
 
         default:
             return state;

@@ -13,12 +13,9 @@ const ChatDetail = () => {
     const route = useRoute();
 
     const {id, idFriend } = route.params;
-    // const idChat = route.params?.id;
 
-    // const idFriend = route.params?.idFriend;
-
-    console.log("id " + id);
-    console.log("id Friend   " + idFriend);
+    // console.log("id " + id);
+    // console.log("id Friend   " + idFriend);
     const [IdUser, setIdUser] = useState('');
 
     const {
@@ -37,7 +34,7 @@ const ChatDetail = () => {
     useEffect(() => {
         getContentMess(id)(ChatsDispatch);
         getId();
-    }, []);
+    }, [data]);
     // console.log("IdUser >>>>>>>>>>>>>" + (data));
     return (
         <View style={styles.page} >

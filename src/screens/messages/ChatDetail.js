@@ -29,8 +29,8 @@ const ChatDetail = () => {
     } = useContext(GlobalContext);
     const getId = async () => {
         let id = await AsyncStorage.getItem('user');
-        let test = {id}.id;
-        // console.log({test}.id);
+        let test = JSON.parse(id).id;
+        console.log("user >>>>>>>>>>>"+ test);
         setIdUser(test);
     };
 
@@ -41,7 +41,7 @@ const ChatDetail = () => {
     // console.log("IdUser >>>>>>>>>>>>>" + (data));
     return (
         <View style={styles.page} >
-            <Text>123</Text>
+            {/* <Text>123</Text> */}
 
             <FlatList
                 data={data}
@@ -49,6 +49,7 @@ const ChatDetail = () => {
                     ({ item }) => {
                       return (
                             <Message a={item} IdUser={IdUser} /> 
+                            
                       )
                   }
                 

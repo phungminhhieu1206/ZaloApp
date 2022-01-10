@@ -24,7 +24,7 @@ const getContentMess = (idChat) => (dispatch) => {
         // console.log( "Mess >>>>>>" + typeof(temp) );
         dispatch({
             type: GET_CONTENT_MESS_SUCCESS,
-            payload: temp 
+            payload: res.data.data 
         });
     }).catch((err) => {
         console.log('content messages error -->', err.response);

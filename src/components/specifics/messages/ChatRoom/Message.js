@@ -11,9 +11,10 @@ import { GlobalContext } from '../../../../context/Provider';
 
 export default function Message({ a, IdUser }) {
 
-    let myId = JSON.parse(IdUser).id;
+
     let idUser = a.user._id;
-    const isMe = myId === idUser;
+
+    const isMe = IdUser === idUser;
     console.log("ktraaaaaaa" + isMe);
   
     return (

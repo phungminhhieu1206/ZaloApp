@@ -167,7 +167,7 @@ const PostFooter = ({ post }) => {
                         fontSize: 18,
                         marginLeft: 8,
                         width: 60,
-                    }}>{post.likes}</Text>
+                    }}>{post.like.length}</Text>
                 <TouchableOpacity onPress={onPressComment}>
                     <Icon
                         type="MaterialCommunityIcons"

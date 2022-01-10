@@ -9,7 +9,7 @@ import {
     Image
 } from 'react-native'
 import colors from '../../assets/themes/colors';
-import { url_Images } from "@env";
+import { url_images } from "../../constants/general";
 
 const ListImages = ({
     data,
@@ -38,7 +38,8 @@ const ListImages = ({
                                 key={index}
                                 resizeMode='contain'
                                 style={styleSize}
-                                source={{ uri: `${url_Images}/${image}` }}
+                                // source={{ uri: `${url_images}/${image}` }}
+                                source={{uri: image}}
                             />
                         ))
                     }

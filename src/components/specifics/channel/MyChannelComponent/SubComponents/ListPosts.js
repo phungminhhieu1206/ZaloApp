@@ -4,7 +4,6 @@ import PostItem from './PostItem'
 const ListPosts = ({
     data,
     widthScreen,
-    openSheet
 }) => {
 
     return (
@@ -12,7 +11,6 @@ const ListPosts = ({
             <PostItem
                 widthScreen={widthScreen}
                 post={post} key={index}
-                openSheet={() => openSheet(post)}
             />
         ))
     )

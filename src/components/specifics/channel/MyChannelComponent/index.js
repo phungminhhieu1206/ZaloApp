@@ -6,19 +6,18 @@ import {
     View,
     Text,
     ActivityIndicator,
-    RefreshControl
+    RefreshControl,
+    Image
 } from 'react-native'
 import colors from '../../../../assets/themes/colors'
-import { POSTS } from '../../../../assets/sample_data/Posts'
 import Stories from './SubComponents/Stories'
 import FormCrePost from './SubComponents/FormCrePost'
-import PostItem from './SubComponents/PostItem'
 import ListPosts from './SubComponents/ListPosts'
 import Message from '../../../common/Message'
-import { CREATE_POST } from '../../../../constants/routeNames'
-import OptionPost from '../../../common/OptionPost'
 
-const HomePostsComponent = ({
+import { BACKGROUND_IMAGE_URI, DEFAULT_IMAGE_URI } from '../../../../constants/general'
+
+const MyChannelComponent = ({
     friends,
     data,
     loading,
@@ -26,13 +25,8 @@ const HomePostsComponent = ({
     refreshList,
     onRefresh,
     navigate,
-    sheetRef,
-    openSheet,
-    closeSheet,
-    currentPost,
     user
 }) => {
-    // console.log('data ---------', data[0].images);
 
     const handOnClick = () => {
         navigate(CREATE_POST);
@@ -57,13 +51,35 @@ const HomePostsComponent = ({
                         />
                     }
                 >
-                    <Stories friends={friends} />
+                    <View>
+                        <View style={{
+                            minHeight: 250,
+                            borderBottomColor: colors.background,
+                            borderBottomWidth: 1
+                        }}>
+                            <Image
+                                resizeMode='stretch'
+                                style={{
+                                    width: widthScreen,
+                                    height: widthScreen * 3 / 7
+                                }}
+                                source={{ uri: BACKGROUND_IMAGE_URI }}
+                            />
+                        </View>
+
+                        <View style={styles.wrapperInfo}>
+                            <Image
+                                style={styles.imageAvt}
+                                source={{ uri: DEFAULT_IMAGE_URI }}
+                            />
+                            <Text style={styles.name}>{user.username}</Text>
+                        </View>
+                    </View>
                     <FormCrePost />
                     {data.length !== 0 ?
                         <ListPosts
                             data={data}
                             widthScreen={widthScreen}
-                            openSheet={openSheet}
                         />
                         :
                         <View style={{
@@ -74,9 +90,10 @@ const HomePostsComponent = ({
                             <Message onClick={handOnClick} info message="Click to create new post !" />
                         </View>
                     }
-                    <OptionPost user={user} closeSheet={closeSheet} currentPost={currentPost} ref={sheetRef} />
                 </ScrollView>
             }
+
+
         </SafeAreaView>
     )
 }
@@ -85,7 +102,24 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
         flex: 1,
+    },
+    wrapperInfo: {
+        position: 'absolute',
+        marginTop: 90,
+        alignSelf: 'center',
+        alignItems: 'center'
+    },
+    imageAvt: {
+        width: 120,
+        height: 120,
+        borderRadius: 100,
+        borderColor: colors.white,
+        borderWidth: 3
+    },
+    name: {
+        fontSize: 20,
+        color: colors.text
     }
 })
 
-export default HomePostsComponent
+export default MyChannelComponent

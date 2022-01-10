@@ -49,7 +49,7 @@ const ImagePicker = React.forwardRef(({ onFileSelected }, ref) => {
                     includeBase64: true
                 })
                     .then((images) => { // image được chọn trong library
-                        console.log('image by choose image: >>>', images);
+                        // console.log('image by choose image: >>>', images);
                         onFileSelected(images);
                     })
                     .catch((error) => {

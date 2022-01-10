@@ -22,6 +22,7 @@ const Message = ({
     danger,
     info,
     success,
+    onClick
 }) => {
     const [userDismissed, setDismissed] = React.useState(false);
 
@@ -43,7 +44,9 @@ const Message = ({
         <>
             {userDismissed ? null : (
                 <TouchableOpacity
-                    style={[styles.wrapper, { backgroundColor: getBgColor() }]}>
+                    onPress={onClick}
+                    style={[styles.wrapper, { backgroundColor: getBgColor() }]}
+                >
                     <View
                         style={{
                             flexDirection: 'row',

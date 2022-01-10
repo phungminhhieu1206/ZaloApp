@@ -164,7 +164,7 @@ const ContactsComponent = ({
                                     onRefresh={onRefresh}
                                     colors={['red']}
                                 />
-                             }
+                            }
                         />
                     </View>
                 }

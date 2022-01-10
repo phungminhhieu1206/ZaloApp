@@ -113,7 +113,7 @@ const SearchFriend = () => {
                     clearGetContactByPhoneState()(contactDispatch);
                 }
             }
-        }, [data, error]),
+        }, [error]),
     );
 
     // useFocusEffect(

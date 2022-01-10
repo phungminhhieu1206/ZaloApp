@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, {useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import {
     View,
     Text,
@@ -14,23 +14,65 @@ import { GlobalContext } from '../../context/Provider';
 import { CREATE_POST, SEARCH_FRIEND } from '../../constants/routeNames';
 import { USERS } from "../../assets/sample_data/Users";
 import getListPosts from '../../context/actions/posts/getListPosts';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const HomePosts = () => {
     const { navigate, setOptions } = useNavigation();
+    const [refreshList, setRefreshList] = useState(false);
+    const [currentPost, setCurrentPost] = useState({});
+    const [user, setUser] = useState({});
 
     const {
-        PostsDispatch,
-        PostsState: {
+        postsDispatch,
+        postsState: {
             getListPosts: { data, loading }
         }
     } = useContext(GlobalContext);
 
+    const sheetRef = useRef(null);
+
+    const getUser = async () => {
+        try {
+            const author = await AsyncStorage.getItem('user');
+            // console.log('IDDDDDDDDDDDDDDDDDDDD ----> ', JSON.parse(author).id);
+            setUser(JSON.parse(author));
+        } catch (error) { }
+    };
+
+    const closeSheet = () => {
+        if (sheetRef.current) {
+            sheetRef.current.close();
+        }
+    };
+
+    const openSheet = (currentPost) => {
+        console.log('postID when open sheet :>>>', currentPost);
+        setCurrentPost(currentPost);
+        if (sheetRef.current) {
+            sheetRef.current.open();
+        }
+    };
+
+    // const onFileSelected = () => {
+    //     closeSheet();
+    //     setLocalFiles(images);
+    //     console.log('postID when click edit :>>>', currentPost);
+    // };
+
     useEffect(() => {
-        getListPosts()(PostsDispatch);
+        getUser();
+        getListPosts()(postsDispatch);
     }, []);
+
+    const onRefresh = () => {
+        setRefreshList(true);
+        getUser();
+        getListPosts()(postsDispatch);
+        setRefreshList(false)
+    }
 
     useEffect(() => {
         setOptions({
@@ -104,19 +146,21 @@ const HomePosts = () => {
             }
         });
     }, []);
-    console.log('aaaaaaaaaaaaaaa ---> ', data);
+
     return (
-        
-        // data.map((post, index) => (
-        //     <Text key={index}>{post.described}</Text>
-        // ))
-           
-            
         <HomePostsComponent
             widthScreen={WIDTH}
             friends={USERS}
             data={data}
             loading={loading}
+            refreshList={refreshList}
+            onRefresh={onRefresh}
+            navigate={navigate}
+            sheetRef={sheetRef}
+            openSheet={openSheet}
+            closeSheet={closeSheet}
+            currentPost={currentPost}
+            user={user}
         />
     )
 }

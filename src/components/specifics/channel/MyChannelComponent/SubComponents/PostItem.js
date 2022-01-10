@@ -14,16 +14,12 @@ import ListImages from '../../../../common/ListImages';
 import { url_images } from "../../../../../constants/general";
 import { DEFAULT_IMAGE_URI } from '../../../../../constants/general'
 
-const PostItem = ({
-    post,
-    widthScreen,
-    openSheet
-}) => {
+const PostItem = ({ post, widthScreen }) => {
     // console.log('data ---------', post.images);
 
     return (
         <View style={styles.container}>
-            <PostHeader openSheet={openSheet} post={post} />
+            <PostHeader post={post} />
             {post.described ? <Caption post={post} /> : null}
             {post.images.length !== 0 ? <PostImage post={post.images} width={widthScreen} /> : null}
             <PostFooter post={post} />
@@ -31,7 +27,7 @@ const PostItem = ({
     )
 }
 
-const PostHeader = ({ post, openSheet }) => (
+const PostHeader = ({ post }) => (
     <View
         style={{
             flexDirection: 'row',
@@ -72,9 +68,7 @@ const PostHeader = ({ post, openSheet }) => (
 
         </View>
 
-        <TouchableOpacity
-        onPress={openSheet}
-        >
+        <TouchableOpacity>
             <Icon
                 type="Feather"
                 name="more-horizontal"

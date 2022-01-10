@@ -16,6 +16,7 @@ import PostItem from './SubComponents/PostItem'
 import ListPosts from './SubComponents/ListPosts'
 import Message from '../../../common/Message'
 import { CREATE_POST } from '../../../../constants/routeNames'
+import OptionPost from '../../../common/OptionPost'
 
 const HomePostsComponent = ({
     friends,
@@ -24,7 +25,12 @@ const HomePostsComponent = ({
     widthScreen,
     refreshList,
     onRefresh,
-    navigate
+    navigate,
+    sheetRef,
+    openSheet,
+    closeSheet,
+    currentPost,
+    user
 }) => {
     // console.log('data ---------', data[0].images);
 
@@ -57,6 +63,7 @@ const HomePostsComponent = ({
                         <ListPosts
                             data={data}
                             widthScreen={widthScreen}
+                            openSheet={openSheet}
                         />
                         :
                         <View style={{
@@ -67,10 +74,9 @@ const HomePostsComponent = ({
                             <Message onClick={handOnClick} info message="Click to create new post !" />
                         </View>
                     }
+                    <OptionPost user={user} closeSheet={closeSheet} currentPost={currentPost} ref={sheetRef} />
                 </ScrollView>
             }
-
-
         </SafeAreaView>
     )
 }

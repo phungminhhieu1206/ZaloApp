@@ -37,7 +37,7 @@ const MyChannel = () => {
 
 
 
-    const onRefresh = async () => {
+    const onRefresh = () => {
         setRefreshList(true);
         getUser();
         getMyPosts(user.id)(postsDispatch);

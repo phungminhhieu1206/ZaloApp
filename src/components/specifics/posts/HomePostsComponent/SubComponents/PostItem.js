@@ -19,7 +19,7 @@ const PostItem = ({
     widthScreen,
     openSheet,
 }) => {
-    // console.log('data ---------', post.images);
+    console.log('data ---------', post);
 
     return (
         <View style={styles.container}>
@@ -173,7 +173,7 @@ const PostFooter = ({ post }) => {
                         fontSize: 18,
                         marginLeft: 8,
                         width: 60,
-                    }}>{post.likes}</Text>
+                    }}>{post.like.length}</Text>
                 <TouchableOpacity onPress={onPressComment}>
                     <Icon
                         type="MaterialCommunityIcons"

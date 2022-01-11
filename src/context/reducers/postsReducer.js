@@ -1,4 +1,8 @@
 import {
+    CLEAR_LIST_COMMENTS_STATE,
+    CREATE_COMMENT_FAIL,
+    CREATE_COMMENT_LOADING,
+    CREATE_COMMENT_SUCCESS,
     CREATE_NEW_POST_FAIL,
     CREATE_NEW_POST_LOADING,
     CREATE_NEW_POST_SUCCESS,
@@ -199,6 +203,54 @@ const postsReducer = (state, { type, payload }) => {
                 },
             };
         }
+
+        /**
+         * CREATE_COMMENT
+         */
+        case CREATE_COMMENT_LOADING: {
+            return {
+                ...state,
+                createComment: {
+                    ...state.createComment,
+                    loading: true,
+                    error: null,
+                },
+            };
+        }
+
+        case CREATE_COMMENT_SUCCESS: {
+            return {
+                ...state,
+                createComment: {
+                    ...state.createComment,
+                    loading: false,
+                    error: null,
+                    dataCreate: payload
+                },
+            };
+        }
+
+        case CREATE_COMMENT_FAIL: {
+            return {
+                ...state,
+                createComment: {
+                    ...state.createComment,
+                    loading: false,
+                    error: payload,
+                },
+            };
+        }
+
+        case CLEAR_LIST_COMMENTS_STATE:
+            return {
+                ...state,
+                getListComments: {
+                    ...state.getListComments,
+                    loading: false,
+                    error: null,
+                    data: []
+                },
+            };
 
         default:
             return state;

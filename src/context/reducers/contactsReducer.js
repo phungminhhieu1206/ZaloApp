@@ -204,6 +204,9 @@ const contactsReducer = (state, { type, payload }) => {
                 },
             };
 
+            /**
+             * CLEAR_GET_CONTACT_BY_PHONE_STATE
+             */
         case CLEAR_GET_CONTACT_BY_PHONE_STATE:
             return {
                 ...state,

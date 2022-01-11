@@ -1,10 +1,10 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useContext, useEffect, useState } from 'react'
+import { useFocusEffect, useNavigation, useRoute } from '@react-navigation/native';
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
 import CommentComponent from '../../components/specifics/posts/CommentComponent';
-import getListComments from '../../context/actions/posts/getListComments';
+import getListComments, { clearListCommentsState } from '../../context/actions/posts/getListComments';
 import { GlobalContext } from '../../context/Provider';
 
 const Comment = () => {
@@ -14,7 +14,7 @@ const Comment = () => {
     const [refreshList, setRefreshList] = useState(false);
 
     // console.log('post in comment screen :>>>', post._id);
-    
+
 
     const {
         postsDispatch,
@@ -30,11 +30,12 @@ const Comment = () => {
         getListComments(post._id)(postsDispatch);
         setRefreshList(false)
     }
-    
+
+
     useEffect(() => {
         getListComments(post._id)(postsDispatch);
     }, []);
-    
+
 
     useEffect(() => {
         setOptions({
@@ -76,8 +77,18 @@ const Comment = () => {
         });
     }, []);
 
+    // useFocusEffect(
+    //     useCallback(() => {
+    //         return () => {
+    //             if (data) {
+    //                 clearListCommentsState()(postsDispatch);
+    //             }
+    //         }
+    //     }, []),
+    // );
+
     return (
-        <CommentComponent 
+        <CommentComponent
             data={data}
             refreshList={refreshList}
             onRefresh={onRefresh}

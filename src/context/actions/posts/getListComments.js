@@ -1,9 +1,16 @@
 import {
+    CLEAR_LIST_COMMENTS_STATE,
     GET_LIST_COMMENTS_FAIL,
     GET_LIST_COMMENTS_LOADING,
     GET_LIST_COMMENTS_SUCCESS,
 } from "../../../constants/actionTypes"
 import axiosInstance from "../../../helpers/axiosInstance";
+
+export const clearListCommentsState = () => (dispatch) => {
+    dispatch({
+        type: CLEAR_LIST_COMMENTS_STATE,
+    });
+};
 
 const getListComments = (postId) => (dispatch) => {
     console.log('postIdddddddddddddddd of action:>>>', postId);

@@ -23,5 +23,10 @@ export default {
         data: {},
         error: null,
         loading: false,
+    },
+    createComment: {
+        dataCreate: {},
+        error: null,
+        loading: false,
     }
 }

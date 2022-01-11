@@ -5,17 +5,13 @@ import {
 
 import axiosInstance from "../../../helpers/axiosInstance";
 
-const sendMessageAPI = (data) => (dispatch) => {
+const sendMessNew = (data) => (dispatch) => {
 
-    let requestPayload;
-    if(data.chatId){
-        requestPayload = {
-            receivedId: data.receivedId,
-            content: data.content,
-            chatId: data.chatId,
-            type: 'PRIVATE_CHAT'
-        };
-    }
+    const requestPayload = {
+        receivedId: data.receivedId,
+        content: data.content,
+        type: 'PRIVATE_CHAT'
+    };
     // console.log("data send" + JSON.stringify(data));
     // console.log("data send 1" + JSON.stringify(requestPayload));
     axiosInstance.post('/chats/send',requestPayload ).then((res) => {
@@ -40,4 +36,4 @@ const sendMessageAPI = (data) => (dispatch) => {
     })
 }
 
-export default sendMessageAPI;
+export default sendMessNew;

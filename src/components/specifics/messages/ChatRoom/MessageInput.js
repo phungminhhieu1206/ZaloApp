@@ -15,7 +15,8 @@ import sendMessageAPI from '../../../../context/actions/messages/sendMessageAPI'
 
 const MessageInput = ({
     idChat,
-    idFriend
+    idFriend,
+    setIdChat
 }) => {
 
     const [message, setMessage] = useState('');

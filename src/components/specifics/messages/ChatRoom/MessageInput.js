@@ -29,8 +29,10 @@ const MessageInput = ({
     const sendMessage = () => {
 
         console.warn("sending: ");
-        sendMessageAPI({receivedId: idFriend, content: message, chatId: idChat })(ChatsDispatch);
-
+        const result = sendMessageAPI({receivedId: idFriend, content: message, chatId: idChat })(ChatsDispatch);
+        if(idChat == null) {
+            setIdChat(result);
+        }
         setMessage('');
     }
 

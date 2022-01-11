@@ -5,7 +5,8 @@ import {
     GET_CONTENT_MESS_LOADING,
     GET_CONTENT_MESS_SUCCESS,
     GET_CONTENT_MESS_FAIL,
-    SEND_MESS_SUCCESS
+    SEND_MESS_SUCCESS,
+    DELETE_CACHE_MESS
 } from '../../constants/actionTypes';
 
 const messagesReducer = (state, { type, payload }) => {

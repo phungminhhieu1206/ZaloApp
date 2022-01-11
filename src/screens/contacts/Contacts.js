@@ -7,11 +7,14 @@ import ContactsComponent from "../../components/specifics/contacts/ContactsCompo
 import { GlobalContext } from '../../context/Provider';
 import getListContacts from "../../context/actions/contacts/getListContacts"
 import { SEARCH_FRIEND } from '../../constants/routeNames';
+import { getCallingCode } from 'react-native-country-picker-modal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Contacts = () => {
 
     const { navigate, setOptions } = useNavigation();
     const [refreshList, setRefreshList] = useState(false);
+   
 
     const {
         contactDispatch,
@@ -26,8 +29,10 @@ const Contacts = () => {
         setRefreshList(false)
     }
 
+
     useEffect(() => {
         getListContacts()(contactDispatch);
+       
     }, []);
 
     useEffect(() => {
@@ -96,6 +101,7 @@ const Contacts = () => {
             loading={loading}
             refreshList={refreshList}
             onRefresh={onRefresh}
+            
         />
     )
 }

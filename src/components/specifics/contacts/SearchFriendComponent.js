@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
     View,
     Text,
@@ -14,6 +14,9 @@ import { USERS } from '../../../assets/sample_data/Users'
 import { useNavigation } from '@react-navigation/native'
 import { CHAT_DETAIL } from '../../../constants/routeNames'
 import Icon from '../../common/Icon'
+import { GlobalContext } from '../../../context/Provider'
+import getListUserChats from '../../../context/actions/messages/getListUserChats'
+
 
 const SearchFriendComponent = ({
     searchRecent,
@@ -29,13 +32,35 @@ const SearchFriendComponent = ({
     console.log("data: ", data, " - loading: ", loading);
     // console.log("dataAdd :>>>", dataAdd);
 
+    const [idChat, setIdChat] = useState();
+
+    const {
+        ChatsDispatch
+    } = useContext(GlobalContext);
+    const [userList, setUserList] = useState();
+
+    useEffect(() => {
+        const res = getListUserChats()(ChatsDispatch);
+        // console.log("Kq>..............." + res);
+        setUserList(res);
+    }, []);
+
     const onPressHandle = (index) => {
         // console.warn('pressed on: ', index);
 
         // navigate(CHAT_DETAIL, { id: '2' });
         // console.warn(chatRoom.id);
     }
-
+    const handleChat = () => {
+        // let idChat = null;
+        // userList?.map((item) => {
+        //     if(item.userId == data._id){
+        //         setIdChat(item.id);
+        //     }
+        // })
+        navigate(CHAT_DETAIL, { id: idChat, idFriend: data._id, username: data.username,});
+    }
+console.log("Lissssss" + userList);
     return (
         <ScrollView style={styles.container}>
             <View style={styles.slideWrapper}>
@@ -100,15 +125,17 @@ const SearchFriendComponent = ({
                                     <Text numberOfLines={1} style={[styles.nameImage, { color: colors.white }]}>{data.username}</Text>
                                 </View>
                             }
-
-                            <View style={{ paddingLeft: 20 }}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <Text style={[styles.name, { color: colors.text }]}>{data.username}</Text>
+                            <TouchableOpacity onPress={handleChat} >
+                                <View style={{ paddingLeft: 20 }}>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <Text style={[styles.name, { color: colors.text }]}>{data.username}</Text>
+                                    </View>
+                                    <Text
+                                        style={styles.phoneNumber}
+                                    >{"Phone number: " + data.phonenumber}</Text>
                                 </View>
-                                <Text
-                                    style={styles.phoneNumber}
-                                >{"Phone number: " + data.phonenumber}</Text>
-                            </View>
+                            </TouchableOpacity>
+
                         </View>
                     </TouchableOpacity>
                     <View style={{

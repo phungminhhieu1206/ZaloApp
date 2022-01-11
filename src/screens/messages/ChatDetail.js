@@ -31,7 +31,7 @@ const ChatDetail = () => {
     const getId = async () => {
         let id = await AsyncStorage.getItem('user');
         let test = JSON.parse(id).id;
-        console.log("user >>>>>>>>>>>"+ test);
+       
         setIdUser(test);
     };
 
@@ -88,8 +88,19 @@ const ChatDetail = () => {
                     <View style={styles.headerRight}>
                         <TouchableOpacity onPress={() => console.warn('clicked qrcode of chat room')}>
                             <Icon
-                                type="MaterialCommunityIcons"
-                                name="qrcode-scan"
+                                type="SimpleLineIcon"
+                                name="phone"
+                                size={22}
+                                color={colors.white}
+                                style={{
+                                    marginRight: 20
+                                }}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => console.warn('clicked qrcode of chat room')}>
+                            <Icon
+                                type="Feather"
+                                name="video"
                                 size={22}
                                 color={colors.white}
                                 style={{
@@ -102,7 +113,7 @@ const ChatDetail = () => {
             }
         });
     }, []);
-    // console.log("IdUser >>>>>>>>>>>>>" + (data));
+    console.log("IDchat >>>>>>>>>>>"+ idChat);
     return (
         <View style={styles.page} >
             {/* <Text>123</Text> */}

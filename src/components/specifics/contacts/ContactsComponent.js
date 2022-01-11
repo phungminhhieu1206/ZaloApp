@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     View,
     Text,
@@ -11,18 +11,22 @@ import {
     RefreshControl
 } from 'react-native'
 import colors from '../../../assets/themes/colors'
-import { FRIEND_REQUESTS } from '../../../constants/routeNames'
+import { FRIEND_REQUESTS, CHAT_DETAIL } from '../../../constants/routeNames'
+import { GlobalContext } from '../../../context/Provider'
 import Icon from '../../common/Icon'
 import Message from "../../common/Message"
+
 
 const ContactsComponent = ({
     data,
     loading,
     refreshList,
     onRefresh
+   
 }) => {
 
     const { navigate } = useNavigation();
+
 
     const ListEmptyComponent = () => {
         return (
@@ -49,9 +53,10 @@ const ContactsComponent = ({
         } = item;
 
 
-
         return (
-            <TouchableOpacity style={styles.itemContainer}>
+            <TouchableOpacity style={styles.itemContainer}
+            
+             >
                 <View style={styles.item}>
                     {avatar ?
                         <Image

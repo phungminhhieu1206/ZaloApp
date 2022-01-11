@@ -7,15 +7,17 @@ import {
 import axiosInstance from "../../../helpers/axiosInstance";
 
 const getListUserChats = () => (dispatch) => {
+
+    let kq = [];
     dispatch({
         type: GET_CHAT_LIST_LOADING,
     });
-    axiosInstance.get('/chats/listUser').then((res) => {
+    let test = axiosInstance.get('/chats/listUser').then((res) => {
         let temp = JSON.parse(res.request._response).userIdList
         // let resData = res.json();
         // let data = resData.data;
         console.log( "list >>>>>>" + temp);
-        
+        kq = temp;
         dispatch({
             type: GET_CHAT_LIST_SUCCESS,
             payload: temp 
@@ -23,6 +25,7 @@ const getListUserChats = () => (dispatch) => {
              * Để ý dữ liệu payload ở đây truyền vào reducer phải giống với định dạng của data initialState
              */
         });
+        return temp;
     }).catch((err) => {
         console.log('list chats error -->', err.response);
         dispatch({
@@ -32,6 +35,7 @@ const getListUserChats = () => (dispatch) => {
                 : { error: 'No Internet, try again !' },
         });
     })
+    return test;
 }
 
 export default getListUserChats;

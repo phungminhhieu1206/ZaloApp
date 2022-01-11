@@ -22,7 +22,7 @@ const ChatRooms = () => {
     useEffect(() => {
         const result = getListUserChats()(ChatsDispatch);
         console.log("Tessssssss" + result);
-    }, []);
+    }, [data]);
 
     useEffect(() => {
         setOptions({

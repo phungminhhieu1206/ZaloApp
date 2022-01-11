@@ -42,7 +42,7 @@ const ChatDetail = () => {
         }
         
         getId();
-    }, []);
+    }, [data]);
     useEffect(() => {
         setOptions({
             // title: item.first_name + ' ' + item.last_name,

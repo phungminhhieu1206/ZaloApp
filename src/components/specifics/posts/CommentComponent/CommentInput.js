@@ -10,29 +10,11 @@ import {
 } from 'react-native'
 import Icon from '../../../common/Icon';
 
-const CommentInput = () => {
-
-    const [message, setMessage] = useState('');
-
-    const sendMessage = () => {
-        console.warn("sending: ", message);
-
-        setMessage('');
-    }
-
-    const onPlusClicked = () => {
-        console.warn("on plus clicked");
-
-    }
-
-    const onPressHandle = () => {
-        if (message) {
-            sendMessage();
-        } else {
-            onPlusClicked();
-        }
-
-    }
+const CommentInput = ({
+    onChangeText,
+    content,
+    onCreateComment
+}) => {
 
     return (
         <KeyboardAvoidingView
@@ -52,10 +34,10 @@ const CommentInput = () => {
                 <TextInput
                     placeholder="Write a comment"
                     placeholderTextColor="lightgrey"
-                    value={message}
-                    onChangeText={(newMessage) => setMessage(newMessage)}
+                    value={content}
                     style={styles.inputBox}
                     autoFocus={true}
+                    onChangeText={(value) => onChangeText(value)}
                 />
                 <TouchableOpacity>
                     <Icon
@@ -66,8 +48,8 @@ const CommentInput = () => {
                     />
                 </TouchableOpacity>
             </View>
-            <Pressable onPress={onPressHandle} style={styles.buttonContainer}>
-                {message ?
+            <Pressable onPress={onCreateComment} style={styles.buttonContainer}>
+                {content ?
                     <Icon
                         type="Ionicons"
                         name="send"

@@ -7,32 +7,39 @@ import CommentItem from './CommentItem'
 const CommentComponent = ({
     data,
     refreshList,
-    onRefresh
+    onRefresh,
+    content,
+    onChangeText,
+    onCreateComment
 }) => {
-    console.log('data: :>>>', data);
+    // console.log('data: :>>>', data);
 
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView
-            refreshControl={
-                <RefreshControl
-                    refreshing={refreshList}
-                    onRefresh={onRefresh}
-                    colors={['red']}
-                />
-            } 
-            style={styles.scroll}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshList}
+                        onRefresh={onRefresh}
+                        colors={['red']}
+                    />
+                }
+                style={styles.scroll}
             >
                 {data.map((item, index) => (
-                    <CommentItem 
-                    key={index} 
-                    user={item.user.username} 
-                    comment={item.content} 
-                    createDate={item.createdAt} 
+                    <CommentItem
+                        key={index}
+                        user={item.user.username}
+                        comment={item.content}
+                        createDate={item.createdAt}
                     />
                 ))}
             </ScrollView>
-            <CommentInput />
+            <CommentInput
+                onCreateComment={onCreateComment}
+                content={content}
+                onChangeText={onChangeText}
+            />
         </SafeAreaView>
     )
 }

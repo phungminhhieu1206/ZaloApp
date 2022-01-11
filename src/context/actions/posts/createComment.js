@@ -5,7 +5,7 @@ import {
 } from "../../../constants/actionTypes"
 import axiosInstance from "../../../helpers/axiosInstance";
 
-const createComment = ({ postId: postId, content: content }) => (dispatch) => {
+const createComment = ({ postId: postId, contentComment: content }) => (dispatch) => (onSuccess) => {
     console.log('postIdddddddddddddddd of action:>>>', postId);
 
     const requestPayload = {
@@ -23,6 +23,8 @@ const createComment = ({ postId: postId, content: content }) => (dispatch) => {
         //     type: CREATE_COMMENT_SUCCESS,
         //     payload: res.data.data
         // });
+
+        onSuccess();
     }).catch((err) => {
         console.log('create comments error -->', err.response);
         // dispatch({

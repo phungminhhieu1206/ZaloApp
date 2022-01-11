@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useContext, useEffect, useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, FlatList, TouchableOpacity, RefreshControl } from 'react-native'
 import getContentMess from '../../context/actions/messages/getContentMess';
 import { GlobalContext } from '../../context/Provider';
 import MessageInput from '../../components/specifics/messages/ChatRoom/MessageInput';
@@ -8,14 +8,15 @@ import Message from '../../components/specifics/messages/ChatRoom/Message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
-import {GET_CONTENT_MESS_SUCCESS} from '../../constants/actionTypes';
+import { GET_CONTENT_MESS_SUCCESS } from '../../constants/actionTypes';
 
 const ChatDetail = () => {
 
     const { navigate, setOptions, goBack } = useNavigation();
     const route = useRoute();
+    const [refreshList, setRefreshList] = useState(false);
 
-    const {id, idFriend, username } = route.params;
+    const { id, idFriend, username } = route.params;
 
     // console.log("id " + id);
     // console.log("id Friend   " + idFriend);
@@ -28,21 +29,32 @@ const ChatDetail = () => {
             getContentMess: { data, loading }
         }
     } = useContext(GlobalContext);
+
     const getId = async () => {
         let id = await AsyncStorage.getItem('user');
         let test = JSON.parse(id).id;
-       
+
         setIdUser(test);
     };
 
-    useEffect(() => {
-        //check user có nằm trong list cuộc thoại ko, có thì get dữ liệu, ko thì gán bằng null
-        if(idChat){
+    const onRefresh = () => {
+        setRefreshList(true);
+        if (idChat) {
             getContentMess(id)(ChatsDispatch);
         }
-        
+        getId();
+        setRefreshList(false)
+    }
+
+    useEffect(() => {
+        //check user có nằm trong list cuộc thoại ko, có thì get dữ liệu, ko thì gán bằng null
+        if (idChat) {
+            getContentMess(id)(ChatsDispatch);
+        }
+
         getId();
     }, [data]);
+
     useEffect(() => {
         setOptions({
             // title: item.first_name + ' ' + item.last_name,
@@ -58,7 +70,7 @@ const ChatDetail = () => {
                                 ChatsDispatch({
                                     type: GET_CONTENT_MESS_SUCCESS,
                                     payload: []
-                                }); 
+                                });
                             }}
                         >
                             <Icon
@@ -113,22 +125,30 @@ const ChatDetail = () => {
             }
         });
     }, []);
-    console.log("IDchat >>>>>>>>>>>"+ idChat);
+
+    // console.log("IDchat >>>>>>>>>>>" + idChat);
+
     return (
         <View style={styles.page} >
             {/* <Text>123</Text> */}
 
             <FlatList
                 data={data}
-                renderItem= {
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshList}
+                        onRefresh={onRefresh}
+                        colors={['red']}
+                    />
+                }
+                renderItem={
                     ({ item }) => {
-                      return (
-                            <Message a={item} IdUser={IdUser} /> 
-                            
-                      )
-                  }
-                
-                //  <Text style={styles.item}>{item.content}</Text>
+                        return (
+                            <Message a={item} IdUser={IdUser} />
+                        )
+                    }
+
+                    //  <Text style={styles.item}>{item.content}</Text>
                 }
             />
 

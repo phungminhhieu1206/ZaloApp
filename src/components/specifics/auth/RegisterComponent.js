@@ -53,26 +53,26 @@ const RegisterComponent = ({
                         />
                     )}
                     <CustomInput
-                        icon={
-                            <CountryPicker
-                                withFilter
-                                withFlag
-                                countryCode={form.countryCode || undefined}
-                                withCountryNameButton={false}
-                                withCallingCode
-                                withCallingCodeButton
-                                withEmoji
-                                onSelect={(value) => {
-                                    const phoneCode = value.callingCode[0];
-                                    const cCode = value.cca2;
-                                    setForm({
-                                        ...form,
-                                        'phoneCode': phoneCode,
-                                        'countryCode': cCode
-                                    })
-                                }}
-                            />
-                        }
+                        // icon={
+                        //     <CountryPicker
+                        //         withFilter
+                        //         withFlag
+                        //         countryCode={form.countryCode || undefined}
+                        //         withCountryNameButton={false}
+                        //         withCallingCode
+                        //         withCallingCodeButton
+                        //         withEmoji
+                        //         onSelect={(value) => {
+                        //             const phoneCode = value.callingCode[0];
+                        //             const cCode = value.cca2;
+                        //             setForm({
+                        //                 ...form,
+                        //                 'phoneCode': phoneCode,
+                        //                 'countryCode': cCode
+                        //             })
+                        //         }}
+                        //     />
+                        // }
                         iconPosition="left"
                         style={{ paddingLeft: 10 }}
                         label="Phone Number"
@@ -85,9 +85,9 @@ const RegisterComponent = ({
                     />
 
                     <CustomInput
-                        label="Username"
+                        label="Full Name"
                         iconPosition="right"
-                        placeholder="Enter Username"
+                        placeholder="Enter Your Name"
                         error={errors.userName}
                         onChangeText={(value) => {
                             onChange({ name: 'userName', value });

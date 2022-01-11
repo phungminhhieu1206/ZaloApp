@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core'
 import moment from 'moment';
-import {CHAT_DETAIL} from '../../../../constants/routeNames';
+import colors from '../../../../assets/themes/colors';
+import { CHAT_DETAIL } from '../../../../constants/routeNames';
 
 export default function ChatRoomItem({ chatRoom }) {
 
@@ -20,8 +21,8 @@ export default function ChatRoomItem({ chatRoom }) {
 
     const onPressHandle = () => {
         // console.warn('pressed on: ', user.name);
-        
-        navigation.navigate(CHAT_DETAIL, { id: chatRoom.id, idFriend: chatRoom.userId, });
+
+        navigation.navigate(CHAT_DETAIL, { id: chatRoom.id, idFriend: chatRoom.userId, username: chatRoom.username, });
         // console.warn(chatRoom.id);
     }
 
@@ -30,10 +31,15 @@ export default function ChatRoomItem({ chatRoom }) {
     return (
         <Pressable onPress={onPressHandle} style={styles.container}>
             <View style={styles.avatar}>
-                <Image
+                <View
+                    style={styles.imageNotAvt}
+                >
+                    <Text numberOfLines={1} style={[styles.nameImage, { color: colors.white }]}>{chatRoom.username}</Text>
+                </View>
+                {/* <Image
                     source={{ uri: avata }}
                     style={styles.image}
-                />
+                /> */}
                 {/* {chatRoom.newMessages ? <View style={styles.badgeContainer}>
                     <Text style={styles.badgeText}>{chatRoom.newMessages}</Text>
                 </View> : null} */}
@@ -61,6 +67,16 @@ const styles = StyleSheet.create({
         width: 60,
         height: 60,
         borderRadius: 30,
+        marginRight: 10
+    },
+    imageNotAvt: {
+        width: 50,
+        height: 50,
+        backgroundColor: colors.grey,
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'row',
         marginRight: 10
     },
     rightContainer: {

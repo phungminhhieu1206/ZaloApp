@@ -8,19 +8,17 @@ import Message from '../../components/specifics/messages/ChatRoom/Message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import colors from '../../assets/themes/colors';
 import Icon from '../../components/common/Icon';
-import {GET_CONTENT_MESS_SUCCESS} from '../../constants/actionTypes';
 
 const ChatDetail = () => {
 
     const { navigate, setOptions, goBack } = useNavigation();
     const route = useRoute();
 
-    const {id, idFriend, username } = route.params;
+    const { id, idFriend, username } = route.params;
 
     // console.log("id " + id);
     // console.log("id Friend   " + idFriend);
     const [IdUser, setIdUser] = useState('');
-    const [idChat, setIdChat] = useState(id);
 
     const {
         ChatsDispatch,
@@ -28,21 +26,20 @@ const ChatDetail = () => {
             getContentMess: { data, loading }
         }
     } = useContext(GlobalContext);
+
+    // const [datachat, setDataChat]
+
     const getId = async () => {
         let id = await AsyncStorage.getItem('user');
         let test = JSON.parse(id).id;
-       
+        console.log("user >>>>>>>>>>>" + test);
         setIdUser(test);
     };
 
     useEffect(() => {
-        //check user có nằm trong list cuộc thoại ko, có thì get dữ liệu, ko thì gán bằng null
-        if(idChat){
-            getContentMess(id)(ChatsDispatch);
-        }
-        
+        // getContentMess(id)(ChatsDispatch);
         getId();
-    }, []);
+    }, [data]);
     useEffect(() => {
         setOptions({
             // title: item.first_name + ' ' + item.last_name,
@@ -55,10 +52,6 @@ const ChatDetail = () => {
                         <TouchableOpacity
                             onPress={() => {
                                 goBack();
-                                ChatsDispatch({
-                                    type: GET_CONTENT_MESS_SUCCESS,
-                                    payload: []
-                                }); 
                             }}
                         >
                             <Icon
@@ -88,19 +81,8 @@ const ChatDetail = () => {
                     <View style={styles.headerRight}>
                         <TouchableOpacity onPress={() => console.warn('clicked qrcode of chat room')}>
                             <Icon
-                                type="SimpleLineIcon"
-                                name="phone"
-                                size={22}
-                                color={colors.white}
-                                style={{
-                                    marginRight: 20
-                                }}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => console.warn('clicked qrcode of chat room')}>
-                            <Icon
-                                type="Feather"
-                                name="video"
+                                type="MaterialCommunityIcons"
+                                name="qrcode-scan"
                                 size={22}
                                 color={colors.white}
                                 style={{
@@ -113,26 +95,28 @@ const ChatDetail = () => {
             }
         });
     }, []);
-    console.log("IDchat >>>>>>>>>>>"+ idChat);
+    // console.log("IdUser >>>>>>>>>>>>>" + (data));
     return (
         <View style={styles.page} >
-            {/* <Text>123</Text> */}
 
-            <FlatList
-                data={data}
-                renderItem= {
-                    ({ item }) => {
-                      return (
-                            <Message a={item} IdUser={IdUser} /> 
-                            
-                      )
-                  }
-                
-                //  <Text style={styles.item}>{item.content}</Text>
-                }
-            />
 
-            <MessageInput idChat={idChat} idFriend={idFriend} setIdChat={setIdChat} />
+            {
+                data ? <FlatList
+                    data={data}
+                    renderItem={
+                        ({ item }) => {
+                            return (
+                                <Message a={item} IdUser={IdUser} />
+
+                            )
+                        }
+
+                        //  <Text style={styles.item}>{item.content}</Text>
+                    }
+                /> : null
+            }
+
+            <MessageInput idChat={id} idFriend={idFriend} />
         </View >
     );
 }

@@ -20,7 +20,8 @@ const ChatRooms = () => {
     } = useContext(GlobalContext);
 
     useEffect(() => {
-        getListUserChats()(ChatsDispatch);
+        const result = getListUserChats()(ChatsDispatch);
+        console.log("Tessssssss" + result);
     }, []);
 
     useEffect(() => {

@@ -138,7 +138,7 @@ const PostFooter = ({ post, postFirst }) => {
     }
 
     const onPressComment = () => {
-        navigate(COMMENT, { post: postFirst })
+        navigate(COMMENT, { post: post })
     }
 
     return (

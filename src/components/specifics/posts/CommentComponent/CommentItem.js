@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import colors from '../../../../assets/themes/colors';
 import Icon from '../../../common/Icon';
+import { DEFAULT_IMAGE_URI } from '../../../../constants/general'
 
 const CommentItem = ({
     user,
-    comment
+    comment,
+    createDate
 }) => {
     const [liked, setLiked] = useState(false);
 
@@ -21,7 +23,7 @@ const CommentItem = ({
         <View style={styles.wrapper}>
             <TouchableOpacity onPress={() => console.warn("click channel of commenter")}>
                 <Image
-                    source={{ uri: 'https://thuthuatnhanh.com/wp-content/uploads/2020/09/anh-avt-anime-chat-nhat-580x580.jpg' }}
+                    source={{ uri: DEFAULT_IMAGE_URI }}
                     style={styles.imageAvt}
                 />
             </TouchableOpacity>
@@ -33,7 +35,7 @@ const CommentItem = ({
                 <View style={styles.subDetail}>
                     <Text
                         numberOfLines={1}
-                        style={styles.date}>07:23 Sunday</Text>
+                        style={styles.date}>{createDate}</Text>
                     <TouchableOpacity>
                         <Text style={styles.reply}>Reply</Text>
                     </TouchableOpacity>

@@ -5,6 +5,9 @@ import {
     DELETE_POST_FAIL,
     DELETE_POST_LOADING,
     DELETE_POST_SUCCESS,
+    GET_LIST_COMMENTS_FAIL,
+    GET_LIST_COMMENTS_LOADING,
+    GET_LIST_COMMENTS_SUCCESS,
     GET_LIST_POSTS_FAIL,
     GET_LIST_POSTS_LOADING,
     GET_LIST_POSTS_SUCCESS,
@@ -44,6 +47,40 @@ const postsReducer = (state, { type, payload }) => {
                 ...state,
                 getListPosts: {
                     ...state.getListPosts,
+                    loading: false,
+                    error: payload,
+                },
+            };
+
+        /**
+         * GET_LIST_COMMENTS
+         */
+        case GET_LIST_COMMENTS_LOADING:
+            return {
+                ...state,
+                getListComments: {
+                    ...state.getListComments,
+                    loading: true,
+                    error: null,
+                },
+            };
+
+        case GET_LIST_COMMENTS_SUCCESS:
+            return {
+                ...state,
+                getListComments: {
+                    ...state.getListComments,
+                    loading: false,
+                    data: payload,
+                    error: null,
+                },
+            };
+
+        case GET_LIST_COMMENTS_FAIL:
+            return {
+                ...state,
+                getListComments: {
+                    ...state.getListComments,
                     loading: false,
                     error: payload,
                 },

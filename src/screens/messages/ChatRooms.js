@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import colors from '../../assets/themes/colors'
 import Icon from '../../components/common/Icon';
@@ -11,6 +11,7 @@ import { GlobalContext } from '../../context/Provider';
 const ChatRooms = () => {
 
     const { navigate, setOptions } = useNavigation();
+    const [refreshList, setRefreshList] = useState(false);
 
     const {
         ChatsDispatch,
@@ -19,10 +20,16 @@ const ChatRooms = () => {
         }
     } = useContext(GlobalContext);
 
+    const onRefresh = () => {
+        setRefreshList(true);
+        getListUserChats()(ChatsDispatch);
+        setRefreshList(false)
+    }
+
     useEffect(() => {
         const result = getListUserChats()(ChatsDispatch);
         console.log("Tessssssss" + result);
-    }, [data]);
+    }, []);
 
     useEffect(() => {
         setOptions({
@@ -77,7 +84,11 @@ const ChatRooms = () => {
                                 }}
                             />
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => console.warn('add new message')}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigate(SEARCH_FRIEND);
+                            }}
+                        >
                             <Icon
                                 type="AntDesign"
                                 name="plus"
@@ -100,6 +111,8 @@ const ChatRooms = () => {
         <ChatRoomsComponent
         data={data}
         loading={loading}
+        onRefresh={onRefresh}
+        refreshList={refreshList}
         />
     )
 }

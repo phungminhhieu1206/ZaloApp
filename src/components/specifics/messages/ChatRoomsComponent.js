@@ -7,7 +7,8 @@ import {
     Dimensions,
     FlatList,
     ScrollView,
-    Image
+    Image,
+    RefreshControl
 } from 'react-native';
 import ListImages from '../../common/ListImages';
 import ChatRoomItem from './ListMessage/ChatRoomItem';
@@ -17,7 +18,9 @@ const HEIGHT = Dimensions.get('window').height;
 
 const ChatRoomsComponent = ({
     data,
-    loading
+    loading,
+    onRefresh,
+    refreshList
 }) => {
 
 
@@ -28,6 +31,13 @@ const ChatRoomsComponent = ({
                 data={data}
                 renderItem={({ item, index }) => <ChatRoomItem chatRoom={item} key={index} />}
                 showsVerticalScrollIndicator={true}
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshList}
+                        onRefresh={onRefresh}
+                        colors={['red']}
+                    />
+                }
             />
         </View >
     );
@@ -35,8 +45,8 @@ const ChatRoomsComponent = ({
 
 const styles = StyleSheet.create({
     home_chat: {
-      backgroundColor: 'white',
-      flex: 1,
+        backgroundColor: 'white',
+        flex: 1,
     }
 });
 export default ChatRoomsComponent

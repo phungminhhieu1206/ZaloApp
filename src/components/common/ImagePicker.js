@@ -18,18 +18,21 @@ const ImagePicker = React.forwardRef(({ onFileSelected }, ref) => {
             onPress: () => {
                 // Đây mới là lúc dùng image picker cropper
                 ImagePickerCropper.openCamera({
-                    width: 300,
-                    height: 300,
-                    mediaType: 'photo', // video, any, photo
-                    cropping: true,
-                    freeStyleCropEnabled: true,
+                    multiple: true,
+                    waitAnimationEnd: false,
+                    includeExif: true,
+                    forceJpg: true, 
+                    compressImageQuality: 0.8,
+                    maxFiles: 10,
+                    mediaType: 'any',
+                    includeBase64: true
                 })
                     .then((images) => {
-                        console.log('image by camera: >>>', images);
+                        // console.log('image by camera: >>>', images);
                         onFileSelected(images);
                     })
                     .catch((error) => {
-                        console.log('error image picker camera --->', error);
+                        // console.log('error image picker camera --->', error);
                     });
             },
         },

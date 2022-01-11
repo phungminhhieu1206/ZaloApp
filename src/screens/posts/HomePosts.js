@@ -15,9 +15,11 @@ import { CREATE_POST, SEARCH_FRIEND } from '../../constants/routeNames';
 import { USERS } from "../../assets/sample_data/Users";
 import getListPosts from '../../context/actions/posts/getListPosts';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { POSTS } from '../../assets/sample_data/Posts'
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
+const postFirst = POSTS[0];
 
 const HomePosts = () => {
     const { navigate, setOptions, goBack } = useNavigation();
@@ -162,6 +164,7 @@ const HomePosts = () => {
             currentPost={currentPost}
             user={user}
             postsDispatch={postsDispatch}
+            postFirst={postFirst}
         />
     )
 }

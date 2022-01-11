@@ -28,14 +28,20 @@ const MyChannel = () => {
     const getUser = async () => {
         try {
             const author = await AsyncStorage.getItem('user');
-            // console.log('IDDDDDDDDDDDDDDDDDDDD ----> ', JSON.parse(author).id);
+            console.log('IDDDDDDDDDDDDDDDDDDDD ----> ', JSON.parse(author).id);
             setUser(JSON.parse(author));
         } catch (error) { }
     };
 
     // console.log("user isssssssssssssss:>>", user.username);
 
+    useEffect(() => {
+        getUser();
+    }, []);
 
+    useEffect(() => {
+        getMyPosts(user.id)(postsDispatch);
+    }, [user]);
 
     const onRefresh = () => {
         setRefreshList(true);
@@ -43,12 +49,6 @@ const MyChannel = () => {
         getMyPosts(user.id)(postsDispatch);
         setRefreshList(false);
     }
-
-    useEffect(() => {
-        getUser();
-        getMyPosts(user.id)(postsDispatch);
-    }, []);
-
 
     useEffect(() => {
         setOptions({

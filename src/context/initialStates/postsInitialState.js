@@ -4,6 +4,11 @@ export default {
         error: null,
         loading: false,
     },
+    getListComments: {
+        data: [],
+        error: null,
+        loading: false,
+    },
     getMyPosts: {
         data: [],
         error: null,
@@ -16,6 +21,11 @@ export default {
     },
     deletePost: {
         data: {},
+        error: null,
+        loading: false,
+    },
+    createComment: {
+        dataCreate: {},
         error: null,
         loading: false,
     }

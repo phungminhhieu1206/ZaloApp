@@ -5,6 +5,7 @@ const ListPosts = ({
     data,
     widthScreen,
     openSheet,
+    postFirst
 }) => {
 
     return (
@@ -13,6 +14,7 @@ const ListPosts = ({
                 widthScreen={widthScreen}
                 post={post} key={index}
                 openSheet={() => openSheet(post)}
+                postFirst={postFirst}
             />
         ))
     )

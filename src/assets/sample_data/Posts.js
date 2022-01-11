@@ -24,6 +24,30 @@ export const POSTS = [
                 user: 'growup',
                 comment: 'Wow! This build looks fire. This is beautiful girl.'
             },
+            {
+                user: 'theqazman',
+                comment: 'Such a beautiful smile❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️'
+            },
+            {
+                user: 'mazabicket',
+                comment: 'ghé nhà mình xem đồ xinh và phụ kiện chỉ từ 6k nhé các cậu 🍓🍑🍒🍊🍎🥭🍉🍍🍇🍋🍅 FOLLOW NHÀ ĐÓM NHA!'
+            },
+            {
+                user: 'growup',
+                comment: 'Wow! This build looks fire. This is beautiful girl.'
+            },
+            {
+                user: 'theqazman',
+                comment: 'Such a beautiful smile❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️'
+            },
+            {
+                user: 'mazabicket',
+                comment: 'ghé nhà mình xem đồ xinh và phụ kiện chỉ từ 6k nhé các cậu 🍓🍑🍒🍊🍎🥭🍉🍍🍇🍋🍅 FOLLOW NHÀ ĐÓM NHA!'
+            },
+            {
+                user: 'growup',
+                comment: 'Wow! This build looks fire. This is beautiful girl.'
+            },
         ],
     },
     {

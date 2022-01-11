@@ -116,16 +116,17 @@ const PostFooter = ({ post }) => {
     const { navigate } = useNavigation();
 
     const [liked, setLiked] = useState(post.isLike);
+    const [countLiked, setCountLiked] = useState(post.like.length);
     const [countCMT, setCountCMT] = useState(post.countComments);
 
     const onPressWhiteLike = () => {
         setLiked(true);
-        post.likes += 1;
+        setCountLiked((prev) => (prev + 1));
     }
 
     const onPressRedLike = () => {
         setLiked(false);
-        post.likes -= 1;
+        setCountLiked((prev) => (prev - 1));
     }
 
     const onPressComment = () => {
@@ -167,7 +168,7 @@ const PostFooter = ({ post }) => {
                         fontSize: 18,
                         marginLeft: 8,
                         width: 60,
-                    }}>{post.like.length}</Text>
+                    }}>{countLiked}</Text>
                 <TouchableOpacity onPress={onPressComment}>
                     <Icon
                         type="MaterialCommunityIcons"

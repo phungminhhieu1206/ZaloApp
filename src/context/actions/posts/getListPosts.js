@@ -20,7 +20,7 @@ const getListPosts = () => (dispatch) => {
             payload: temp
         });
     }).catch((err) => {
-        console.log('list posts error -->', err.response);
+        // console.log('list posts error -->', err.response);
         dispatch({
             type: GET_LIST_POSTS_FAIL,
             payload: err.response

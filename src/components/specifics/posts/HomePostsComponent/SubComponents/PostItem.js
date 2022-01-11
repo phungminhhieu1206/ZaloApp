@@ -13,20 +13,22 @@ import Icon from '../../../../common/Icon';
 import ListImages from '../../../../common/ListImages';
 import { url_images } from "../../../../../constants/general";
 import { DEFAULT_IMAGE_URI } from '../../../../../constants/general'
+import { COMMENT } from '../../../../../constants/routeNames';
 
 const PostItem = ({
     post,
     widthScreen,
     openSheet,
+    postFirst
 }) => {
-    console.log('data ---------', post);
+    // console.log('data ---------', post);
 
     return (
         <View style={styles.container}>
             <PostHeader openSheet={openSheet} post={post} />
             {post.described ? <Caption post={post} /> : null}
             {post.images.length !== 0 ? <PostImage post={post.images} width={widthScreen} /> : null}
-            <PostFooter post={post} />
+            <PostFooter postFirst={postFirst} post={post} />
         </View>
     )
 }
@@ -73,7 +75,7 @@ const PostHeader = ({ post, openSheet }) => (
         </View>
 
         <TouchableOpacity
-        onPress={openSheet}
+            onPress={openSheet}
         >
             <Icon
                 type="Feather"
@@ -118,24 +120,25 @@ const PostImage = ({ post, width }) => {
 
 
 
-const PostFooter = ({ post }) => {
+const PostFooter = ({ post, postFirst }) => {
     const { navigate } = useNavigation();
 
     const [liked, setLiked] = useState(post.isLike);
+    const [countLiked, setCountLiked] = useState(post.like.length);
     const [countCMT, setCountCMT] = useState(post.countComments);
 
     const onPressWhiteLike = () => {
         setLiked(true);
-        post.likes += 1;
+        setCountLiked((prev) => (prev + 1));
     }
 
     const onPressRedLike = () => {
         setLiked(false);
-        post.likes -= 1;
+        setCountLiked((prev) => (prev - 1));
     }
 
     const onPressComment = () => {
-        // navigation.navigate("Comment", { post: post })
+        navigate(COMMENT, { post: post })
     }
 
     return (
@@ -173,7 +176,7 @@ const PostFooter = ({ post }) => {
                         fontSize: 18,
                         marginLeft: 8,
                         width: 60,
-                    }}>{post.like.length}</Text>
+                    }}>{countLiked}</Text>
                 <TouchableOpacity onPress={onPressComment}>
                     <Icon
                         type="MaterialCommunityIcons"

@@ -58,27 +58,27 @@ const OptionPost = React.forwardRef(({ handleDelete, closeSheet, currentPost, us
         //         closeSheet();
         //     },
         // },
-        {
-            name: 'Hidden this post',
-            icon: <Icon type="MaterialCommunityIcons" name="file-hidden" color={colors.grey} size={21} />,
-            onPress: () => {
+        // {
+        //     name: 'Hidden this post',
+        //     icon: <Icon type="MaterialCommunityIcons" name="file-hidden" color={colors.grey} size={21} />,
+        //     onPress: () => {
 
-                //code here
-                console.log('click hidden post id: ', currentPost._id);
-                // handleDelete(currentPost._id);
+        //         //code here
+        //         console.log('click hidden post id: ', currentPost._id);
+        //         // handleDelete(currentPost._id);
 
-                // close sheet
-                closeSheet();
+        //         // close sheet
+        //         closeSheet();
 
-            },
-        },
+        //     },
+        // },
         {
             name: 'Report',
             icon: <Icon type="AntDesign" name="warning" color={colors.grey} size={21} />,
             onPress: () => {
 
                 //code here
-                console.log('click report post id: ', currentPost._id);
+                console.warn('REPORT POST SUCCESS !');
 
                 // close sheet
                 closeSheet();

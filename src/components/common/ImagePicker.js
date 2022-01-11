@@ -47,7 +47,7 @@ const ImagePicker = React.forwardRef(({ onFileSelected }, ref) => {
                     includeExif: true,
                     forceJpg: true, 
                     compressImageQuality: 0.8,
-                    maxFiles: 10,
+                    maxFiles: 4,
                     mediaType: 'any',
                     includeBase64: true
                 })
